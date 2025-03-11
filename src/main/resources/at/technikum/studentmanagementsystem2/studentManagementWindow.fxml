@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="vbox" alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.studentmanagementsystem2.StudentManagementController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Label fx:id="welcomeText" text="Student Management System" VBox.vgrow="NEVER">
+      <font>
+         <Font name="Roboto Thin" size="14.0" />
+      </font></Label>
+   <ButtonBar prefHeight="40.0" prefWidth="200.0">
+     <buttons>
+       <Button fx:id="newButton" mnemonicParsing="true" text="_New..." onAction="#onNewButtonClick" />
+       <Button fx:id="editButton" mnemonicParsing="true" text="_Edit..." onAction="#onEditButtonClick"/>
+       <Button fx:id="deleteButton" mnemonicParsing="true" text="_Delete" />
+     </buttons>
+   </ButtonBar>
+   <HBox>
+      <children>
+         <TableView fx:id="studentTable" HBox.hgrow="ALWAYS">
+           <columns>
+             <TableColumn fx:id="idColumn" text="Id" />
+             <TableColumn fx:id="nameColumn" text="Name" />
+             <TableColumn fx:id="semesterColumn" text="Semester" />
+           </columns>
+         </TableView>
+      </children></HBox>
+   <ButtonBar prefHeight="40.0" prefWidth="200.0">
+     <buttons>
+       <Button mnemonicParsing="false" text="Ok" />
+         <Button mnemonicParsing="false" text="Cancel" />
+     </buttons>
+   </ButtonBar>
+</VBox>
