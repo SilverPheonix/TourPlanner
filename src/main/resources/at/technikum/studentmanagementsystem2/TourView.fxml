@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<VBox spacing="10" alignment="CENTER">
+    <TableView fx:id="tourTable">
+        <columns>
+            <TableColumn text="Name" fx:id="colName"/>
+            <TableColumn text="From" fx:id="colFrom"/>
+            <TableColumn text="To" fx:id="colTo"/>
+            <TableColumn text="Distance" fx:id="colDistance"/>
+        </columns>
+    </TableView>
+    <Button text="Add Tour" fx:id="btnAdd"/>
+</VBox>

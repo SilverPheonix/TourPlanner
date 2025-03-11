@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER">
+    <TableView fx:id="logTable">
+        <columns>
+            <TableColumn text="Date" fx:id="colDate"/>
+            <TableColumn text="Comment" fx:id="colComment"/>
+            <TableColumn text="Difficulty" fx:id="colDifficulty"/>
+            <TableColumn text="Distance" fx:id="colDistance"/>
+            <TableColumn text="Time" fx:id="colTime"/>
+            <TableColumn text="Rating" fx:id="colRating"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10">
+        <Button text="Add Log" fx:id="btnAdd"/>
+        <Button text="Edit Log" fx:id="btnEdit"/>
+        <Button text="Delete Log" fx:id="btnDelete"/>
+    </HBox>
+</VBox>
