@@ -19,10 +19,11 @@ public class TourLogController {
 
     private TourLogViewModel viewModel;
 
-    public void initialize() {
-        viewModel = new TourLogViewModel(new TourLogService());
+    public TourLogController(TourLogViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
 
-        // Tabellenbindung
+    public void initialize() {
         logTable.setItems(viewModel.getTourLogs());
 
         // Button-Events

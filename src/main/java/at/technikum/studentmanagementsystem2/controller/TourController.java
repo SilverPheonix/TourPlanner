@@ -20,8 +20,12 @@ public class TourController {
 
     private TourViewModel viewModel;
 
+    public TourController(TourViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
     public void initialize() {
-        viewModel = new TourViewModel();
+        tourTable.setItems(viewModel.getTours());
 
         // Bindet die Daten der TableView an das ViewModel
         tourTable.setItems(viewModel.getTours());
