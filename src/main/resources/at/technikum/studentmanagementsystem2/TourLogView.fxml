@@ -2,7 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10" alignment="CENTER">
+<VBox fx:id="vbox" alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.studentmanagementsystem2.controller.TourLogController">
     <TableView fx:id="logTable">
         <columns>
             <TableColumn text="Date" fx:id="colDate"/>

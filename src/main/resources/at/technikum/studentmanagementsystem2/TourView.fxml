@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<VBox spacing="10" alignment="CENTER">
+<VBox fx:id="vbox" alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.studentmanagementsystem2.controller.TourController">
     <TableView fx:id="tourTable">
         <columns>
             <TableColumn text="Name" fx:id="colName"/>
