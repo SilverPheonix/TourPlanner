@@ -15,7 +15,7 @@ public class TourViewModel {
         loadTours();
     }
     public TourViewModel() {
-        service = new TourService();
+        this.service = new TourService(); // Default service instance
         loadTours();
     }
 
@@ -35,5 +35,12 @@ public class TourViewModel {
     public void removeTour(Tour tour) {
         service.deleteTour(tour.getId());
         loadTours();
+    }
+
+    public void saveTour(Tour newTour) {
+    }
+
+    public void deleteTour(Tour selectedTour) {
+
     }
 }
