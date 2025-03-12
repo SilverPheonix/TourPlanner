@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="It compiles now">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourLogView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourLogView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourView.fxml" afterDir="false" />
+    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="TourView.fxml and TourLogView.fxml are correctly linked now and can be edited">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +150,7 @@
       <workItem from="1741767606914" duration="1881000" />
       <workItem from="1741785983965" duration="7272000" />
       <workItem from="1741802674215" duration="706000" />
-      <workItem from="1741803528160" duration="155000" />
+      <workItem from="1741803528160" duration="432000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some dependencies, TourViewModel.java still has issues with parameters passing">
       <option name="closed" value="true" />
@@ -170,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741802313831</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="TourView.fxml and TourLogView.fxml are correctly linked now and can be edited">
+      <option name="closed" value="true" />
+      <created>1741803801378</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741803801378</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +196,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed some dependencies, TourViewModel.java still has issues with parameters passing" />
     <MESSAGE value="It compiles now" />
-    <option name="LAST_COMMIT_MESSAGE" value="It compiles now" />
+    <MESSAGE value="TourView.fxml and TourLogView.fxml are correctly linked now and can be edited" />
+    <option name="LAST_COMMIT_MESSAGE" value="TourView.fxml and TourLogView.fxml are correctly linked now and can be edited" />
   </component>
 </project>
