@@ -5,7 +5,15 @@ TODO Section:
 - 
 Here we will add everything that needs doing.
 
-- Now we can start slowly expanding on the existing framework
+- Create/Modify/Delete Tours
+- Create/Modify/Delete Tour Logs
+- Tours have required attributes of a selected tour and a map-placeholder
+- Validates user-input(no crash on wrong input)
+- in TourViewModel, TourLogViewModel files überarbeiten und zu einem in-memory storage system wechseln
+- Edit Seiten müssen hinzugefügt werden
+- Tour Seite muss hinzugefügt werden um zu den Tour Logs zu kommen
+- UI responds to window size changes
+- Add 4 unit tests for MVVM
 __________________
 Changelog:
 - 

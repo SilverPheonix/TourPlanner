@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="TourView.fxml and TourLogView.fxml are correctly linked now and can be edited">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -199,7 +198,6 @@
     <MESSAGE value="Fixed some dependencies, TourViewModel.java still has issues with parameters passing" />
     <MESSAGE value="It compiles now" />
     <MESSAGE value="TourView.fxml and TourLogView.fxml are correctly linked now and can be edited" />
-    <MESSAGE value="Tour Planner View FXML Files anpassen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tour Planner View FXML Files anpassen" />
+    <option name="LAST_COMMIT_MESSAGE" value="TourView.fxml and TourLogView.fxml are correctly linked now and can be edited" />
   </component>
 </project>
