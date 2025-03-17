@@ -11,6 +11,10 @@ Changelog:
 - 
 All changes that we worked on that day
 
+> Update 17.03.25 - Updating FXML Files
+> - Redesigned the FXML Files
+> - Added the necessary buttons for Create, Edit and Delete actions, as well as some for navigation
+
 > Update 12.03.25 - Patrick
 > - Fixed compilation problems caused by the file migration in the Tour-related files
 > - Correctly linked TourView and TourLogView to the respective controllers, they can be edited now
