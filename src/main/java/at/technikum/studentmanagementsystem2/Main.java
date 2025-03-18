@@ -1,10 +1,7 @@
 package at.technikum.studentmanagementsystem2;
 
 import at.technikum.studentmanagementsystem2.controller.TourController;
-import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
-import at.technikum.studentmanagementsystem2.service.TourLogService;
-import at.technikum.studentmanagementsystem2.service.TourService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,11 +15,9 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourView.fxml"));
             Parent root = loader.load();
 
-            TourController controller = loader.getController(); // ✅ Get the controller instance
-
-            // ✅ Create ViewModel
-            TourViewModel tourViewModel = new TourViewModel();
-            controller.setViewModel(tourViewModel); // ✅ Inject ViewModel here before using it
+            TourController controller = loader.getController();
+            TourViewModel viewModel = new TourViewModel();
+            controller.setViewModel(viewModel);  // ✅ Inject ViewModel before UI loads
 
             primaryStage.setScene(new Scene(root));
             primaryStage.setTitle("Tour Management");
@@ -31,7 +26,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
 
     public static void main(String[] args) {
         launch(args);

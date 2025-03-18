@@ -19,35 +19,38 @@ public class TourController {
     @FXML private Button btnAdd, btnEdit, btnDelete;
 
     private TourViewModel viewModel;
+    private boolean isViewModelSet = false; // Track if setViewModel() was called
 
     public TourController() {
-        System.out.println("TourController created (default constructor)");
+        System.out.println("[TourController] Constructor called.");
     }
 
     public void setViewModel(TourViewModel viewModel) {
         this.viewModel = viewModel;
-        System.out.println("ViewModel successfully injected!");
+        this.isViewModelSet = true;
+        System.out.println("[TourController] ViewModel successfully injected!");
 
         if (tourTable != null) {
-            System.out.println("TourTable is initialized, binding data...");
-            tourTable.setItems(viewModel.getTours());
+            bindUI();
         } else {
-            System.err.println("TourTable is NULL in setViewModel(). Binding postponed...");
+            System.err.println("[TourController] tourTable is NULL! Binding postponed...");
         }
     }
 
     @FXML
     public void initialize() {
-        System.out.println("TourController initialize() called.");
+        System.out.println("[TourController] initialize() called.");
 
-        // Ensure TableView is correctly linked before using ViewModel
-        if (tourTable == null) {
-            System.err.println("tourTable is NULL! Ensure FXML is correctly linked.");
+        if (viewModel == null) {
+            System.err.println("[TourController] ViewModel is NULL in initialize()! Waiting for setViewModel...");
             return;
         }
 
-        System.out.println("TourTable is initialized, setting columns...");
+        bindUI(); // Proceed only if ViewModel is already set
+    }
 
+    private void bindUI() {
+        System.out.println("[TourController] Setting up TableView columns...");
         colName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         colDescription.setCellValueFactory(cellData -> cellData.getValue().descriptionProperty());
         colFrom.setCellValueFactory(cellData -> cellData.getValue().fromProperty());
@@ -56,53 +59,57 @@ public class TourController {
         colDistance.setCellValueFactory(cellData -> cellData.getValue().distanceProperty().asObject());
         colEstimatedTime.setCellValueFactory(cellData -> cellData.getValue().estimatedTimeProperty().asObject());
 
-        if (viewModel == null) {
-            System.err.println("ViewModel is NULL in initialize()! Waiting for setViewModel...");
-            return;
-        }
-
+        System.out.println("[TourController] Binding TableView data...");
         tourTable.setItems(viewModel.getTours());
 
-        // Button actions
         btnAdd.setOnAction(e -> addTour());
         btnEdit.setOnAction(e -> editTour());
         btnDelete.setOnAction(e -> deleteTour());
     }
 
-
     private void addTour() {
         if (viewModel == null) {
-            System.err.println("Cannot add tour, ViewModel is NULL!");
+            System.err.println("[TourController] Cannot add tour, ViewModel is NULL!");
             return;
         }
+        System.out.println("[TourController] Adding new tour...");
         Tour newTour = new Tour(
                 UUID.randomUUID(), "New Tour", "A beautiful tour",
                 "Vienna", "Salzburg", "Car",
-                250.0, 180.0, "image_url"
+                250.0, 180.0, "placeholder.jpg"
         );
         viewModel.saveTour(newTour);
+        tourTable.refresh();  // Ensure UI updates
     }
 
     private void editTour() {
         if (viewModel == null) {
-            System.err.println("Cannot edit tour, ViewModel is NULL!");
+            System.err.println("[TourController] Cannot edit tour, ViewModel is NULL!");
             return;
         }
         Tour selectedTour = tourTable.getSelectionModel().getSelectedItem();
         if (selectedTour != null) {
+            System.out.println("[TourController] Editing tour: " + selectedTour.getName());
             selectedTour.setDescription("Updated Description");
             viewModel.saveTour(selectedTour);
+            tourTable.refresh();
+        } else {
+            System.err.println("[TourController] No tour selected for editing!");
         }
     }
 
     private void deleteTour() {
         if (viewModel == null) {
-            System.err.println("Cannot delete tour, ViewModel is NULL!");
+            System.err.println("[TourController] Cannot delete tour, ViewModel is NULL!");
             return;
         }
         Tour selectedTour = tourTable.getSelectionModel().getSelectedItem();
         if (selectedTour != null) {
+            System.out.println("[TourController] Deleting tour: " + selectedTour.getName());
             viewModel.deleteTour(selectedTour);
+            tourTable.refresh();
+        } else {
+            System.err.println("[TourController] No tour selected for deletion!");
         }
     }
 }

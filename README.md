@@ -5,11 +5,9 @@ TODO Section:
 - 
 Here we will add everything that needs doing.
 
-- Create/Modify/Delete Tours
 - Create/Modify/Delete Tour Logs
 - Tours have required attributes of a selected tour and a map-placeholder
 - Validates user-input(no crash on wrong input)
-- in TourViewModel, TourLogViewModel files überarbeiten und zu einem in-memory storage system wechseln
 - Edit Seiten müssen hinzugefügt werden
 - Tour Seite muss hinzugefügt werden um zu den Tour Logs zu kommen
 - UI responds to window size changes
@@ -21,6 +19,7 @@ All changes that we worked on that day
 
 > Update 18.03.25 - Project can be compiled now
 > - Fixed compatibility errors in Tour.Java, TourController.Java, TourLogService.Java, TourViewModel.java, TourView.fxml, module-info.java, and Main
+> - Fixed Add, Edit, Delete buttons, now they work
 
 > Update 17.03.25 - Updating FXML Files
 > - Redesigned the FXML Files

@@ -10,28 +10,29 @@ public class TourViewModel {
     private final ObservableList<Tour> tours = FXCollections.observableArrayList();
 
     public TourViewModel() {
-        // Sample data for testing (optional)
+        // Sample data for testing
         tours.add(new Tour(UUID.randomUUID(), "Test Tour", "Description",
                 "Vienna", "Graz", "Train", 200.0, 120.0, "image_url"));
     }
 
-    // ✅ Expose the ObservableList for JavaFX bindings
+    // Expose the ObservableList for JavaFX bindings
     public ObservableList<Tour> getTours() {
         return tours;
     }
 
-    // ✅ Save a new tour or update an existing one
     public void saveTour(Tour tour) {
-        if (!tours.contains(tour)) {
+        int index = tours.indexOf(tour);
+        if (index == -1) {
+            System.out.println("[TourViewModel] Adding new tour: " + tour.getName());
             tours.add(tour);
         } else {
-            int index = tours.indexOf(tour);
+            System.out.println("[TourViewModel] Updating tour: " + tour.getName());
             tours.set(index, tour);
         }
     }
 
-    // ✅ Remove a tour from the list
     public void deleteTour(Tour tour) {
+        System.out.println("[TourViewModel] Deleting tour: " + tour.getName());
         tours.remove(tour);
     }
 }
