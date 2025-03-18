@@ -1,45 +1,37 @@
 package at.technikum.studentmanagementsystem2.mvvm;
 
 import at.technikum.studentmanagementsystem2.models.Tour;
-import at.technikum.studentmanagementsystem2.repository.TourRepository;
-import at.technikum.studentmanagementsystem2.service.TourService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.UUID;
+
 public class TourViewModel {
-    private final TourService service;
     private final ObservableList<Tour> tours = FXCollections.observableArrayList();
 
-    public TourViewModel(TourService service) {
-        this.service = service;
-        loadTours();
+    public TourViewModel() {
+        // Sample data for testing (optional)
+        tours.add(new Tour(UUID.randomUUID(), "Test Tour", "Description",
+                "Vienna", "Graz", "Train", 200.0, 120.0, "image_url"));
     }
 
-    private void loadTours() {
-        tours.setAll(service.getAllTours());
-    }
-
+    // ✅ Expose the ObservableList for JavaFX bindings
     public ObservableList<Tour> getTours() {
         return tours;
     }
 
-    public void addTour(Tour tour) {
-        service.createTour(tour);
-        loadTours();
+    // ✅ Save a new tour or update an existing one
+    public void saveTour(Tour tour) {
+        if (!tours.contains(tour)) {
+            tours.add(tour);
+        } else {
+            int index = tours.indexOf(tour);
+            tours.set(index, tour);
+        }
     }
 
-    public void removeTour(Tour tour) {
-        service.deleteTour(tour.getId());
-        loadTours();
-    }
-
-    public void saveTour(Tour newTour) {
-        service.createTour(newTour);
-        loadTours();
-    }
-
-    public void deleteTour(Tour selectedTour) {
-        service.deleteTour(selectedTour.getId());
-        loadTours();
+    // ✅ Remove a tour from the list
+    public void deleteTour(Tour tour) {
+        tours.remove(tour);
     }
 }

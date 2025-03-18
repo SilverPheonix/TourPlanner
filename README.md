@@ -19,6 +19,9 @@ Changelog:
 - 
 All changes that we worked on that day
 
+> Update 18.03.25 - Project can be compiled now
+> - Fixed compatibility errors in Tour.Java, TourController.Java, TourLogService.Java, TourViewModel.java, TourView.fxml, module-info.java, and Main
+
 > Update 17.03.25 - Updating FXML Files
 > - Redesigned the FXML Files
 > - Added the necessary buttons for Create, Edit and Delete actions, as well as some for navigation

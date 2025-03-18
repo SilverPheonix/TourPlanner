@@ -13,7 +13,9 @@
     <Label fx:id="welcomeText" text="TourPlanner" VBox.vgrow="NEVER">
         <font>
             <Font name="Roboto Thin" size="14.0" />
-        </font></Label>
+        </font>
+    </Label>
+
     <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
             <Button fx:id="btnAdd" mnemonicParsing="true" text="_New..."  />
@@ -21,17 +23,23 @@
             <Button fx:id="btnDelete" mnemonicParsing="true" text="_Delete" />
         </buttons>
     </ButtonBar>
+
     <HBox>
         <children>
             <TableView fx:id="tourTable" HBox.hgrow="ALWAYS">
                 <columns>
                     <TableColumn text="Name" fx:id="colName"/>
+                    <TableColumn text="Description" fx:id="colDescription"/>
                     <TableColumn text="From" fx:id="colFrom"/>
                     <TableColumn text="To" fx:id="colTo"/>
-                    <TableColumn text="Distance" fx:id="colDistance"/>
+                    <TableColumn text="Transport Type" fx:id="colTransportType"/>
+                    <TableColumn text="Distance (km)" fx:id="colDistance"/>
+                    <TableColumn text="Estimated Time (min)" fx:id="colEstimatedTime"/>
                 </columns>
             </TableView>
-        </children></HBox>
+        </children>
+    </HBox>
+
     <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
             <Button mnemonicParsing="false" text="Ok" />

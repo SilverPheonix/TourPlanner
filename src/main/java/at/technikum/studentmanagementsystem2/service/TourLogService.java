@@ -1,29 +1,25 @@
 package at.technikum.studentmanagementsystem2.service;
 
 import at.technikum.studentmanagementsystem2.models.TourLog;
-import at.technikum.studentmanagementsystem2.repository.TourLogRepository;
-import org.springframework.stereotype.Service;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.List;
 import java.util.UUID;
 
-@Service
 public class TourLogService {
-    private final TourLogRepository repository;
-
-    public TourLogService(TourLogRepository repository) {
-        this.repository = repository;
-    }
+    private final ObservableList<TourLog> tourLogs = FXCollections.observableArrayList();
 
     public List<TourLog> getTourLogsByTourId(UUID tourId) {
-        return repository.findByTourId(tourId);
+        return tourLogs.filtered(log -> log.getTourId().equals(tourId));
     }
 
-    public TourLog saveTourLog(TourLog tourLog) {
-        return repository.save(tourLog);
+    public void saveTourLog(TourLog tourLog) {
+        tourLogs.removeIf(log -> log.getId().equals(tourLog.getId()));  // Remove old entry if exists
+        tourLogs.add(tourLog);
     }
 
-    public void deleteTourLog(UUID id) {
-        repository.deleteById(id);
+    public void deleteTourLog(UUID logId) {
+        tourLogs.removeIf(log -> log.getId().equals(logId));
     }
 }
