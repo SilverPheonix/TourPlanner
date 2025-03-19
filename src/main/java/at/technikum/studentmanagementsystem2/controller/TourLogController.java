@@ -2,6 +2,7 @@ package at.technikum.studentmanagementsystem2.controller;
 
 import at.technikum.studentmanagementsystem2.models.TourLog;
 import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
+import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -18,32 +19,44 @@ public class TourLogController {
     @FXML private Button btnAdd, btnEdit, btnDelete;
 
     private TourLogViewModel viewModel;
+    private boolean isViewModelSet = false;
 
-    public TourLogController(TourLogViewModel viewModel) {
+    public void setViewModel(TourLogViewModel viewModel) {
         this.viewModel = viewModel;
+        this.isViewModelSet = true;
+    }
+    public TourLogController() {
+        System.out.println("[TourLogController] Constructor called.");
     }
 
     public void initialize() {
-        logTable.setItems(viewModel.getTourLogs());
+        if (viewModel != null) {
+            logTable.setItems(viewModel.getTourLogs());
 
-        // Button-Events
-        btnAdd.setOnAction(e -> addTourLog());
-        btnEdit.setOnAction(e -> editTourLog());
-        btnDelete.setOnAction(e -> deleteTourLog());
+            // Button-Events
+            btnAdd.setOnAction(e -> addTourLog());
+            btnEdit.setOnAction(e -> editTourLog());
+            btnDelete.setOnAction(e -> deleteTourLog());
+        }
     }
+    public void setTourViewModel(TourViewModel tourViewModel) {
+        //viewModel.loadTourLogs(tourViewModel.getId());
+        logTable.setItems(viewModel.getTourLogs());
+    }
+
 
     private void addTourLog() {
         TourLog newLog = new TourLog(UUID.randomUUID(), UUID.randomUUID(),
                 java.time.LocalDateTime.now(), "Great trip!", "Medium",
                 15.0, 120.0, 4);
-        viewModel.saveTourLog(newLog);
+        viewModel.addTourLog(newLog);
     }
 
     private void editTourLog() {
         TourLog selectedLog = logTable.getSelectionModel().getSelectedItem();
         if (selectedLog != null) {
             selectedLog.setComment("Updated Comment");
-            viewModel.saveTourLog(selectedLog);
+            viewModel.updateTourLog(selectedLog);
         }
     }
 

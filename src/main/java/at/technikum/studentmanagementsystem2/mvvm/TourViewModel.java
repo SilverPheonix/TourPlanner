@@ -1,7 +1,10 @@
 package at.technikum.studentmanagementsystem2.mvvm;
 
 import at.technikum.studentmanagementsystem2.models.Tour;
+import at.technikum.studentmanagementsystem2.models.TourLog;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.UUID;
 
@@ -15,6 +18,16 @@ public class TourViewModel {
     private final DoubleProperty distance;
     private final DoubleProperty estimatedTime;
     private final StringProperty imageUrl;
+    private final ObservableList<TourLog> tourLogs = FXCollections.observableArrayList();
+
+    public ObservableList<TourLog> getTourLogs() {
+        return tourLogs;
+    }
+
+    public void loadTourLogs() {
+        //tourLogs.setAll(TourLogService.getTourLogsByTourId(getId()));
+    }
+
 
     public TourViewModel(Tour tour) {
         this.id = new SimpleStringProperty(tour.getId().toString());

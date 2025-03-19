@@ -20,6 +20,7 @@
         <buttons>
             <Button fx:id="btnAdd" mnemonicParsing="true" text="_New..."  onAction="#onNewTourClick"/>
             <Button fx:id="btnEdit" mnemonicParsing="true" text="_Edit..." onAction="#onEditTourClick"/>
+            <Button fx:id="btnLogs" mnemonicParsing="true" text="_Show Logs..." onAction="#onShowLogsClick"/>
             <Button fx:id="btnDelete" mnemonicParsing="true" text="_Delete" onAction="#onDeleteTourClick"/>
         </buttons>
     </ButtonBar>

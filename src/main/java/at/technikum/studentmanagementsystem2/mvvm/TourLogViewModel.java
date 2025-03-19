@@ -1,27 +1,18 @@
 package at.technikum.studentmanagementsystem2.mvvm;
 
 import at.technikum.studentmanagementsystem2.models.TourLog;
-import at.technikum.studentmanagementsystem2.service.TourLogService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class TourLogViewModel {
-    private final TourLogService service;
     private final ObservableList<TourLog> tourLogs = FXCollections.observableArrayList();
 
-    public TourLogViewModel(TourLogService service) {
-        this.service = service;
-    }
-
-    /**
-     * Lädt alle Tour-Logs für eine bestimmte Tour.
-     */
-    public void loadTourLogs(UUID tourId) {
-        List<TourLog> logs = service.getTourLogsByTourId(tourId);
-        tourLogs.setAll(logs);
+    public TourLogViewModel() {
+        // Optional: Beispiel-Daten zum Testen
+        tourLogs.add(new TourLog(UUID.randomUUID(), UUID.randomUUID(), LocalDateTime.now(),"Wunderschöne Tour", "medium",200,14,4));
     }
 
     /**
@@ -32,18 +23,28 @@ public class TourLogViewModel {
     }
 
     /**
-     * Erstellt oder aktualisiert ein Tour-Log.
+     * Fügt ein neues Tour-Log hinzu.
      */
-    public void saveTourLog(TourLog tourLog) {
-        service.saveTourLog(tourLog);
-        loadTourLogs(tourLog.getTourId()); // Aktualisiere die Liste
+    public void addTourLog(TourLog tourLog) {
+        tourLogs.add(tourLog);
+    }
+
+    /**
+     * Aktualisiert ein vorhandenes Tour-Log.
+     */
+    public void updateTourLog(TourLog updatedTourLog) {
+        for (int i = 0; i < tourLogs.size(); i++) {
+            if (tourLogs.get(i).getId().equals(updatedTourLog.getId())) {
+                tourLogs.set(i, updatedTourLog);
+                break;
+            }
+        }
     }
 
     /**
      * Löscht ein Tour-Log.
      */
     public void deleteTourLog(TourLog tourLog) {
-        service.deleteTourLog(tourLog.getId());
-        loadTourLogs(tourLog.getTourId()); // Aktualisiere die Liste
+        tourLogs.remove(tourLog);
     }
 }

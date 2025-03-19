@@ -1,6 +1,7 @@
 package at.technikum.studentmanagementsystem2.controller;
 
 import at.technikum.studentmanagementsystem2.models.Tour;
+import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.util.UUID;
 
 public class TourController {
@@ -104,6 +106,41 @@ public class TourController {
             viewModel.updateTour(tempTour);
         }
     }
+
+    @FXML
+    private void onShowLogsClick() {
+        TourViewModel selectedTour = tourTable.getSelectionModel().getSelectedItem();
+        if (selectedTour == null) {
+            showAlert("Keine Auswahl", "Bitte wählen Sie eine Tour aus, um die Logs anzuzeigen.");
+            return;
+        }
+
+        openTourLogView(selectedTour);
+    }
+
+    private void openTourLogView(TourViewModel tourViewModel) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourLogView.fxml"));
+            Parent page = loader.load();
+
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Tour Logs für " + tourViewModel.getName());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(tourTable.getScene().getWindow());
+            dialogStage.setScene(new Scene(page));
+
+            TourLogController controller = loader.getController();
+            controller.setViewModel(new TourLogViewModel());
+            controller.setTourViewModel(tourViewModel);
+
+            dialogStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private boolean openTourEditDialog(TourViewModel tourViewModel) {
         try {
