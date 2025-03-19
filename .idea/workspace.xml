@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Updated Tour Related files and README.md">
+    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="TourView.fxml and TourLogView.fxml are correctly linked now and can be edited">
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourEditController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourEditWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +37,12 @@
     &quot;assignee&quot;: &quot;SilverPheonix&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/SilverPheonix/TourPlanner.git",
-    "accountId": "60dfdecc-6870-4562-97bf-2b936171dbb0"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SilverPheonix/TourPlanner.git&quot;,
+    &quot;accountId&quot;: &quot;cb12f939-0491-485f-b215-78c85df0ff8c&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -57,29 +62,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StudentManagementApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/patri/Desktop/studentmanagementsystem2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.StudentManagementApplication.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/User/Documents/FH Technikum/TourPlanner123/src/main/resources/at/technikum/studentmanagementsystem2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner123\src\main\resources\at\technikum\studentmanagementsystem2" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner123" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="at.technikum.studentmanagementsystem2.mvvm" />
+      <recent name="at.technikum.studentmanagementsystem2.controller" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -155,7 +167,6 @@
       <workItem from="1741785983965" duration="7272000" />
       <workItem from="1741802674215" duration="706000" />
       <workItem from="1741803528160" duration="432000" />
-      <workItem from="1742303333326" duration="4909000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some dependencies, TourViewModel.java still has issues with parameters passing">
       <option name="closed" value="true" />
@@ -181,23 +192,7 @@
       <option name="project" value="LOCAL" />
       <updated>1741803801378</updated>
     </task>
-    <task id="LOCAL-00004" summary="Updated README.md">
-      <option name="closed" value="true" />
-      <created>1742240108747</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1742240108747</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Updated Tour Related files and README.md">
-      <option name="closed" value="true" />
-      <created>1742306954008</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1742306954008</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,8 +213,7 @@
     <MESSAGE value="Fixed some dependencies, TourViewModel.java still has issues with parameters passing" />
     <MESSAGE value="It compiles now" />
     <MESSAGE value="TourView.fxml and TourLogView.fxml are correctly linked now and can be edited" />
-    <MESSAGE value="Updated README.md" />
-    <MESSAGE value="Updated Tour Related files and README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Tour Related files and README.md" />
+    <MESSAGE value="Tour Planner View FXML Files anpassen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tour Planner View FXML Files anpassen" />
   </component>
 </project>

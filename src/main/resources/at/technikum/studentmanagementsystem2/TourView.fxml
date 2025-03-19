@@ -18,9 +18,9 @@
 
     <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
-            <Button fx:id="btnAdd" mnemonicParsing="true" text="_New..."  />
-            <Button fx:id="btnEdit" mnemonicParsing="true" text="_Edit..." />
-            <Button fx:id="btnDelete" mnemonicParsing="true" text="_Delete" />
+            <Button fx:id="btnAdd" mnemonicParsing="true" text="_New..."  onAction="#onNewTourClick"/>
+            <Button fx:id="btnEdit" mnemonicParsing="true" text="_Edit..." onAction="#onEditTourClick"/>
+            <Button fx:id="btnDelete" mnemonicParsing="true" text="_Delete" onAction="#onDeleteTourClick"/>
         </buttons>
     </ButtonBar>
 

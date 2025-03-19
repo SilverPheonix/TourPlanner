@@ -1,38 +1,50 @@
 package at.technikum.studentmanagementsystem2.mvvm;
 
 import at.technikum.studentmanagementsystem2.models.Tour;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.property.*;
 
 import java.util.UUID;
 
 public class TourViewModel {
-    private final ObservableList<Tour> tours = FXCollections.observableArrayList();
+    private final StringProperty id;
+    private final StringProperty name;
+    private final StringProperty description;
+    private final StringProperty from;
+    private final StringProperty to;
+    private final StringProperty transportType;
+    private final DoubleProperty distance;
+    private final DoubleProperty estimatedTime;
+    private final StringProperty imageUrl;
 
-    public TourViewModel() {
-        // Sample data for testing
-        tours.add(new Tour(UUID.randomUUID(), "Test Tour", "Description",
-                "Vienna", "Graz", "Train", 200.0, 120.0, "image_url"));
+    public TourViewModel(Tour tour) {
+        this.id = new SimpleStringProperty(tour.getId().toString());
+        this.name = new SimpleStringProperty(tour.getName());
+        this.description = new SimpleStringProperty(tour.getDescription());
+        this.from = new SimpleStringProperty(tour.getFrom());
+        this.to = new SimpleStringProperty(tour.getTo());
+        this.transportType = new SimpleStringProperty(tour.getTransportType());
+        this.distance = new SimpleDoubleProperty(tour.getDistance());
+        this.estimatedTime = new SimpleDoubleProperty(tour.getEstimatedTime());
+        this.imageUrl = new SimpleStringProperty(tour.getImageUrl());
     }
 
-    // Expose the ObservableList for JavaFX bindings
-    public ObservableList<Tour> getTours() {
-        return tours;
-    }
+    public StringProperty idProperty() { return id; }
+    public StringProperty nameProperty() { return name; }
+    public StringProperty descriptionProperty() { return description; }
+    public StringProperty fromProperty() { return from; }
+    public StringProperty toProperty() { return to; }
+    public StringProperty transportTypeProperty() { return transportType; }
+    public DoubleProperty distanceProperty() { return distance; }
+    public DoubleProperty estimatedTimeProperty() { return estimatedTime; }
+    public StringProperty imageUrlProperty() { return imageUrl; }
 
-    public void saveTour(Tour tour) {
-        int index = tours.indexOf(tour);
-        if (index == -1) {
-            System.out.println("[TourViewModel] Adding new tour: " + tour.getName());
-            tours.add(tour);
-        } else {
-            System.out.println("[TourViewModel] Updating tour: " + tour.getName());
-            tours.set(index, tour);
-        }
-    }
-
-    public void deleteTour(Tour tour) {
-        System.out.println("[TourViewModel] Deleting tour: " + tour.getName());
-        tours.remove(tour);
-    }
+    public String getId() { return id.get(); }
+    public String getName() { return name.get(); }
+    public String getDescription() { return description.get(); }
+    public String getFrom() { return from.get(); }
+    public String getTo() { return to.get(); }
+    public String getTransportType() { return transportType.get(); }
+    public double getDistance() { return distance.get(); }
+    public double getEstimatedTime() { return estimatedTime.get(); }
+    public String getImageUrl() { return imageUrl.get(); }
 }
