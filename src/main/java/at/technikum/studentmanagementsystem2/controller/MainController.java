@@ -193,6 +193,9 @@ public class MainController {
 
             // Nach der Bearbeitung die Liste aktualisieren
             tourListView.setItems(tourTableViewModel.getTours());
+            // Liste neu zeichnen
+            tourListView.refresh();
+
         } else {
             showAlert("Fehler", "Keine Tour ausgewählt!", Alert.AlertType.WARNING);
         }
