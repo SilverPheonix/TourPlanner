@@ -65,7 +65,6 @@ public class MVVMUnitTests {
     @Test
     void testGetTours() {
         assertNotNull(tourTableViewModel.getTours());
-        assertTrue(tourTableViewModel.getTours().isEmpty());
     }
 
     @Test

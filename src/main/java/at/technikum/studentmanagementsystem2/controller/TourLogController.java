@@ -84,8 +84,7 @@ public class TourLogController {
         for (TourLog log : tour.getTourLogs()) {
             logs.add(new TourLogViewModel(log));
         }
-        tourLogViewModel.getTourLogs().setAll(logs);
-    }
+        tourLogViewModel.getTourLogs().setAll(logs);    }
 
     /**
      * Erstellt ein neues Tour-Log für die aktuelle Tour.

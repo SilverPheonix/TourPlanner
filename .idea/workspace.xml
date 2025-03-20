@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Tour Log Bearbeitungs und Erstellen PopUp">
-      <change afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourLogTableViewModelTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourLogViewModelTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModelTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourViewModelTest.java" afterDir="false" />
+    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Mehr Unit Tests zu MVVM">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourLogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourLogDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourLogDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourLogView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/helpers/mvvm/MVVMUnitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/helpers/mvvm/MVVMUnitTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,9 +66,11 @@
     "Application.Main.executor": "Run",
     "Application.StudentManagementApplication.executor": "Run",
     "JUnit.TourLogTableViewModelTest.executor": "Run",
+    "JUnit.TourLogViewModelTest.executor": "Run",
     "JUnit.TourTableViewModelTest.executor": "Run",
     "JUnit.TourViewModelTest.executor": "Run",
     "JUnit.UUIDv7GeneratorTest.executor": "Run",
+    "JUnit.studentmanagementsystem2 in TourPlanner.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
@@ -104,18 +106,16 @@
       <recent name="at.technikum.studentmanagementsystem2.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TourLogViewModelTest">
-    <configuration name="TourLogTableViewModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.Main" />
       <module name="TourPlanner" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.mvvm.*" />
+          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="at.technikum.studentmanagementsystem2.mvvm" />
-      <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModelTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -165,28 +165,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UUIDv7GeneratorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="studentmanagementsystem2 in TourPlanner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TourPlanner" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.helpers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="at.technikum.studentmanagementsystem2.helpers" />
-      <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.helpers.UUIDv7GeneratorTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.studentmanagementsystem2 in TourPlanner" />
         <item itemvalue="JUnit.TourLogViewModelTest" />
         <item itemvalue="JUnit.TourTableViewModelTest" />
         <item itemvalue="JUnit.TourViewModelTest" />
-        <item itemvalue="JUnit.TourLogTableViewModelTest" />
-        <item itemvalue="JUnit.UUIDv7GeneratorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -290,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742502606556</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Mehr Unit Tests zu MVVM">
+      <option name="closed" value="true" />
+      <created>1742504071305</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1742504071305</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,6 +319,7 @@
     <MESSAGE value="Neue View Ansicht" />
     <MESSAGE value="Entfernen von Student Manager Files" />
     <MESSAGE value="Tour Log Bearbeitungs und Erstellen PopUp" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tour Log Bearbeitungs und Erstellen PopUp" />
+    <MESSAGE value="Mehr Unit Tests zu MVVM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mehr Unit Tests zu MVVM" />
   </component>
 </project>
