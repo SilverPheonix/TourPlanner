@@ -14,15 +14,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 public class MainController {
 
     @FXML private ListView<TourViewModel> tourListView;
-    @FXML private TextField tourNameField, tourDescriptionField, tourFromField, tourToField, tourTransportField, tourDistanceField, tourEstimatedtimeField;
+    @FXML private TextField tourNameField, tourDescriptionField, tourFromField, tourToField, tourTransportField, tourDistanceField, tourEstimatedtimeField, tourImageField;
     @FXML private TableView<TourLogViewModel> tourLogTable;
     @FXML private TableColumn<TourLogViewModel, LocalDateTime> logDateColumn;
     @FXML private TableColumn<TourLogViewModel, String> logCommentColumn;
@@ -30,7 +34,8 @@ public class MainController {
     @FXML private TableColumn<TourLogViewModel, Double> logDistanceColumn;
     @FXML private TableColumn<TourLogViewModel, Double> logTimeColumn;
     @FXML private TableColumn<TourLogViewModel, Integer> logRatingColumn;
-
+    @FXML
+    private ImageView tourImageView;
 
     private TourTableViewModel tourTableViewModel = new TourTableViewModel();
     private TourLogTableViewModel tourLogViewModel = new TourLogTableViewModel();
@@ -64,6 +69,15 @@ public class MainController {
                 }
             }
         });
+        //Lade Map Placeholder
+        URL imageUrl = getClass().getResource("/at/technikum/studentmanagementsystem2/map_placeholder.jpg");
+        if (imageUrl == null) {
+            System.out.println("Bild nicht gefunden!");
+        } else {
+            Image image = new Image(imageUrl.toExternalForm());
+            tourImageView.setImage(image);
+        }
+
 
         // Lade Log-Tabelle
         logDateColumn.setCellValueFactory(cellData -> cellData.getValue().dateTimeProperty());
@@ -75,6 +89,12 @@ public class MainController {
         tourLogTable.setItems(tourLogViewModel.getTourLogs());
     }
 
+    public void setImage(String imageUrl) {
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            tourImageView.setImage(new Image(imageUrl));
+        }
+    }
+
     // 📌 Tour-Details anzeigen
     private void showTourDetails(TourViewModel tour) {
         tourNameField.setText(tour.getName());
@@ -84,6 +104,7 @@ public class MainController {
         tourTransportField.setText(tour.getTransportType());
         tourDistanceField.setText(tour.distanceProperty().asString().getValue());
         tourEstimatedtimeField.setText(tour.estimatedTimeProperty().asString().getValue());
+        tourImageField.setText(tour.imageUrlProperty().getValue());
 
         // Lade die Logs für diese Tour
         ObservableList<TourLogViewModel> logs = FXCollections.observableArrayList();
@@ -135,6 +156,7 @@ public class MainController {
             String transportType = tourTransportField.getText().trim();
             String distanceText = tourDistanceField.getText().trim();
             String estimatedTimeText = tourEstimatedtimeField.getText().trim();
+            String image = tourImageField.getText().trim();
 
             // Validierung der Eingabewerte
             if (name.isEmpty() || description.isEmpty() || from.isEmpty() || to.isEmpty() || transportType.isEmpty()) {
@@ -165,8 +187,7 @@ public class MainController {
             selectedTour.fromProperty().set(from);
             selectedTour.toProperty().set(to);
             selectedTour.transportTypeProperty().set(transportType);
-
-            // Speichere die neuen Werte in der Tour
+            selectedTour.imageUrlProperty().set(image);
             selectedTour.distanceProperty().set(distance);
             selectedTour.estimatedTimeProperty().set(estimatedTime);
 
