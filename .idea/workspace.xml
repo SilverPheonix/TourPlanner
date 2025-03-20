@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Logs werden in der Tour gespeichert">
+    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Entfernen von Student Manager Files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourLogTableViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourLogTableViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/studentEditWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/studentManagementWindow.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +164,7 @@
       <workItem from="1741802674215" duration="706000" />
       <workItem from="1741803528160" duration="432000" />
       <workItem from="1742403480894" duration="5722000" />
-      <workItem from="1742476570629" duration="14569000" />
+      <workItem from="1742476570629" duration="11639000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some dependencies, TourViewModel.java still has issues with parameters passing">
       <option name="closed" value="true" />
@@ -228,15 +230,7 @@
       <option name="project" value="LOCAL" />
       <updated>1742487183963</updated>
     </task>
-    <task id="LOCAL-00009" summary="Logs werden in der Tour gespeichert">
-      <option name="closed" value="true" />
-      <created>1742490783572</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1742490783572</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +257,6 @@
     <MESSAGE value="Tour Log Link zu Pop Up Log Ansicht" />
     <MESSAGE value="Neue View Ansicht" />
     <MESSAGE value="Entfernen von Student Manager Files" />
-    <MESSAGE value="Logs werden in der Tour gespeichert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Logs werden in der Tour gespeichert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Entfernen von Student Manager Files" />
   </component>
 </project>
