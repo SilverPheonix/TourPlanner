@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Map PlaceHolder hinzugefügt">
+    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Mehr Unit Tests zu MVVM">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourLogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourLogDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourLogDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourLogView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/helpers/mvvm/MVVMUnitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/helpers/mvvm/MVVMUnitTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,34 +60,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.StudentManagementApplication.executor": "Run",
-    "JUnit.TourLogTableViewModelTest.executor": "Run",
-    "JUnit.TourLogViewModelTest.executor": "Run",
-    "JUnit.TourTableViewModelTest.executor": "Run",
-    "JUnit.TourViewModelTest.executor": "Run",
-    "JUnit.UUIDv7GeneratorTest.executor": "Run",
-    "JUnit.studentmanagementsystem2 in TourPlanner.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/Documents/FH Technikum/TourPlanner123/src/main/resources/at/technikum/studentmanagementsystem2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StudentManagementApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TourLogTableViewModelTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TourLogViewModelTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TourTableViewModelTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TourViewModelTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UUIDv7GeneratorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.studentmanagementsystem2 in TourPlanner.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Documents/FH Technikum/TourPlanner123/src/main/resources/at/technikum/studentmanagementsystem2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner123\src\main\resources\at\technikum\studentmanagementsystem2" />
@@ -287,23 +291,7 @@
       <option name="project" value="LOCAL" />
       <updated>1742504071305</updated>
     </task>
-    <task id="LOCAL-00011" summary="Some more small changes">
-      <option name="closed" value="true" />
-      <created>1742504397787</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1742504397787</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Map PlaceHolder hinzugefügt">
-      <option name="closed" value="true" />
-      <created>1742506624417</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1742506624417</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,8 +320,6 @@
     <MESSAGE value="Entfernen von Student Manager Files" />
     <MESSAGE value="Tour Log Bearbeitungs und Erstellen PopUp" />
     <MESSAGE value="Mehr Unit Tests zu MVVM" />
-    <MESSAGE value="Some more small changes" />
-    <MESSAGE value="Map PlaceHolder hinzugefügt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Map PlaceHolder hinzugefügt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mehr Unit Tests zu MVVM" />
   </component>
 </project>

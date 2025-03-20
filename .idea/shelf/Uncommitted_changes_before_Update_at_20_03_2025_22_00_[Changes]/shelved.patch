@@ -1,0 +1,193 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"81365fe8-300d-4aee-9db6-6879254836a4\" name=\"Changes\" comment=\"Tour Log Bearbeitungs und Erstellen PopUp\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourLogTableViewModelTest.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourLogViewModelTest.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModelTest.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourViewModelTest.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"JUnit5 Test Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;SilverPheonix&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/SilverPheonix/TourPlanner.git&quot;,\r\n    &quot;accountId&quot;: &quot;fc0c70e6-c30b-499b-b99f-e7d6bb4a829a&quot;\r\n  }\r\n}</component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2tIV7efVxvLGCT7hi4TCvGPc5To\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.HelloApplication.executor\": \"Run\",\r\n    \"Application.Main.executor\": \"Run\",\r\n    \"Application.StudentManagementApplication.executor\": \"Run\",\r\n    \"JUnit.TourLogTableViewModelTest.executor\": \"Run\",\r\n    \"JUnit.TourTableViewModelTest.executor\": \"Run\",\r\n    \"JUnit.TourViewModelTest.executor\": \"Run\",\r\n    \"JUnit.UUIDv7GeneratorTest.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary\": \"JUnit5\",\r\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5\": \"\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/User/Documents/FH Technikum/TourPlanner123/src/main/resources/at/technikum/studentmanagementsystem2\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"settings.editor.selected.configurable\": \"reference.settings.project.maven.repository.indices\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\User\\Documents\\FH Technikum\\TourPlanner123\\src\\main\\resources\\at\\technikum\\studentmanagementsystem2\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\User\\Documents\\FH Technikum\\TourPlanner123\" />\r\n    </key>\r\n    <key name=\"CreateTestDialog.Recents.Supers\">\r\n      <recent name=\"\" />\r\n    </key>\r\n    <key name=\"CreateTestDialog.RecentsKey\">\r\n      <recent name=\"at.technikum.studentmanagementsystem2.mvvm\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"at.technikum.studentmanagementsystem2.mvvm\" />\r\n      <recent name=\"at.technikum.studentmanagementsystem2.controller\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"JUnit.TourLogViewModelTest\">\r\n    <configuration name=\"TourLogTableViewModelTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TourPlanner\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.technikum.studentmanagementsystem2.mvvm.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"at.technikum.studentmanagementsystem2.mvvm\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModelTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TourLogViewModelTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TourPlanner\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.technikum.studentmanagementsystem2.mvvm.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"at.technikum.studentmanagementsystem2.mvvm\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.technikum.studentmanagementsystem2.mvvm.TourLogViewModelTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TourTableViewModelTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TourPlanner\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.technikum.studentmanagementsystem2.mvvm.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"at.technikum.studentmanagementsystem2.mvvm\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.technikum.studentmanagementsystem2.mvvm.TourTableViewModelTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TourViewModelTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TourPlanner\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.technikum.studentmanagementsystem2.mvvm.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"at.technikum.studentmanagementsystem2.mvvm\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.technikum.studentmanagementsystem2.mvvm.TourViewModelTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UUIDv7GeneratorTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TourPlanner\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.technikum.studentmanagementsystem2.helpers.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"at.technikum.studentmanagementsystem2.helpers\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.technikum.studentmanagementsystem2.helpers.UUIDv7GeneratorTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JUnit.TourLogViewModelTest\" />\r\n        <item itemvalue=\"JUnit.TourTableViewModelTest\" />\r\n        <item itemvalue=\"JUnit.TourViewModelTest\" />\r\n        <item itemvalue=\"JUnit.TourLogTableViewModelTest\" />\r\n        <item itemvalue=\"JUnit.UUIDv7GeneratorTest\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"81365fe8-300d-4aee-9db6-6879254836a4\" name=\"Changes\" comment=\"\" />\r\n      <created>1740039412182</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1740039412182</updated>\r\n      <workItem from=\"1740039413153\" duration=\"1063000\" />\r\n      <workItem from=\"1740064435860\" duration=\"1918000\" />\r\n      <workItem from=\"1741710322886\" duration=\"2079000\" />\r\n      <workItem from=\"1741765964154\" duration=\"209000\" />\r\n      <workItem from=\"1741766325395\" duration=\"968000\" />\r\n      <workItem from=\"1741767606914\" duration=\"1881000\" />\r\n      <workItem from=\"1741785983965\" duration=\"7272000\" />\r\n      <workItem from=\"1741802674215\" duration=\"706000\" />\r\n      <workItem from=\"1741803528160\" duration=\"432000\" />\r\n      <workItem from=\"1742403480894\" duration=\"5722000\" />\r\n      <workItem from=\"1742476570629\" duration=\"11639000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Fixed some dependencies, TourViewModel.java still has issues with parameters passing\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1741791152356</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1741791152356</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"It compiles now\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1741802313831</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1741802313831</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"TourView.fxml and TourLogView.fxml are correctly linked now and can be edited\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1741803801378</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1741803801378</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Edit Tour und Add Tour mit eigenem Window\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742391889337</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742391889337</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"I forgot the read me changes ...\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742392214293</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742392214293</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Tour Log Link zu Pop Up Log Ansicht\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742416786779</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742416786780</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Neue View Ansicht\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742487055014</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742487055014</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Entfernen von Student Manager Files\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742487183963</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742487183963</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Tour Log Bearbeitungs und Erstellen PopUp\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742502606556</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742502606556</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"10\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Fixed some dependencies, TourViewModel.java still has issues with parameters passing\" />\r\n    <MESSAGE value=\"It compiles now\" />\r\n    <MESSAGE value=\"TourView.fxml and TourLogView.fxml are correctly linked now and can be edited\" />\r\n    <MESSAGE value=\"Tour Planner View FXML Files anpassen\" />\r\n    <MESSAGE value=\"Edit Tour und Add Tour mit eigenem Window\" />\r\n    <MESSAGE value=\"I forgot the read me changes ...\" />\r\n    <MESSAGE value=\"Tour Log Link zu Pop Up Log Ansicht\" />\r\n    <MESSAGE value=\"Neue View Ansicht\" />\r\n    <MESSAGE value=\"Entfernen von Student Manager Files\" />\r\n    <MESSAGE value=\"Tour Log Bearbeitungs und Erstellen PopUp\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Tour Log Bearbeitungs und Erstellen PopUp\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5e4cac872c84ced68d5527aa5e0d32fab9bf0ad8)
++++ b/.idea/workspace.xml	(date 1742504412238)
+@@ -4,13 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Tour Log Bearbeitungs und Erstellen PopUp">
+-      <change afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourLogTableViewModelTest.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourLogViewModelTest.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModelTest.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourViewModelTest.java" afterDir="false" />
++    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Entfernen von Student Manager Files">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -22,7 +17,6 @@
+       <list>
+         <option value="FxmlFile" />
+         <option value="Class" />
+-        <option value="JUnit5 Test Class" />
+       </list>
+     </option>
+   </component>
+@@ -65,14 +59,9 @@
+     "Application.HelloApplication.executor": "Run",
+     "Application.Main.executor": "Run",
+     "Application.StudentManagementApplication.executor": "Run",
+-    "JUnit.TourLogTableViewModelTest.executor": "Run",
+-    "JUnit.TourTableViewModelTest.executor": "Run",
+-    "JUnit.TourViewModelTest.executor": "Run",
+-    "JUnit.UUIDv7GeneratorTest.executor": "Run",
++    "JUnit.at.technikum.studentmanagementsystem2.mvvm in TourPlanner.executor": "Run",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "RunOnceActivity.git.unshallow": "true",
+-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+     "git-widget-placeholder": "main",
+     "ignore.virus.scanning.warn.message": "true",
+     "kotlin-language-version-configured": "true",
+@@ -92,65 +81,53 @@
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner123" />
+-    </key>
+-    <key name="CreateTestDialog.Recents.Supers">
+-      <recent name="" />
+-    </key>
+-    <key name="CreateTestDialog.RecentsKey">
+-      <recent name="at.technikum.studentmanagementsystem2.mvvm" />
+     </key>
+     <key name="CopyClassDialog.RECENTS_KEY">
+       <recent name="at.technikum.studentmanagementsystem2.mvvm" />
+       <recent name="at.technikum.studentmanagementsystem2.controller" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="JUnit.TourLogViewModelTest">
+-    <configuration name="TourLogTableViewModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++  <component name="RunManager" selected="JUnit.at.technikum.studentmanagementsystem2.mvvm in TourPlanner">
++    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="at.tourplanner.tourplanner.HelloApplication" />
+       <module name="TourPlanner" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.mvvm.*" />
++          <option name="PATTERN" value="at.tourplanner.tourplanner.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+-      <option name="PACKAGE_NAME" value="at.technikum.studentmanagementsystem2.mvvm" />
+-      <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModelTest" />
+-      <option name="TEST_OBJECT" value="class" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="TourLogViewModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.Main" />
+       <module name="TourPlanner" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.mvvm.*" />
++          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+-      <option name="PACKAGE_NAME" value="at.technikum.studentmanagementsystem2.mvvm" />
+-      <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.mvvm.TourLogViewModelTest" />
+-      <option name="TEST_OBJECT" value="class" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="TourTableViewModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="StudentManagementApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.StudentManagementApplication" />
+       <module name="TourPlanner" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.mvvm.*" />
++          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+-      <option name="PACKAGE_NAME" value="at.technikum.studentmanagementsystem2.mvvm" />
+-      <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.mvvm.TourTableViewModelTest" />
+-      <option name="TEST_OBJECT" value="class" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="TourViewModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="at.technikum.studentmanagementsystem2.mvvm in TourPlanner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="TourPlanner" />
+       <extension name="coverage">
+         <pattern>
+@@ -159,34 +136,17 @@
+         </pattern>
+       </extension>
+       <option name="PACKAGE_NAME" value="at.technikum.studentmanagementsystem2.mvvm" />
+-      <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.mvvm.TourViewModelTest" />
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="UUIDv7GeneratorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="TourPlanner" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.helpers.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <option name="PACKAGE_NAME" value="at.technikum.studentmanagementsystem2.helpers" />
+-      <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.helpers.UUIDv7GeneratorTest" />
+-      <option name="TEST_OBJECT" value="class" />
++      <option name="TEST_OBJECT" value="package" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="JUnit.TourLogViewModelTest" />
+-        <item itemvalue="JUnit.TourTableViewModelTest" />
+-        <item itemvalue="JUnit.TourViewModelTest" />
+-        <item itemvalue="JUnit.TourLogTableViewModelTest" />
+-        <item itemvalue="JUnit.UUIDv7GeneratorTest" />
++        <item itemvalue="JUnit.at.technikum.studentmanagementsystem2.mvvm in TourPlanner" />
++        <item itemvalue="Application.Main" />
++        <item itemvalue="Application.StudentManagementApplication" />
++        <item itemvalue="Application.HelloApplication" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -282,15 +242,7 @@
+       <option name="project" value="LOCAL" />
+       <updated>1742487183963</updated>
+     </task>
+-    <task id="LOCAL-00009" summary="Tour Log Bearbeitungs und Erstellen PopUp">
+-      <option name="closed" value="true" />
+-      <created>1742502606556</created>
+-      <option name="number" value="00009" />
+-      <option name="presentableId" value="LOCAL-00009" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1742502606556</updated>
+-    </task>
+-    <option name="localTasksCounter" value="10" />
++    <option name="localTasksCounter" value="9" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -317,7 +269,6 @@
+     <MESSAGE value="Tour Log Link zu Pop Up Log Ansicht" />
+     <MESSAGE value="Neue View Ansicht" />
+     <MESSAGE value="Entfernen von Student Manager Files" />
+-    <MESSAGE value="Tour Log Bearbeitungs und Erstellen PopUp" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Tour Log Bearbeitungs und Erstellen PopUp" />
++    <option name="LAST_COMMIT_MESSAGE" value="Entfernen von Student Manager Files" />
+   </component>
+ </project>
+\ No newline at end of file
