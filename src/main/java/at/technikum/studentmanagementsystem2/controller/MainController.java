@@ -87,8 +87,8 @@ public class MainController {
             logs.add(new TourLogViewModel(log));
         }
         tourLogViewModel.getTourLogs().setAll(logs);
-
     }
+
 
     @FXML
     private void onTourSelected() {
@@ -151,44 +151,73 @@ public class MainController {
     private void onNewLog() {
         TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
         if (selectedTour != null) {
+            // Neues Log erstellen
             TourLog newLog = new TourLog(
                     UUID.randomUUID(), UUID.fromString(selectedTour.getId()),
                     LocalDateTime.now(), "Neuer Log-Eintrag", "Mittel", 50, 5, 3
             );
+            // Log als ViewModel hinzufügen
             TourLogViewModel newLogVM = new TourLogViewModel(newLog);
             tourLogViewModel.addTourLog(newLogVM);
-            tourLogTable.setItems(tourLogViewModel.getTourLogs());
 
+            // Log in der Tour speichern (kann auch direkt in TourViewModel gespeichert werden)
+            selectedTour.getTourLogs().add(newLog);
+            // Tabelle aktualisieren
+            tourLogTable.setItems(tourLogViewModel.getTourLogs());
         } else {
             showAlert("Fehler", "Keine Tour ausgewählt!", Alert.AlertType.WARNING);
         }
     }
 
+
     @FXML
     private void onEditLog() {
         TourLogViewModel selectedLog = tourLogTable.getSelectionModel().getSelectedItem();
         if (selectedLog != null) {
-            selectedLog.commentProperty().set("Bearbeiteter Kommentar");
-            selectedLog.difficultyProperty().set("Schwer");
-            selectedLog.ratingProperty().set(5);
+            // Beispiel: Bearbeite den Kommentar
+            selectedLog.setComment("Bearbeiteter Kommentar");
+            selectedLog.setDifficulty("Schwer");
+            selectedLog.setRating(5);
+
+            // Nach der Bearbeitung: Log in der Tour speichern
+            TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
+            if (selectedTour != null) {
+                // Hier können Sie auch direkt das Log in der zugrunde liegenden Tour aktualisieren
+                for (TourLog log : selectedTour.getTourLogs()) {
+                    if (log.getId().equals(selectedLog.getId())) {
+                        log.setComment(selectedLog.getComment());
+                        log.setDifficulty(selectedLog.getDifficulty());
+                        log.setRating(selectedLog.getRating());
+                        break;
+                    }
+                }
+            }
             // Nach der Bearbeitung die Liste aktualisieren
             tourLogTable.setItems(tourLogViewModel.getTourLogs());
         } else {
             showAlert("Fehler", "Kein Tour-Log ausgewählt!", Alert.AlertType.WARNING);
         }
-
     }
+
 
     @FXML
     private void onDeleteLog() {
         TourLogViewModel selectedLog = tourLogTable.getSelectionModel().getSelectedItem();
         if (selectedLog != null) {
+            // Log aus dem ViewModel löschen
             tourLogViewModel.deleteTourLog(selectedLog);
+
+            // Log aus der zugrunde liegenden Tour löschen
+            TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
+            if (selectedTour != null) {
+                selectedTour.getTourLogs().removeIf(log -> log.getId().equals(selectedLog.getId()));
+            }
             // Nach dem Löschen die Liste aktualisieren
             tourLogTable.setItems(tourLogViewModel.getTourLogs());
         } else {
             showAlert("Fehler", "Kein Tour-Log ausgewählt!", Alert.AlertType.WARNING);
         }
     }
+
 
 }

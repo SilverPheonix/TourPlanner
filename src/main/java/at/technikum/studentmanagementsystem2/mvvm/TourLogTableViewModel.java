@@ -11,11 +11,11 @@ public class TourLogTableViewModel {
     private final ObservableList<TourLogViewModel> tourLogs = FXCollections.observableArrayList();
 
     public TourLogTableViewModel() {
-        // Beispiel-Daten (zum Testen)
+        /* Beispiel-Daten (zum Testen)
         tourLogs.add(new TourLogViewModel(new TourLog(
                 UUID.randomUUID(), UUID.randomUUID(), LocalDateTime.now(),
                 "Wunderschöne Tour", "medium", 200, 14, 4
-        )));
+        )));*/
     }
 
     /**
