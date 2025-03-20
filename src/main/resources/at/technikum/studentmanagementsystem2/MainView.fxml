@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="at.technikum.studentmanagementsystem2.controller.MainController">
+
+    <!-- 🔹 Navbar (Obere Leiste mit Buttons) -->
+    <top>
+        <ToolBar>
+            <Button text="Neue Tour" onAction="#onNewTour"/>
+            <Button text="Löschen" onAction="#onDeleteTour"/>
+        </ToolBar>
+    </top>
+
+    <!-- 🔹 Seitenleiste (Liste der Touren) -->
+    <left>
+        <VBox spacing="10" prefWidth="300">
+            <Label text="Touren"/>
+            <ListView fx:id="tourListView" onMouseClicked="#onTourSelected"/>
+        </VBox>
+    </left>
+
+    <!-- 🔹 Hauptbereich -->
+    <center>
+        <VBox spacing="10"  >
+            <Button text="Bearbeiten" onAction="#onEditTour"/>
+
+            <!-- 🔹 Tour-Details -->
+            <GridPane hgap="10" vgap="5">
+                <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="tourNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Beschreibung:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="tourDescriptionField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Von:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="tourFromField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Nach:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="tourToField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Transportmittel:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="tourTransportField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- 🔹 Tabelle mit Tour-Logs -->
+            <Label text="Tour Logs"/>
+            <TableView fx:id="tourLogTable">
+                <columns>
+                    <TableColumn text="Datum" fx:id="logDateColumn"/>
+                    <TableColumn text="Comment" fx:id="logCommentColumn"/>
+                    <TableColumn text="Diffculty" fx:id="logDifficultyColumn"/>
+                    <TableColumn text="Distance" fx:id="logDistanceColumn"/>
+                    <TableColumn text="Time" fx:id="logTimeColumn"/>
+                    <TableColumn text="Bewertung" fx:id="logRatingColumn"/>
+                </columns>
+            </TableView>
+
+            <!-- 🔹 Buttons für Tour-Logs -->
+            <HBox spacing="10">
+                <Button text="Neues Log" onAction="#onNewLog"/>
+                <Button text="Bearbeiten" onAction="#onEditLog"/>
+                <Button text="Löschen" onAction="#onDeleteLog"/>
+            </HBox>
+
+        </VBox>
+    </center>
+</BorderPane>

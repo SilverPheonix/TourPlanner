@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="I forgot the read me changes ...">
+    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Tour Log Link zu Pop Up Log Ansicht">
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourLogTableViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourLogController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourLogViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourLogViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +22,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -33,12 +36,12 @@
     &quot;assignee&quot;: &quot;SilverPheonix&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/SilverPheonix/TourPlanner.git",
-    "accountId": "fc0c70e6-c30b-499b-b99f-e7d6bb4a829a"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SilverPheonix/TourPlanner.git&quot;,
+    &quot;accountId&quot;: &quot;fc0c70e6-c30b-499b-b99f-e7d6bb4a829a&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -163,7 +166,8 @@
       <workItem from="1741785983965" duration="7272000" />
       <workItem from="1741802674215" duration="706000" />
       <workItem from="1741803528160" duration="432000" />
-      <workItem from="1742403480894" duration="5686000" />
+      <workItem from="1742403480894" duration="5722000" />
+      <workItem from="1742476570629" duration="8757000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some dependencies, TourViewModel.java still has issues with parameters passing">
       <option name="closed" value="true" />
@@ -205,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742392214293</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Tour Log Link zu Pop Up Log Ansicht">
+      <option name="closed" value="true" />
+      <created>1742416786779</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742416786780</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +241,7 @@
     <MESSAGE value="Tour Planner View FXML Files anpassen" />
     <MESSAGE value="Edit Tour und Add Tour mit eigenem Window" />
     <MESSAGE value="I forgot the read me changes ..." />
-    <option name="LAST_COMMIT_MESSAGE" value="I forgot the read me changes ..." />
+    <MESSAGE value="Tour Log Link zu Pop Up Log Ansicht" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tour Log Link zu Pop Up Log Ansicht" />
   </component>
 </project>

@@ -1,7 +1,7 @@
 package at.technikum.studentmanagementsystem2.controller;
 
 import at.technikum.studentmanagementsystem2.models.Tour;
-import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
+import at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
 import javafx.collections.ObservableList;
@@ -13,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.net.URL;
 import java.util.UUID;
 
 public class TourController {
@@ -132,8 +131,8 @@ public class TourController {
             dialogStage.setScene(new Scene(page));
 
             TourLogController controller = loader.getController();
-            controller.setViewModel(new TourLogViewModel());
-            controller.setTourViewModel(tourViewModel);
+            controller.setViewModel(new TourLogTableViewModel());
+            controller.setTour(tourViewModel);
 
             dialogStage.showAndWait();
         } catch (Exception e) {
