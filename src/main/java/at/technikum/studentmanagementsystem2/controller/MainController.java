@@ -6,9 +6,6 @@ import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,7 +17,7 @@ import java.util.UUID;
 public class MainController {
 
     @FXML private ListView<TourViewModel> tourListView;
-    @FXML private TextField tourNameField, tourDescriptionField, tourFromField, tourToField, tourTransportField;
+    @FXML private TextField tourNameField, tourDescriptionField, tourFromField, tourToField, tourTransportField, tourDistanceField, tourEstimatedtimeField;
     @FXML private TableView<TourLogViewModel> tourLogTable;
     @FXML private TableColumn<TourLogViewModel, LocalDateTime> logDateColumn;
     @FXML private TableColumn<TourLogViewModel, String> logCommentColumn;
@@ -80,6 +77,8 @@ public class MainController {
         tourFromField.setText(tour.getFrom());
         tourToField.setText(tour.getTo());
         tourTransportField.setText(tour.getTransportType());
+        tourDistanceField.setText(tour.distanceProperty().asString().getValue());
+        tourEstimatedtimeField.setText(tour.estimatedTimeProperty().asString().getValue());
 
         // Lade die Logs für diese Tour
         ObservableList<TourLogViewModel> logs = FXCollections.observableArrayList();
@@ -120,19 +119,59 @@ public class MainController {
 
     @FXML
     private void onEditTour() {
+        // Prüfen, ob eine Tour ausgewählt wurde
         TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
         if (selectedTour != null) {
-            selectedTour.nameProperty().set(tourNameField.getText());
-            selectedTour.descriptionProperty().set(tourDescriptionField.getText());
-            selectedTour.fromProperty().set(tourFromField.getText());
-            selectedTour.toProperty().set(tourToField.getText());
-            selectedTour.transportTypeProperty().set(tourTransportField.getText());
+            // Holen der Eingabewerte
+            String name = tourNameField.getText().trim();
+            String description = tourDescriptionField.getText().trim();
+            String from = tourFromField.getText().trim();
+            String to = tourToField.getText().trim();
+            String transportType = tourTransportField.getText().trim();
+            String distanceText = tourDistanceField.getText().trim();
+            String estimatedTimeText = tourEstimatedtimeField.getText().trim();
+
+            // Validierung der Eingabewerte
+            if (name.isEmpty() || description.isEmpty() || from.isEmpty() || to.isEmpty() || transportType.isEmpty()) {
+                showAlert("Fehler", "Alle Felder müssen ausgefüllt sein!", Alert.AlertType.WARNING);
+                return; // Wenn ein Feld leer ist, wird der Vorgang abgebrochen
+            }
+
+            double distance;
+            double estimatedTime;
+
+            try {
+                distance = Double.parseDouble(distanceText);
+            } catch (NumberFormatException e) {
+                showAlert("Fehler", "Ungültiger Wert für die Entfernung!", Alert.AlertType.WARNING);
+                return;
+            }
+
+            try {
+                estimatedTime = Double.parseDouble(estimatedTimeText);
+            } catch (NumberFormatException e) {
+                showAlert("Fehler", "Ungültiger Wert für die geschätzte Zeit!", Alert.AlertType.WARNING);
+                return;
+            }
+
+            // Aktualisiere die ausgewählte Tour
+            selectedTour.nameProperty().set(name);
+            selectedTour.descriptionProperty().set(description);
+            selectedTour.fromProperty().set(from);
+            selectedTour.toProperty().set(to);
+            selectedTour.transportTypeProperty().set(transportType);
+
+            // Speichere die neuen Werte in der Tour
+            selectedTour.distanceProperty().set(distance);
+            selectedTour.estimatedTimeProperty().set(estimatedTime);
+
             // Nach der Bearbeitung die Liste aktualisieren
             tourListView.setItems(tourTableViewModel.getTours());
         } else {
             showAlert("Fehler", "Keine Tour ausgewählt!", Alert.AlertType.WARNING);
         }
     }
+
 
     @FXML
     private void onDeleteTour() {

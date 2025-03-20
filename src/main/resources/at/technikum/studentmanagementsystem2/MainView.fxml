@@ -18,7 +18,7 @@
 
     <!-- 🔹 Seitenleiste (Liste der Touren) -->
     <left>
-        <VBox spacing="10" prefWidth="300">
+        <VBox spacing="10">
             <Label text="Touren"/>
             <ListView fx:id="tourListView" onMouseClicked="#onTourSelected"/>
         </VBox>
@@ -27,7 +27,9 @@
     <!-- 🔹 Hauptbereich -->
     <center>
         <VBox spacing="10"  >
-            <Button text="Bearbeiten" onAction="#onEditTour"/>
+            <ToolBar>
+                <Button text="Speichern" onAction="#onEditTour"/>
+            </ToolBar>
 
             <!-- 🔹 Tour-Details -->
             <GridPane hgap="10" vgap="5">
@@ -45,10 +47,25 @@
 
                 <Label text="Transportmittel:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
                 <TextField fx:id="tourTransportField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-            </GridPane>
 
+                <Label text="Distance (km):" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField fx:id="tourDistanceField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                <Label text="Estimated Time (min):" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                <TextField fx:id="tourEstimatedtimeField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+
+            </GridPane>
             <!-- 🔹 Tabelle mit Tour-Logs -->
-            <Label text="Tour Logs"/>
+
+            <ToolBar>
+                <Label text="Tour Logs"/>
+                <!-- 🔹 Buttons für Tour-Logs -->
+                <Button text="Neues Log" onAction="#onNewLog"/>
+                <Button text="Bearbeiten" onAction="#onEditLog"/>
+                <Button text="Löschen" onAction="#onDeleteLog"/>
+            </ToolBar>
+
             <TableView fx:id="tourLogTable">
                 <columns>
                     <TableColumn text="Datum" fx:id="logDateColumn"/>
@@ -59,13 +76,6 @@
                     <TableColumn text="Bewertung" fx:id="logRatingColumn"/>
                 </columns>
             </TableView>
-
-            <!-- 🔹 Buttons für Tour-Logs -->
-            <HBox spacing="10">
-                <Button text="Neues Log" onAction="#onNewLog"/>
-                <Button text="Bearbeiten" onAction="#onEditLog"/>
-                <Button text="Löschen" onAction="#onDeleteLog"/>
-            </HBox>
 
         </VBox>
     </center>
