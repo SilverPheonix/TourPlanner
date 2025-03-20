@@ -9,8 +9,13 @@ import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -190,49 +195,75 @@ public class MainController {
     private void onNewLog() {
         TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
         if (selectedTour != null) {
-            // Neues Log erstellen
-            TourLog newLog = new TourLog(
-                    UUID.randomUUID(), UUID.fromString(selectedTour.getId()),
-                    LocalDateTime.now(), "Neuer Log-Eintrag", "Mittel", 50, 5, 3
-            );
-            // Log als ViewModel hinzufügen
-            TourLogViewModel newLogVM = new TourLogViewModel(newLog);
-            tourLogViewModel.addTourLog(newLogVM);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourLogDialog.fxml"));
+                Parent root = loader.load();
 
-            // Log in der Tour speichern (kann auch direkt in TourViewModel gespeichert werden)
-            selectedTour.getTourLogs().add(newLog);
-            // Tabelle aktualisieren
-            tourLogTable.setItems(tourLogViewModel.getTourLogs());
+                TourLogDialogController controller = loader.getController();
+                controller.setTitle("Neues Tour-Log");
+                controller.setValues("", "Mittel", 0.0, 0.0, 3); // Standardwerte setzen
+
+                Stage stage = new Stage();
+                stage.setTitle("Neues Tour-Log");
+                stage.setScene(new Scene(root, 300,400));
+                stage.showAndWait();
+
+                if (controller.isSaved()) {
+                    TourLog newLog = new TourLog(
+                            UUID.randomUUID(), UUID.fromString(selectedTour.getId()),
+                            LocalDateTime.now(),
+                            controller.getComment(),
+                            controller.getDifficulty(),
+                            controller.getDistance(),
+                            controller.getTime(),
+                            controller.getRating()
+                    );
+
+                    TourLogViewModel newLogVM = new TourLogViewModel(newLog);
+                    tourLogViewModel.addTourLog(newLogVM);
+                    selectedTour.getTourLogs().add(newLog);
+                    tourLogTable.setItems(tourLogViewModel.getTourLogs());
+                    tourLogTable.refresh();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             showAlert("Fehler", "Keine Tour ausgewählt!", Alert.AlertType.WARNING);
         }
     }
 
 
+
+
     @FXML
     private void onEditLog() {
         TourLogViewModel selectedLog = tourLogTable.getSelectionModel().getSelectedItem();
         if (selectedLog != null) {
-            // Beispiel: Bearbeite den Kommentar
-            selectedLog.setComment("Bearbeiteter Kommentar");
-            selectedLog.setDifficulty("Schwer");
-            selectedLog.setRating(5);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourLogDialog.fxml"));
+                Parent root = loader.load();
 
-            // Nach der Bearbeitung: Log in der Tour speichern
-            TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
-            if (selectedTour != null) {
-                // Hier können Sie auch direkt das Log in der zugrunde liegenden Tour aktualisieren
-                for (TourLog log : selectedTour.getTourLogs()) {
-                    if (log.getId().equals(selectedLog.getId())) {
-                        log.setComment(selectedLog.getComment());
-                        log.setDifficulty(selectedLog.getDifficulty());
-                        log.setRating(selectedLog.getRating());
-                        break;
-                    }
+                TourLogDialogController controller = loader.getController();
+                controller.setTitle("Tour-Log bearbeiten");
+                controller.setValues(selectedLog.getComment(), selectedLog.getDifficulty(), selectedLog.getTotalDistance(), selectedLog.getTotalTime(), selectedLog.getRating());
+
+                Stage stage = new Stage();
+                stage.setTitle("Tour-Log bearbeiten");
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+
+                if (controller.isSaved()) {
+                    selectedLog.setComment(controller.getComment());
+                    selectedLog.setDifficulty(controller.getDifficulty());
+                    selectedLog.setTotalDistance(controller.getDistance());
+                    selectedLog.setTotalTime(controller.getTime());
+                    selectedLog.setRating(controller.getRating());
+                    tourLogTable.refresh();
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            // Nach der Bearbeitung die Liste aktualisieren
-            tourLogTable.setItems(tourLogViewModel.getTourLogs());
         } else {
             showAlert("Fehler", "Kein Tour-Log ausgewählt!", Alert.AlertType.WARNING);
         }

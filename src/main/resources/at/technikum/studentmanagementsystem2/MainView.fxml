@@ -12,7 +12,7 @@
     <top>
         <ToolBar>
             <Button text="Neue Tour" onAction="#onNewTour"/>
-            <Button text="Löschen" onAction="#onDeleteTour"/>
+            <Button text="Tour löschen" onAction="#onDeleteTour"/>
         </ToolBar>
     </top>
 
@@ -28,7 +28,7 @@
     <center>
         <VBox spacing="10"  >
             <ToolBar>
-                <Button text="Speichern" onAction="#onEditTour"/>
+                <Button text="Tour speichern" onAction="#onEditTour"/>
             </ToolBar>
 
             <!-- 🔹 Tour-Details -->
@@ -62,8 +62,8 @@
                 <Label text="Tour Logs"/>
                 <!-- 🔹 Buttons für Tour-Logs -->
                 <Button text="Neues Log" onAction="#onNewLog"/>
-                <Button text="Bearbeiten" onAction="#onEditLog"/>
-                <Button text="Löschen" onAction="#onDeleteLog"/>
+                <Button text="Log bearbeiten" onAction="#onEditLog"/>
+                <Button text="Log löschen" onAction="#onDeleteLog"/>
             </ToolBar>
 
             <TableView fx:id="tourLogTable">
