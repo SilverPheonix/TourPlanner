@@ -1,9 +1,11 @@
 package at.technikum.studentmanagementsystem2.controller;
 
+import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
+import javafx.util.converter.NumberStringConverter;
 
 public class TourLogDialogController {
 
@@ -14,6 +16,7 @@ public class TourLogDialogController {
     @FXML private Button cancelButton, saveButton;
 
     private boolean isSaved = false;
+    private TourLogViewModel viewModel;
 
     @FXML
     private void initialize() {
@@ -31,12 +34,14 @@ public class TourLogDialogController {
     }
 
     // Werte aus dem MainController setzen
-    public void setValues(String comment, String difficulty, double distance, double time, int rating) {
-        commentField.setText(comment);
-        difficultyBox.setValue(difficulty);
-        distanceField.setText(String.valueOf(distance));
-        timeField.setText(String.valueOf(time));
-        ratingSlider.setValue(rating);
+    public void setValues(TourLogViewModel viewModel) {
+        this.viewModel = viewModel;
+
+        commentField.textProperty().bindBidirectional(viewModel.commentProperty());
+        difficultyBox.valueProperty().bindBidirectional(viewModel.difficultyProperty());
+        distanceField.textProperty().bindBidirectional(viewModel.totalDistanceProperty(), new NumberStringConverter());
+        timeField.textProperty().bindBidirectional(viewModel.totalTimeProperty(), new NumberStringConverter());
+        ratingSlider.valueProperty().bindBidirectional(viewModel.ratingProperty());
     }
 
     // Überprüfen, ob gespeichert wurde

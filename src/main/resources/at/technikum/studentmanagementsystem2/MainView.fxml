@@ -30,54 +30,53 @@
 
     <!-- 🔹 Hauptbereich -->
     <center>
-        <VBox spacing="10"  >
+        <VBox spacing="10">
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
             <ToolBar>
-                <Button text="Tour speichern" onAction="#onEditTour"/>
+                <Button text="Tour bearbeiten" onAction="#onEditTour"/>
             </ToolBar>
 
             <!-- 🔹 Tour-Details -->
             <GridPane>
-            <GridPane hgap="10" vgap="5" GridPane.columnIndex="0">
-                <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </padding>
+                <GridPane hgap="10" vgap="5" GridPane.columnIndex="0">
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
 
-                <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="tourNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tourNameField"  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                <Label text="Beschreibung:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextField fx:id="tourDescriptionField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    <Label text="Beschreibung:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tourDescriptionField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-                <Label text="Von:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <TextField fx:id="tourFromField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <Label text="Von:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tourFromField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-                <Label text="Nach:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <TextField fx:id="tourToField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                    <Label text="Nach:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tourToField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-                <Label text="Transportmittel:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                <TextField fx:id="tourTransportField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                    <Label text="Transportmittel:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tourTransportField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-                <Label text="Distance (km):" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-                <TextField fx:id="tourDistanceField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                    <Label text="Distance (km):" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tourDistanceField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
-                <Label text="Estimated Time (min):" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-                <TextField fx:id="tourEstimatedtimeField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                    <Label text="Estimated Time (min):" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tourEstimatedtimeField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-                <Label text="Image Path(Routeninformation):" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-                <TextField fx:id="tourImageField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                    <Label text="Image Path (Routeninformation):" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tourImageField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                </GridPane>
 
-            </GridPane>
-                <!-- Spalte 1: ImageView für Tour-Bild -->
+                <!-- ImageView für Tour-Bild -->
                 <ImageView fx:id="tourImageView" GridPane.columnIndex="1" fitWidth="300" fitHeight="200" preserveRatio="true"/>
             </GridPane>
-            <!-- 🔹 Tabelle mit Tour-Logs -->
 
+            <!-- 🔹 Tabelle mit Tour-Logs -->
             <ToolBar>
                 <Label text="Tour Logs"/>
-                <!-- 🔹 Buttons für Tour-Logs -->
                 <Button text="Neues Log" onAction="#onNewLog"/>
                 <Button text="Log bearbeiten" onAction="#onEditLog"/>
                 <Button text="Log löschen" onAction="#onDeleteLog"/>
@@ -87,7 +86,7 @@
                 <columns>
                     <TableColumn text="Datum" fx:id="logDateColumn"/>
                     <TableColumn text="Comment" fx:id="logCommentColumn"/>
-                    <TableColumn text="Diffculty" fx:id="logDifficultyColumn"/>
+                    <TableColumn text="Difficulty" fx:id="logDifficultyColumn"/>
                     <TableColumn text="Distance" fx:id="logDistanceColumn"/>
                     <TableColumn text="Time" fx:id="logTimeColumn"/>
                     <TableColumn text="Bewertung" fx:id="logRatingColumn"/>

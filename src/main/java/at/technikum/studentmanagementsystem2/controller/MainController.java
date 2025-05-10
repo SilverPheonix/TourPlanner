@@ -6,6 +6,7 @@ import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
+import at.technikum.studentmanagementsystem2.controller.TourEditDialogController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,9 +14,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.converter.NumberStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -69,24 +72,6 @@ public class MainController {
                 }
             }
         });
-        //Lade Map Placeholder
-        URL imageUrl = getClass().getResource("/at/technikum/studentmanagementsystem2/map_placeholder.jpg");
-        if (imageUrl == null) {
-            System.out.println("Bild nicht gefunden!");
-        } else {
-            Image image = new Image(imageUrl.toExternalForm());
-            tourImageView.setImage(image);
-        }
-
-
-        // Lade Log-Tabelle
-        logDateColumn.setCellValueFactory(cellData -> cellData.getValue().dateTimeProperty());
-        logCommentColumn.setCellValueFactory(cellData -> cellData.getValue().commentProperty());
-        logDifficultyColumn.setCellValueFactory(cellData -> cellData.getValue().difficultyProperty());
-        logDistanceColumn.setCellValueFactory(cellData -> cellData.getValue().totalDistanceProperty().asObject());
-        logTimeColumn.setCellValueFactory(cellData -> cellData.getValue().totalTimeProperty().asObject());
-        logRatingColumn.setCellValueFactory(cellData -> cellData.getValue().ratingProperty().asObject());
-        tourLogTable.setItems(tourLogViewModel.getTourLogs());
     }
 
     public void setImage(String imageUrl) {
@@ -95,24 +80,52 @@ public class MainController {
         }
     }
 
-    // 📌 Tour-Details anzeigen
     private void showTourDetails(TourViewModel tour) {
-        tourNameField.setText(tour.getName());
-        tourDescriptionField.setText(tour.getDescription());
-        tourFromField.setText(tour.getFrom());
-        tourToField.setText(tour.getTo());
-        tourTransportField.setText(tour.getTransportType());
-        tourDistanceField.setText(tour.distanceProperty().asString().getValue());
-        tourEstimatedtimeField.setText(tour.estimatedTimeProperty().asString().getValue());
-        tourImageField.setText(tour.imageUrlProperty().getValue());
+        // Setze die Felder mit Bindungen für die Zwei-Wege-Datenbindung
+        tourNameField.textProperty().bind(tour.nameProperty());
+        tourDescriptionField.textProperty().bind(tour.descriptionProperty());
+        tourFromField.textProperty().bind(tour.fromProperty());
+        tourToField.textProperty().bind(tour.toProperty());
+        tourTransportField.textProperty().bind(tour.transportTypeProperty());
+        tourDistanceField.textProperty().bindBidirectional(tour.distanceProperty(), new NumberStringConverter());
+        tourEstimatedtimeField.textProperty().bindBidirectional(tour.estimatedTimeProperty(), new NumberStringConverter());
+        tourImageField.textProperty().bind(tour.imageUrlProperty());
 
-        // Lade die Logs für diese Tour
+        // Deaktiviere die Textfelder für den Lesemodus
+        tourNameField.setEditable(false);
+        tourDescriptionField.setEditable(false);
+        tourFromField.setEditable(false);
+        tourToField.setEditable(false);
+        tourTransportField.setEditable(false);
+        tourDistanceField.setEditable(false);
+        tourEstimatedtimeField.setEditable(false);
+        tourImageField.setEditable(false);
+
+
+        // Lade Map-Bild
+        URL imageUrl = getClass().getResource("/at/technikum/studentmanagementsystem2/map_placeholder.jpg");
+        if (imageUrl != null) {
+            Image placeholderImage = new Image(imageUrl.toExternalForm());
+            tourImageView.setImage(placeholderImage);
+        }
+
+        // Lade die Log-Tabelle mit den Logs der ausgewählten Tour
         ObservableList<TourLogViewModel> logs = FXCollections.observableArrayList();
         for (TourLog log : tour.getTourLogs()) {
             logs.add(new TourLogViewModel(log));
         }
         tourLogViewModel.getTourLogs().setAll(logs);
+        tourLogTable.setItems(tourLogViewModel.getTourLogs());
+
+        // Hier binden wir auch die Spalten an die entsprechenden Eigenschaften der TourLogViewModels
+        logDateColumn.setCellValueFactory(cellData -> cellData.getValue().dateTimeProperty());
+        logCommentColumn.setCellValueFactory(cellData -> cellData.getValue().commentProperty());
+        logDifficultyColumn.setCellValueFactory(cellData -> cellData.getValue().difficultyProperty());
+        logDistanceColumn.setCellValueFactory(cellData -> cellData.getValue().totalDistanceProperty().asObject());
+        logTimeColumn.setCellValueFactory(cellData -> cellData.getValue().totalTimeProperty().asObject());
+        logRatingColumn.setCellValueFactory(cellData -> cellData.getValue().ratingProperty().asObject());
     }
+
 
 
     @FXML
@@ -134,72 +147,68 @@ public class MainController {
     // 📌 Aktionen für Touren
     @FXML
     private void onNewTour() {
-        Tour newTour = new Tour(
-                UUID.randomUUID(), "Neue Tour", "Beschreibung der Tour",
-                "Startort", "Zielort", "Auto", 100.0, 60.0, "image_url"
-        );
-        TourViewModel newTourVM = new TourViewModel(newTour);
-        tourTableViewModel.addTour(newTourVM);
-        tourListView.setItems(tourTableViewModel.getTours());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourDialog.fxml"));
+            Parent root = loader.load();
+
+            Tour newTour = new Tour(UUID.randomUUID(), "", "", "", "", "", 0.0, 0.0, "");
+            TourViewModel newTourVM = new TourViewModel(newTour);
+
+            TourEditDialogController controller = loader.getController();
+            controller.init(newTourVM);
+            controller.setTitle("Neue Tour erstellen");
+
+            Stage stage = new Stage();
+            stage.setTitle("Neue Tour");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+            if (controller.isSaved()) {
+                tourTableViewModel.addTour(newTourVM);
+                tourListView.setItems(tourTableViewModel.getTours());
+                tourListView.refresh();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     private void onEditTour() {
-        // Prüfen, ob eine Tour ausgewählt wurde
         TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
-        if (selectedTour != null) {
-            // Holen der Eingabewerte
-            String name = tourNameField.getText().trim();
-            String description = tourDescriptionField.getText().trim();
-            String from = tourFromField.getText().trim();
-            String to = tourToField.getText().trim();
-            String transportType = tourTransportField.getText().trim();
-            String distanceText = tourDistanceField.getText().trim();
-            String estimatedTimeText = tourEstimatedtimeField.getText().trim();
-            String image = tourImageField.getText().trim();
 
-            // Validierung der Eingabewerte
-            if (name.isEmpty() || description.isEmpty() || from.isEmpty() || to.isEmpty() || transportType.isEmpty()) {
-                showAlert("Fehler", "Alle Felder müssen ausgefüllt sein!", Alert.AlertType.WARNING);
-                return; // Wenn ein Feld leer ist, wird der Vorgang abgebrochen
-            }
+        if (selectedTour == null) {
+            // Keine Auswahl getroffen, ggf. Warnung anzeigen
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Bitte wählen Sie eine Tour zum Bearbeiten aus.");
+            alert.showAndWait();
+            return;
+        }
 
-            double distance;
-            double estimatedTime;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourDialog.fxml"));
+            Parent editDialog = loader.load();
 
-            try {
-                distance = Double.parseDouble(distanceText);
-            } catch (NumberFormatException e) {
-                showAlert("Fehler", "Ungültiger Wert für die Entfernung!", Alert.AlertType.WARNING);
-                return;
-            }
+            TourEditDialogController controller = loader.getController();
+            controller.init(selectedTour);  // Übergibt die ausgewählte Tour
 
-            try {
-                estimatedTime = Double.parseDouble(estimatedTimeText);
-            } catch (NumberFormatException e) {
-                showAlert("Fehler", "Ungültiger Wert für die geschätzte Zeit!", Alert.AlertType.WARNING);
-                return;
-            }
+            Stage stage = new Stage();
+            stage.setTitle("Tour bearbeiten");
+            stage.setScene(new Scene(editDialog));
+            stage.initModality(Modality.APPLICATION_MODAL);  // Blockiert, bis Dialog geschlossen wird
+            stage.showAndWait();
 
-            // Aktualisiere die ausgewählte Tour
-            selectedTour.nameProperty().set(name);
-            selectedTour.descriptionProperty().set(description);
-            selectedTour.fromProperty().set(from);
-            selectedTour.toProperty().set(to);
-            selectedTour.transportTypeProperty().set(transportType);
-            selectedTour.imageUrlProperty().set(image);
-            selectedTour.distanceProperty().set(distance);
-            selectedTour.estimatedTimeProperty().set(estimatedTime);
-
-            // Nach der Bearbeitung die Liste aktualisieren
-            tourListView.setItems(tourTableViewModel.getTours());
-            // Liste neu zeichnen
+            // Option: Daten im TableView neu anzeigen
             tourListView.refresh();
 
-        } else {
-            showAlert("Fehler", "Keine Tour ausgewählt!", Alert.AlertType.WARNING);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+
 
 
     @FXML
@@ -222,30 +231,48 @@ public class MainController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourLogDialog.fxml"));
                 Parent root = loader.load();
+                // Neues ViewModel für das Log erstellen mit Default-Werten
+
+                TourLog dummyLog = new TourLog(
+                        UUID.randomUUID(),
+                        UUID.fromString(selectedTour.getId()),
+                        LocalDateTime.now(),
+                        "",         // comment
+                        "Mittel",   // difficulty
+                        0.0,        // distance
+                        0.0,        // time
+                        3           // rating
+                );
+
+                TourLogViewModel newLogViewModel = new TourLogViewModel(dummyLog);
+
 
                 TourLogDialogController controller = loader.getController();
                 controller.setTitle("Neues Tour-Log");
-                controller.setValues("", "Mittel", 0.0, 0.0, 3); // Standardwerte setzen
+                controller.setValues(newLogViewModel); // Standardwerte setzen
 
                 Stage stage = new Stage();
                 stage.setTitle("Neues Tour-Log");
                 stage.setScene(new Scene(root, 300,400));
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
 
                 if (controller.isSaved()) {
-                    TourLog newLog = new TourLog(
-                            UUID.randomUUID(), UUID.fromString(selectedTour.getId()),
+                    // Finales TourLog aus ViewModel extrahieren
+                    TourLog finalLog = new TourLog(
+                            newLogViewModel.getId(),
+                            UUID.fromString(selectedTour.getId()),
                             LocalDateTime.now(),
-                            controller.getComment(),
-                            controller.getDifficulty(),
-                            controller.getDistance(),
-                            controller.getTime(),
-                            controller.getRating()
+                            newLogViewModel.getComment(),
+                            newLogViewModel.getDifficulty(),
+                            newLogViewModel.getTotalDistance(),
+                            newLogViewModel.getTotalTime(),
+                            newLogViewModel.getRating()
                     );
 
-                    TourLogViewModel newLogVM = new TourLogViewModel(newLog);
-                    tourLogViewModel.addTourLog(newLogVM);
-                    selectedTour.getTourLogs().add(newLog);
+                    TourLogViewModel finalVM = new TourLogViewModel(finalLog);
+                    tourLogViewModel.addTourLog(finalVM);
+                    selectedTour.getTourLogs().add(finalLog);
                     tourLogTable.setItems(tourLogViewModel.getTourLogs());
                     tourLogTable.refresh();
                 }
@@ -270,11 +297,12 @@ public class MainController {
 
                 TourLogDialogController controller = loader.getController();
                 controller.setTitle("Tour-Log bearbeiten");
-                controller.setValues(selectedLog.getComment(), selectedLog.getDifficulty(), selectedLog.getTotalDistance(), selectedLog.getTotalTime(), selectedLog.getRating());
+                controller.setValues(selectedLog);
 
                 Stage stage = new Stage();
                 stage.setTitle("Tour-Log bearbeiten");
                 stage.setScene(new Scene(root));
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
 
                 if (controller.isSaved()) {

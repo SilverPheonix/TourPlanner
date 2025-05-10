@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="at.technikum.studentmanagementsystem2.controller.TourEditDialogController"
+      spacing="15">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Titel -->
+    <Label fx:id="titleLabel" text="Tour bearbeiten" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <!-- Formular -->
+    <GridPane hgap="15" vgap="15">
+        <!-- Tour Name -->
+        <Label text="Tour Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="tourNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <!-- Beschreibung -->
+        <Label text="Beschreibung:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextArea fx:id="tourDescriptionField" prefRowCount="3"
+                  GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Von -->
+        <Label text="Von:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="tourFromField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <!-- Nach -->
+        <Label text="Nach:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="tourToField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <!-- Transportart -->
+        <Label text="Transportart:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="tourTransportField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <!-- Distanz -->
+        <Label text="Distanz (km):" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="tourDistanceField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <!-- Geschätzte Zeit -->
+        <Label text="Geschätzte Zeit (Std):" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <TextField fx:id="tourEstimatedtimeField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+        <!-- Bild-URL -->
+        <Label text="Bild-URL:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <TextField fx:id="tourImageField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Buttons -->
+    <HBox spacing="15" alignment="center">
+        <Button text="Abbrechen" fx:id="cancelButton" onAction="#onCancel"/>
+        <Button text="Speichern" fx:id="saveButton" onAction="#onSave"/>
+    </HBox>
+</VBox>
