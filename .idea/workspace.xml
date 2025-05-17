@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Updated README.md">
-      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/DatabaseConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/database_setup.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/seed_data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourLogDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourLogDialogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/TourLogDialogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/TourLogDialogController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,17 +32,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;SilverPheonix&quot;
-  }
+  &quot;lastFilter&quot;: {}
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/SilverPheonix/TourPlanner.git&quot;,
-    &quot;accountId&quot;: &quot;cb12f939-0491-485f-b215-78c85df0ff8c&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/SilverPheonix/TourPlanner.git",
+    "accountId": "60dfdecc-6870-4562-97bf-2b936171dbb0"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -84,6 +81,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\patri\Desktop\TourPlanner\src\main\resources\at\technikum\studentmanagementsystem2" />
       <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner123" />
     </key>
   </component>
@@ -138,8 +136,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
@@ -162,6 +160,7 @@
       <workItem from="1741803528160" duration="4321000" />
       <workItem from="1742552757600" duration="298000" />
       <workItem from="1743250988638" duration="2102000" />
+      <workItem from="1747494624983" duration="1930000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some dependencies, TourViewModel.java still has issues with parameters passing">
       <option name="closed" value="true" />

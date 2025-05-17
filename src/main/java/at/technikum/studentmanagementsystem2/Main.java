@@ -1,5 +1,6 @@
 package at.technikum.studentmanagementsystem2;
 
+import at.technikum.studentmanagementsystem2.config.DatabaseConnection;
 import at.technikum.studentmanagementsystem2.controller.MainController;
 import at.technikum.studentmanagementsystem2.mvvm.TourTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModel;
@@ -13,6 +14,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
+            // Initialize the DB creation script
+            DatabaseConnection.initializeDatabase();
+            System.out.println("Application started...");
+
             // Lade die neue Hauptansicht
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/MainView.fxml"));
             Parent root = loader.load();

@@ -1,0 +1,29 @@
+-- ===========================================
+-- Script Name: schema.sql
+-- Description: Defines the schema for the tour_manager_db
+--              (tables, constraints, keys, etc.)
+-- ===========================================
+
+-- STEP 1: Create the 'tours' table
+CREATE TABLE IF NOT EXISTS tours (
+                                     id UUID PRIMARY KEY,                      -- Primary key: unique ID for each tour
+                                     name VARCHAR(255) NOT NULL,               -- Tour name
+                                     description TEXT,                         -- A brief description of the tour
+                                     "from" VARCHAR(255) NOT NULL,            -- Starting point of the tour
+                                     "to" VARCHAR(255) NOT NULL,              -- Destination of the tour
+                                     transport_type VARCHAR(100),             -- Type of transport (e.g., car, bike, train)
+                                     distance DOUBLE PRECISION,               -- Travel distance in kilometers
+                                     estimated_time DOUBLE PRECISION,         -- Estimated time in hours
+                                     image_url TEXT                           -- Image URL for the tour (optional)
+);
+
+-- STEP 2: Create the 'tour_logs' table
+CREATE TABLE IF NOT EXISTS tour_logs (
+                                         id UUID PRIMARY KEY,                       -- Primary key: unique ID for each log
+                                         tour_id UUID NOT NULL,                     -- Foreign key referencing the 'tours' table
+                                         date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Log timestamp (default: current time)
+                                         duration DOUBLE PRECISION,                -- Duration of this log entry in hours
+                                         comment TEXT,                             -- Additional comment about the trip or activity
+                                         difficulty INT CHECK (difficulty BETWEEN 1 AND 10), -- Difficulty as an integer (1-10)
+                                         FOREIGN KEY (tour_id) REFERENCES tours (id) ON DELETE CASCADE -- Maintain tour_logs-to-tours relation
+);
