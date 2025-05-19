@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.converter.NumberStringConverter;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +27,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
+@Component
 public class MainController {
 
     @FXML private ListView<TourViewModel> tourListView;
@@ -144,7 +146,7 @@ public class MainController {
         alert.showAndWait();
     }
 
-    // 📌 Aktionen für Touren
+    // Aktionen für Touren
     @FXML
     private void onNewTour() {
         try {
@@ -223,7 +225,7 @@ public class MainController {
         tourListView.setItems(tourTableViewModel.getTours());
     }
 
-    // 📌 Aktionen für Tour-Logs
+    // Aktionen für Tour-Logs
     @FXML
     private void onNewLog() {
         TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
@@ -231,11 +233,15 @@ public class MainController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourLogDialog.fxml"));
                 Parent root = loader.load();
-                // Neues ViewModel für das Log erstellen mit Default-Werten
 
+                // Create a dummy Tour object
+                Tour dummyTour = new Tour();
+                dummyTour.setId(UUID.fromString(selectedTour.getId()));
+
+                // Create a dummy TourLog object with the Tour reference
                 TourLog dummyLog = new TourLog(
                         UUID.randomUUID(),
-                        UUID.fromString(selectedTour.getId()),
+                        dummyTour,
                         LocalDateTime.now(),
                         "",         // comment
                         "Mittel",   // difficulty
@@ -246,22 +252,21 @@ public class MainController {
 
                 TourLogViewModel newLogViewModel = new TourLogViewModel(dummyLog);
 
-
                 TourLogDialogController controller = loader.getController();
                 controller.setTitle("Neues Tour-Log");
-                controller.setValues(newLogViewModel); // Standardwerte setzen
+                controller.setValues(newLogViewModel); // Set default values
 
                 Stage stage = new Stage();
                 stage.setTitle("Neues Tour-Log");
-                stage.setScene(new Scene(root, 300,400));
+                stage.setScene(new Scene(root, 300, 400));
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
 
                 if (controller.isSaved()) {
-                    // Finales TourLog aus ViewModel extrahieren
+                    // Extract the final TourLog from the ViewModel
                     TourLog finalLog = new TourLog(
                             newLogViewModel.getId(),
-                            UUID.fromString(selectedTour.getId()),
+                            dummyTour,
                             LocalDateTime.now(),
                             newLogViewModel.getComment(),
                             newLogViewModel.getDifficulty(),
@@ -270,6 +275,7 @@ public class MainController {
                             newLogViewModel.getRating()
                     );
 
+                    // Add the new log to the table and model
                     TourLogViewModel finalVM = new TourLogViewModel(finalLog);
                     tourLogViewModel.addTourLog(finalVM);
                     selectedTour.getTourLogs().add(finalLog);

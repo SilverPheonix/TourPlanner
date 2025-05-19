@@ -9,29 +9,39 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.PropertySource;
 
+@SpringBootApplication
+@PropertySource("classpath:/at/technikum/studentmanagementsystem2/config.properties")
 public class Main extends Application {
+
+    private ConfigurableApplicationContext springContext;
+
+    @Override
+    public void init() throws Exception {
+        // Start Spring Boot
+        springContext = new SpringApplicationBuilder(Main.class)
+                .run(getParameters().getRaw().toArray(new String[0]));
+    }
+
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Initialize the DB creation script
-            DatabaseConnection.initializeDatabase();
-            System.out.println("Application started...");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+                    "/at/technikum/studentmanagementsystem2/MainView.fxml"
+            ));
+            // Use Spring's Bean Factory to resolve controllers and manage dependencies
+            fxmlLoader.setControllerFactory(springContext::getBean);
 
-            // Lade die neue Hauptansicht
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/MainView.fxml"));
-            Parent root = loader.load();
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root, 1000, 600);
 
-            // Controller holen
-            MainController controller = loader.getController();
-
-            // ViewModels erstellen und dem Controller setzen
-            TourTableViewModel tourTableViewModel = new TourTableViewModel();
-            TourLogTableViewModel tourLogTableViewModel = new TourLogTableViewModel();
-            controller.setViewModels(tourTableViewModel, tourLogTableViewModel);
-
-            // Szene und Fenster setzen
-            primaryStage.setScene(new Scene(root,1000,600));
+            // Set the stage
+            primaryStage.setScene(scene);
             primaryStage.setTitle("Tour Management System");
             primaryStage.show();
         } catch (Exception e) {
@@ -39,7 +49,15 @@ public class Main extends Application {
         }
     }
 
+    @Override
+    public void stop() throws Exception {
+        // Shut down Spring when JavaFX application closes
+        springContext.close();
+    }
+
     public static void main(String[] args) {
-        launch(args);
+        DatabaseConnection.initializeDatabase();
+        launch(args); // Entry point of JavaFX application
     }
 }
+

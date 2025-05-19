@@ -11,11 +11,13 @@ public class TourLogService {
     private final ObservableList<TourLog> tourLogs = FXCollections.observableArrayList();
 
     public List<TourLog> getTourLogsByTourId(UUID tourId) {
-        return tourLogs.filtered(log -> log.getTourId().equals(tourId));
+        return tourLogs.filtered(log ->
+                log.getTour() != null && log.getTour().getId().equals(tourId)
+        );
     }
 
     public void saveTourLog(TourLog tourLog) {
-        tourLogs.removeIf(log -> log.getId().equals(tourLog.getId()));  // Remove old entry if exists
+        tourLogs.removeIf(log -> log.getId().equals(tourLog.getId())); // Remove old entry if exists
         tourLogs.add(tourLog);
     }
 

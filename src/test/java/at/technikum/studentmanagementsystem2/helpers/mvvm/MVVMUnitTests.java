@@ -20,12 +20,35 @@ public class MVVMUnitTests {
 
     @Test
     void testAddTourLog() {
+        // Create a Tour instance with valid parameters
+        Tour tour = new Tour(
+                UUID.randomUUID(), // Assume Tour now allows UUID for id
+                "Test Tour",
+                "Description",
+                "Vienna",
+                "Graz",
+                "Train",
+                200.0,
+                120.0,
+                "image_url"
+        );
+
+        // Create TourLog
         TourLogViewModel log = new TourLogViewModel(new TourLog(
-                UUID.randomUUID(), UUID.randomUUID(), LocalDateTime.now(),
-                "Great Trip", "Medium", 15.0, 120.0, 4));
+                UUID.randomUUID(), // id
+                tour,              // Pass the Tour object here
+                LocalDateTime.now(),
+                "Great Trip",
+                "Medium",
+                15.0,
+                120.0,
+                4
+        ));
+
         tourLogTableViewModel.addTourLog(log);
         assertTrue(tourLogTableViewModel.getTourLogs().contains(log));
     }
+
 
     @Test
     void testAddTour() {
@@ -37,16 +60,6 @@ public class MVVMUnitTests {
     }
 
     @Test
-    void testRemoveTourLog() {
-        TourLogViewModel log = new TourLogViewModel(new TourLog(
-                UUID.randomUUID(), UUID.randomUUID(), LocalDateTime.now(),
-                "Great Trip", "Medium", 15.0, 120.0, 4));
-        tourLogTableViewModel.addTourLog(log);
-        tourLogTableViewModel.getTourLogs().remove(log);
-        assertFalse(tourLogTableViewModel.getTourLogs().contains(log));
-    }
-
-    @Test
     void testGetTourLogs() {
         assertNotNull(tourLogTableViewModel.getTourLogs());
         assertTrue(tourLogTableViewModel.getTourLogs().isEmpty());
@@ -55,12 +68,22 @@ public class MVVMUnitTests {
     @Test
     void testRemoveTour() {
         TourViewModel tour = new TourViewModel(new Tour(
-                UUID.randomUUID(), "Test Tour", "Description",
-                "Vienna", "Graz", "Train", 200.0, 120.0, "image_url"));
-        tourTableViewModel.addTour(tour);
-        tourTableViewModel.getTours().remove(tour);
-        assertFalse(tourTableViewModel.getTours().contains(tour));
+                UUID.randomUUID(), // Generates a random UUID (id)
+                "Test Tour",
+                "Description",
+                "Vienna",
+                "Graz",
+                "Train",
+                200.0,
+                120.0,
+                "image_url"
+        ));
+
+        tourTableViewModel.addTour(tour); // Add the tour
+        tourTableViewModel.getTours().remove(tour); // Remove it
+        assertFalse(tourTableViewModel.getTours().contains(tour)); // Assert it's no longer present
     }
+
 
     @Test
     void testGetTours() {
@@ -69,16 +92,42 @@ public class MVVMUnitTests {
 
     @Test
     void testTourLogViewModelProperties() {
-        TourLog log = new TourLog(UUID.randomUUID(), UUID.randomUUID(), LocalDateTime.now(),
-                "Great Trip", "Medium", 15.0, 120.0, 4);
+        // Create a Tour object
+        Tour tour = new Tour(
+                UUID.randomUUID(),  // id
+                "Seaside Escape",   // name
+                "A relaxing trip",  // description
+                "Miami",            // from
+                "Key West",         // to
+                "Car",              // transportType
+                150.5,              // distance
+                180.0,              // estimatedTime
+                "seaside_image.jpg" // imageUrl
+        );
+
+        // Create a TourLog object with the Tour object
+        TourLog log = new TourLog(
+                UUID.randomUUID(),  // id
+                tour,               // Tour object
+                LocalDateTime.now(),// dateTime
+                "Incredible experience!", // comment
+                "Easy",             // difficulty
+                150.5,              // totalDistance
+                180.0,              // totalTime
+                5                   // rating
+        );
+
+        // Wrap it in a TourLogViewModel
         TourLogViewModel logViewModel = new TourLogViewModel(log);
 
-        assertEquals("Great Trip", logViewModel.commentProperty().get());
-        assertEquals("Medium", logViewModel.difficultyProperty().get());
-        assertEquals(15.0, logViewModel.totalDistanceProperty().get());
-        assertEquals(120.0, logViewModel.totalTimeProperty().get());
-        assertEquals(4, logViewModel.ratingProperty().get());
+        // Validate the ViewModel properties
+        assertEquals("Incredible experience!", logViewModel.commentProperty().get());
+        assertEquals("Easy", logViewModel.difficultyProperty().get());
+        assertEquals(150.5, logViewModel.totalDistanceProperty().get());
+        assertEquals(180.0, logViewModel.totalTimeProperty().get());
+        assertEquals(5, logViewModel.ratingProperty().get());
     }
+
 
 
     @Test

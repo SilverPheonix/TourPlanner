@@ -1,6 +1,8 @@
 package at.technikum.studentmanagementsystem2.mvvm;
 
+import at.technikum.studentmanagementsystem2.models.Tour;
 import at.technikum.studentmanagementsystem2.models.TourLog;
+import javafx.beans.property.SimpleObjectProperty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,21 +17,25 @@ class TourLogViewModelTest {
 
     @BeforeEach
     void setUp() {
-        // Erstelle eine TourLog-Instanz für die Tests
-        UUID id = UUID.randomUUID();
+        // Create a Tour instance
         UUID tourId = UUID.randomUUID();
-        LocalDateTime dateTime = LocalDateTime.now();
-        tourLog = new TourLog(id, tourId, dateTime, "Test Comment", "medium", 100.0, 50.0, 5);
+        Tour tour = new Tour();
+        tour.setId(tourId);
 
-        // Erstelle das TourLogViewModel mit der TourLog-Instanz
+        // Create a TourLog instance for the tests
+        UUID id = UUID.randomUUID();
+        LocalDateTime dateTime = LocalDateTime.now();
+        tourLog = new TourLog(id, tour, dateTime, "Test Comment", "medium", 100.0, 50.0, 5);
+
+        // Create the TourLogViewModel with the TourLog instance
         tourLogViewModel = new TourLogViewModel(tourLog);
     }
+
 
     @Test
     void testGetter() {
         // Überprüfe, ob die Getter die richtigen Werte zurückgeben
         assertEquals(tourLog.getId(), tourLogViewModel.getId());
-        assertEquals(tourLog.getTourId(), tourLogViewModel.getTourId());
         assertEquals(tourLog.getDateTime(), tourLogViewModel.getDateTime());
         assertEquals(tourLog.getComment(), tourLogViewModel.getComment());
         assertEquals(tourLog.getDifficulty(), tourLogViewModel.getDifficulty());

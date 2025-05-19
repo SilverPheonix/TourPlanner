@@ -1,11 +1,21 @@
 package at.technikum.studentmanagementsystem2.models;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Entity
+@Table(name = "tour_logs")
 public class TourLog {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private UUID tourId;
+
+    @ManyToOne(fetch = FetchType.LAZY) // Use LAZY for better proxy generation
+    @JoinColumn(name = "tour_id", nullable = false)
+    private Tour tour;
+
+
     private LocalDateTime dateTime;
     private String comment;
     private String difficulty;
@@ -13,9 +23,14 @@ public class TourLog {
     private double totalTime;
     private int rating;
 
-    public TourLog(UUID id, UUID tourId, LocalDateTime dateTime, String comment, String difficulty, double totalDistance, double totalTime, int rating) {
+    // No-arg constructor for JPA
+    public TourLog() {}
+
+    // Parameterized constructor
+    public TourLog(UUID id, Tour tour, LocalDateTime dateTime, String comment, String difficulty,
+                   double totalDistance, double totalTime, int rating) {
         this.id = id;
-        this.tourId = tourId;
+        this.tour = tour;
         this.dateTime = dateTime;
         this.comment = comment;
         this.difficulty = difficulty;
@@ -24,8 +39,7 @@ public class TourLog {
         this.rating = rating;
     }
 
-    // Konstruktoren, Getter und Setter
-
+    // Getters and Setters
     public UUID getId() {
         return id;
     }
@@ -34,12 +48,12 @@ public class TourLog {
         this.id = id;
     }
 
-    public UUID getTourId() {
-        return tourId;
+    public Tour getTour() {
+        return tour;
     }
 
-    public void setTourId(UUID tourId) {
-        this.tourId = tourId;
+    public void setTour(Tour tour) {
+        this.tour = tour;
     }
 
     public LocalDateTime getDateTime() {

@@ -24,6 +24,6 @@ CREATE TABLE IF NOT EXISTS tour_logs (
                                          date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Log timestamp (default: current time)
                                          duration DOUBLE PRECISION,                -- Duration of this log entry in hours
                                          comment TEXT,                             -- Additional comment about the trip or activity
-                                         difficulty INT CHECK (difficulty BETWEEN 1 AND 10), -- Difficulty as an integer (1-10)
+                                         difficulty VARCHAR(255),                  -- Difficulty as a string
                                          FOREIGN KEY (tour_id) REFERENCES tours (id) ON DELETE CASCADE -- Maintain tour_logs-to-tours relation
 );

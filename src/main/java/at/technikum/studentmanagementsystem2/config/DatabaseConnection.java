@@ -85,7 +85,7 @@ public class DatabaseConnection {
                     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     duration DOUBLE PRECISION,
                     comment TEXT,
-                    difficulty INT CHECK (difficulty BETWEEN 1 AND 10),
+                    difficulty VARCHAR(255) NOT NULL,
                     FOREIGN KEY (tour_id) REFERENCES tours (id) ON DELETE CASCADE
                 );
             """;

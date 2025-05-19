@@ -18,7 +18,7 @@ public class TourLogViewModel {
 
     public TourLogViewModel(TourLog tourLog) {
         this.id = new SimpleObjectProperty<>(tourLog.getId());
-        this.tourId = new SimpleObjectProperty<>(tourLog.getTourId());
+        this.tourId = new SimpleObjectProperty<>(tourLog.getTour().getId());
         this.dateTime = new SimpleObjectProperty<>(tourLog.getDateTime());
         this.comment = new SimpleStringProperty(tourLog.getComment());
         this.difficulty = new SimpleStringProperty(tourLog.getDifficulty());

@@ -6,7 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.util.converter.NumberStringConverter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TourLogDialogController {
 
     @FXML private Label titleLabel;

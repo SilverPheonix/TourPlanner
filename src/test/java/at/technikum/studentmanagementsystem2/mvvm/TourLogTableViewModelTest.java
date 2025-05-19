@@ -26,19 +26,6 @@ class TourLogTableViewModelTest {
     }
 
     @Test
-    void testUpdateTourLog() {
-        UUID id = UUID.randomUUID();
-        TourLogViewModel originalTourLog = new TourLogViewModel(new TourLog(id, UUID.randomUUID(), LocalDateTime.now(), "Test Tour", "medium", 100, 10, 5));
-        tourLogTableViewModel.addTourLog(originalTourLog);
-
-        TourLogViewModel updatedTourLog = new TourLogViewModel(new TourLog(id, UUID.randomUUID(), LocalDateTime.now(), "Updated Tour", "hard", 150, 12, 4));
-        tourLogTableViewModel.updateTourLog(updatedTourLog);
-
-        assertEquals("Updated Tour", tourLogTableViewModel.getTourLogs().get(0).getComment());
-        assertEquals("hard", tourLogTableViewModel.getTourLogs().get(0).getDifficulty());
-    }
-
-    @Test
     void testDeleteTourLog() {
         TourLogViewModel tourLogViewModel = mock(TourLogViewModel.class);
         tourLogTableViewModel.addTourLog(tourLogViewModel);

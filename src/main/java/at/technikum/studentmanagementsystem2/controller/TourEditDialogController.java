@@ -6,7 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TourEditDialogController {
 
     @FXML private TextField tourNameField;

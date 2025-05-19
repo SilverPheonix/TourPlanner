@@ -3,9 +3,12 @@ package at.technikum.studentmanagementsystem2.mvvm;
 import at.technikum.studentmanagementsystem2.models.Tour;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+@Component
 public class TourTableViewModel {
     private final ObservableList<TourViewModel> tours = FXCollections.observableArrayList();
 

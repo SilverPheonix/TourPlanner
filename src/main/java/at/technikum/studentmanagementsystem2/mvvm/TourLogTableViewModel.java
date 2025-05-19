@@ -3,10 +3,13 @@ package at.technikum.studentmanagementsystem2.mvvm;
 import at.technikum.studentmanagementsystem2.models.TourLog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Component
 public class TourLogTableViewModel {
     private final ObservableList<TourLogViewModel> tourLogs = FXCollections.observableArrayList();
 
