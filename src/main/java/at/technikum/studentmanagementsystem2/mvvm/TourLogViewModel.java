@@ -1,5 +1,6 @@
 package at.technikum.studentmanagementsystem2.mvvm;
 
+import at.technikum.studentmanagementsystem2.models.Tour;
 import at.technikum.studentmanagementsystem2.models.TourLog;
 import javafx.beans.property.*;
 
@@ -52,4 +53,17 @@ public class TourLogViewModel {
     public void setTotalDistance(double totalDistance) { this.totalDistance.set(totalDistance); }
     public void setTotalTime(double totalTime) { this.totalTime.set(totalTime); }
     public void setRating(int rating) { this.rating.set(rating); }
+
+    public TourLog toTourLog(Tour selectedTour) {
+        return new TourLog(
+                getId(),
+                selectedTour,
+                LocalDateTime.now(),
+                getComment(),
+                getDifficulty(),
+                getTotalDistance(),
+                getTotalTime(),
+                getRating()
+        );
+    }
 }

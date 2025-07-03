@@ -60,4 +60,18 @@ public class TourViewModel {
     public double getDistance() { return distance.get(); }
     public double getEstimatedTime() { return estimatedTime.get(); }
     public String getImageUrl() { return imageUrl.get(); }
+
+    public Tour toTour() {
+        return new Tour(
+                UUID.fromString(getId()),
+                getName(),
+                getDescription(),
+                getFrom(),
+                getTo(),
+                getTransportType(),
+                getDistance(),
+                getEstimatedTime(),
+                getImageUrl()
+        );
+    }
 }

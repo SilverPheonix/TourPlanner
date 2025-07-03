@@ -6,7 +6,8 @@ import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
-import at.technikum.studentmanagementsystem2.controller.TourEditDialogController;
+import at.technikum.studentmanagementsystem2.service.TourLogService;
+import at.technikum.studentmanagementsystem2.service.TourService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,17 +19,20 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.converter.NumberStringConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.util.List;
 import java.util.UUID;
 
 @Component
 public class MainController {
+
+    @Autowired private TourService tourService;
+    @Autowired private TourLogService tourLogService;
 
     @FXML private ListView<TourViewModel> tourListView;
     @FXML private TextField tourNameField, tourDescriptionField, tourFromField, tourToField, tourTransportField, tourDistanceField, tourEstimatedtimeField, tourImageField;
@@ -39,8 +43,7 @@ public class MainController {
     @FXML private TableColumn<TourLogViewModel, Double> logDistanceColumn;
     @FXML private TableColumn<TourLogViewModel, Double> logTimeColumn;
     @FXML private TableColumn<TourLogViewModel, Integer> logRatingColumn;
-    @FXML
-    private ImageView tourImageView;
+    @FXML private ImageView tourImageView;
 
     private TourTableViewModel tourTableViewModel = new TourTableViewModel();
     private TourLogTableViewModel tourLogViewModel = new TourLogTableViewModel();
@@ -52,26 +55,27 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        // Lade Tour-Liste
+        // Lade Touren aus Service
+        List<Tour> tours = tourService.getAllTours();
+        List<TourViewModel> viewModels = tours.stream()
+                .map(TourViewModel::new)
+                .toList();
+        tourTableViewModel.getTours().setAll(viewModels);
         tourListView.setItems(tourTableViewModel.getTours());
 
-        // Event: Wenn eine Tour ausgewählt wird
+        // Listener
         tourListView.getSelectionModel().selectedItemProperty().addListener((obs, oldTour, newTour) -> {
             if (newTour != null) {
                 showTourDetails(newTour);
             }
         });
 
-        // Definiere die Zelle, die für die Anzeige verwendet wird
-        tourListView.setCellFactory(param -> new ListCell<TourViewModel>() {
+        // Cell Factory
+        tourListView.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(TourViewModel item, boolean empty) {
                 super.updateItem(item, empty);
-                if (item == null || empty) {
-                    setText(null);
-                } else {
-                    setText(item.getName() + " (ID: " + item.getId() + ")");
-                }
+                setText((item == null || empty) ? null : item.getName() + " (ID: " + item.getId() + ")");
             }
         });
     }
@@ -89,8 +93,8 @@ public class MainController {
         tourFromField.textProperty().bind(tour.fromProperty());
         tourToField.textProperty().bind(tour.toProperty());
         tourTransportField.textProperty().bind(tour.transportTypeProperty());
-        tourDistanceField.textProperty().bindBidirectional(tour.distanceProperty(), new NumberStringConverter());
-        tourEstimatedtimeField.textProperty().bindBidirectional(tour.estimatedTimeProperty(), new NumberStringConverter());
+        tourDistanceField.textProperty().bind(tour.distanceProperty().asString());
+        tourEstimatedtimeField.textProperty().bind(tour.estimatedTimeProperty().asString());
         tourImageField.textProperty().bind(tour.imageUrlProperty());
 
         // Deaktiviere die Textfelder für den Lesemodus
@@ -112,11 +116,9 @@ public class MainController {
         }
 
         // Lade die Log-Tabelle mit den Logs der ausgewählten Tour
-        ObservableList<TourLogViewModel> logs = FXCollections.observableArrayList();
-        for (TourLog log : tour.getTourLogs()) {
-            logs.add(new TourLogViewModel(log));
-        }
-        tourLogViewModel.getTourLogs().setAll(logs);
+        List<TourLog> logs = tourLogService.getTourLogsByTourId(UUID.fromString(tour.getId()));
+        List<TourLogViewModel> logVMs = logs.stream().map(TourLogViewModel::new).toList();
+        tourLogViewModel.getTourLogs().setAll(logVMs);
         tourLogTable.setItems(tourLogViewModel.getTourLogs());
 
         // Hier binden wir auch die Spalten an die entsprechenden Eigenschaften der TourLogViewModels
@@ -167,8 +169,9 @@ public class MainController {
             stage.showAndWait();
 
             if (controller.isSaved()) {
-                tourTableViewModel.addTour(newTourVM);
-                tourListView.setItems(tourTableViewModel.getTours());
+                Tour savedTour = newTourVM.toTour();
+                tourService.createTour(savedTour);
+                tourTableViewModel.addTour(new TourViewModel(savedTour));
                 tourListView.refresh();
             }
 
@@ -202,8 +205,11 @@ public class MainController {
             stage.initModality(Modality.APPLICATION_MODAL);  // Blockiert, bis Dialog geschlossen wird
             stage.showAndWait();
 
-            // Option: Daten im TableView neu anzeigen
-            tourListView.refresh();
+            if (controller.isSaved()) {
+                Tour updatedTour = selectedTour.toTour();
+                tourService.updateTour(updatedTour); // Persistieren der Änderung
+                tourListView.refresh();
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -217,12 +223,12 @@ public class MainController {
     private void onDeleteTour() {
         TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
         if (selectedTour != null) {
+            tourService.deleteTour(selectedTour.toTour().getId());
             tourTableViewModel.deleteTour(selectedTour);
+            tourListView.refresh();
         } else {
             showAlert("Fehler", "Keine Tour ausgewählt!", Alert.AlertType.WARNING);
         }
-        // Nach dem Löschen die Liste aktualisieren
-        tourListView.setItems(tourTableViewModel.getTours());
     }
 
     // Aktionen für Tour-Logs
@@ -234,20 +240,11 @@ public class MainController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourLogDialog.fxml"));
                 Parent root = loader.load();
 
-                // Create a dummy Tour object
-                Tour dummyTour = new Tour();
-                dummyTour.setId(UUID.fromString(selectedTour.getId()));
-
-                // Create a dummy TourLog object with the Tour reference
+                // Create a dummy Tour log object
                 TourLog dummyLog = new TourLog(
                         UUID.randomUUID(),
-                        dummyTour,
-                        LocalDateTime.now(),
-                        "",         // comment
-                        "Mittel",   // difficulty
-                        0.0,        // distance
-                        0.0,        // time
-                        3           // rating
+                        selectedTour.toTour(),
+                        LocalDateTime.now(), "", "Mittel", 0.0, 0.0, 3
                 );
 
                 TourLogViewModel newLogViewModel = new TourLogViewModel(dummyLog);
@@ -263,24 +260,11 @@ public class MainController {
                 stage.showAndWait();
 
                 if (controller.isSaved()) {
-                    // Extract the final TourLog from the ViewModel
-                    TourLog finalLog = new TourLog(
-                            newLogViewModel.getId(),
-                            dummyTour,
-                            LocalDateTime.now(),
-                            newLogViewModel.getComment(),
-                            newLogViewModel.getDifficulty(),
-                            newLogViewModel.getTotalDistance(),
-                            newLogViewModel.getTotalTime(),
-                            newLogViewModel.getRating()
-                    );
-
-                    // Add the new log to the table and model
-                    TourLogViewModel finalVM = new TourLogViewModel(finalLog);
-                    tourLogViewModel.addTourLog(finalVM);
-                    selectedTour.getTourLogs().add(finalLog);
-                    tourLogTable.setItems(tourLogViewModel.getTourLogs());
+                    TourLog savedLog = newLogViewModel.toTourLog(selectedTour.toTour());
+                    tourLogService.saveTourLog(savedLog);
+                    tourLogViewModel.addTourLog(new TourLogViewModel(savedLog));
                     tourLogTable.refresh();
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -296,7 +280,10 @@ public class MainController {
     @FXML
     private void onEditLog() {
         TourLogViewModel selectedLog = tourLogTable.getSelectionModel().getSelectedItem();
-        if (selectedLog != null) {
+        Tour tour = tourService.getTourById(selectedLog.getTourId())
+                .orElseThrow(() -> new RuntimeException("Tour not found"));
+
+        if (selectedLog != null ) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourLogDialog.fxml"));
                 Parent root = loader.load();
@@ -312,11 +299,15 @@ public class MainController {
                 stage.showAndWait();
 
                 if (controller.isSaved()) {
+                    // ViewModel updaten
                     selectedLog.setComment(controller.getComment());
                     selectedLog.setDifficulty(controller.getDifficulty());
                     selectedLog.setTotalDistance(controller.getDistance());
                     selectedLog.setTotalTime(controller.getTime());
                     selectedLog.setRating(controller.getRating());
+
+                    // Persistieren im Service
+                    tourLogService.saveTourLog(selectedLog.toTourLog(tour));
                     tourLogTable.refresh();
                 }
             } catch (IOException e) {
@@ -331,17 +322,14 @@ public class MainController {
     @FXML
     private void onDeleteLog() {
         TourLogViewModel selectedLog = tourLogTable.getSelectionModel().getSelectedItem();
-        if (selectedLog != null) {
-            // Log aus dem ViewModel löschen
-            tourLogViewModel.deleteTourLog(selectedLog);
+        TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
 
-            // Log aus der zugrunde liegenden Tour löschen
-            TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
-            if (selectedTour != null) {
-                selectedTour.getTourLogs().removeIf(log -> log.getId().equals(selectedLog.getId()));
-            }
-            // Nach dem Löschen die Liste aktualisieren
-            tourLogTable.setItems(tourLogViewModel.getTourLogs());
+        if (selectedLog != null) {
+            tourLogViewModel.deleteTourLog(selectedLog);
+            selectedTour.getTourLogs().removeIf(log -> log.getId().equals(selectedLog.getId()));
+            tourLogService.deleteTourLog(selectedLog.toTourLog(selectedTour.toTour()).getId());
+
+            tourLogTable.refresh();
         } else {
             showAlert("Fehler", "Kein Tour-Log ausgewählt!", Alert.AlertType.WARNING);
         }

@@ -6,5 +6,4 @@ import java.util.List;
 import java.util.UUID;
 
 public interface TourLogRepository extends JpaRepository<TourLog, UUID> {
-    List<TourLog> findByTourId(UUID tourId);
 }
