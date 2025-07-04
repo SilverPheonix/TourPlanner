@@ -28,7 +28,7 @@
         <TextField fx:id="distanceField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
         <!-- Zeit Field -->
-        <Label text="Zeit (Minuten):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <Label text="Zeit (Stunden):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
         <TextField fx:id="timeField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
         <!-- Bewertung Slider -->

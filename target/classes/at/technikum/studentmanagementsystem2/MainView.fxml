@@ -45,29 +45,39 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                     </padding>
 
-                    <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                    <TextField fx:id="tourNameField"  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <Label text="Tour Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <Label fx:id="tourNameField"  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
                     <Label text="Beschreibung:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                    <TextField fx:id="tourDescriptionField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    <Label fx:id="tourDescriptionField" wrapText="true"
+                           prefWidth="200"
+                           minHeight="50"
+                           maxHeight="Infinity"  GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
                     <Label text="Von:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                    <TextField fx:id="tourFromField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <Label fx:id="tourFromField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
                     <Label text="Nach:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                    <TextField fx:id="tourToField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                    <Label fx:id="tourToField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-                    <Label text="Transportmittel:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                    <TextField fx:id="tourTransportField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                    <Label text="Transportart:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <Label fx:id="tourTransportField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-                    <Label text="Distance (km):" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-                    <TextField fx:id="tourDistanceField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                    <Label text="Distanz (km):" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <Label fx:id="tourDistanceField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
-                    <Label text="Estimated Time (min):" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-                    <TextField fx:id="tourEstimatedtimeField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                    <Label text="Geschätzte Zeit (Std):" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                    <Label fx:id="tourEstimatedtimeField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-                    <Label text="Image Path (Routeninformation):" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-                    <TextField fx:id="tourImageField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                    <Label text="Bild-URL:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                    <Label fx:id="tourImageField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+                    <Label text="Beliebtheit:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                    <Label fx:id="tourPopularityLabel" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+                    <Label text="Kinderfreundlichkeit:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+                    <Label fx:id="tourChildFriendlinessLabel" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+
                 </GridPane>
 
                 <!-- ImageView für Tour-Bild -->
@@ -85,10 +95,10 @@
             <TableView fx:id="tourLogTable">
                 <columns>
                     <TableColumn text="Datum" fx:id="logDateColumn"/>
-                    <TableColumn text="Comment" fx:id="logCommentColumn"/>
-                    <TableColumn text="Difficulty" fx:id="logDifficultyColumn"/>
-                    <TableColumn text="Distance" fx:id="logDistanceColumn"/>
-                    <TableColumn text="Time" fx:id="logTimeColumn"/>
+                    <TableColumn text="Kommentar" fx:id="logCommentColumn"/>
+                    <TableColumn text="Schwierigkeit" fx:id="logDifficultyColumn"/>
+                    <TableColumn text="Distanz" fx:id="logDistanceColumn"/>
+                    <TableColumn text="Dauer" fx:id="logTimeColumn"/>
                     <TableColumn text="Bewertung" fx:id="logRatingColumn"/>
                 </columns>
             </TableView>
