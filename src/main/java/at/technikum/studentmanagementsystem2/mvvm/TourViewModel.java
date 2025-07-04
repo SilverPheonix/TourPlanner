@@ -22,6 +22,10 @@ public class TourViewModel {
     private final StringProperty imageUrl;
     private final IntegerProperty popularity;
     private final DoubleProperty childFriendliness;
+    private final DoubleProperty startLat;
+    private final DoubleProperty startLon;
+    private final DoubleProperty endLat;
+    private final DoubleProperty endLon;;
 
     private final ObservableList<TourLog> tourLogs = FXCollections.observableArrayList();
 
@@ -46,6 +50,10 @@ public class TourViewModel {
         this.imageUrl = new SimpleStringProperty(tour.getImageUrl());
         this.popularity = new SimpleIntegerProperty(tour.getPopularity());
         this.childFriendliness = new SimpleDoubleProperty(tour.getChildFriendliness());
+        this.startLat = new SimpleDoubleProperty(tour.getStartLat());
+        this.startLon = new SimpleDoubleProperty(tour.getStartLon());
+        this.endLat = new SimpleDoubleProperty(tour.getEndLat());
+        this.endLon = new SimpleDoubleProperty(tour.getEndLon());
     }
 
     public StringProperty idProperty() { return id; }
@@ -57,12 +65,14 @@ public class TourViewModel {
     public DoubleProperty distanceProperty() { return distance; }
     public DoubleProperty estimatedTimeProperty() { return estimatedTime; }
     public StringProperty imageUrlProperty() { return imageUrl; }
-    public IntegerProperty popularityProperty() {
-        return popularity;
-    }
-    public DoubleProperty childFriendlinessProperty() {
-        return childFriendliness;
-    }
+
+    public IntegerProperty popularityProperty() { return popularity; }
+    public DoubleProperty childFriendlinessProperty() { return childFriendliness; }
+
+    public DoubleProperty startLatProperty() { return startLat; }
+    public DoubleProperty startLonProperty() { return startLon; }
+    public DoubleProperty endLatProperty() { return endLat; }
+    public DoubleProperty endLonProperty() { return endLon; }
 
     public String getId() { return id.get(); }
     public String getName() { return name.get(); }
@@ -73,12 +83,12 @@ public class TourViewModel {
     public double getDistance() { return distance.get(); }
     public double getEstimatedTime() { return estimatedTime.get(); }
     public String getImageUrl() { return imageUrl.get(); }
-    public int getPopularity() {
-        return popularity.get();
-    }
-    public double getChildFriendliness() {
-        return childFriendliness.get();
-    }
+    public int getPopularity() { return popularity.get(); }
+    public double getChildFriendliness() { return childFriendliness.get(); }
+    public double getStartLat() { return startLat.get(); }
+    public double getStartLon() { return startLon.get(); }
+    public double getEndLat() { return endLat.get(); }
+    public double getEndLon() { return endLon.get(); }
 
     //Setter
     public void setName(String name) {
@@ -105,6 +115,12 @@ public class TourViewModel {
     public void setImageUrl(String imageUrl) {
         this.imageUrl.set(imageUrl);
     }
+    public void setPopularity(int popularity) { this.popularity.set(popularity); }
+    public void setChildFriendliness( double childFriendliness) { this.childFriendliness.set(childFriendliness); }
+    public void setstartLat(double startlat) { this.startLat.set(startlat); }
+    public void setstartLon(double startlon) { this.startLon.set(startlon); }
+    public void setendLat(double endlat) { this.endLat.set(endlat); }
+    public void setendLon(double endlon) { this.endLon.set(endlon); }
 
     public Tour toTour() {
         return new Tour(
@@ -118,7 +134,16 @@ public class TourViewModel {
                 getEstimatedTime(),
                 getImageUrl(),
                 getPopularity(),
-                getChildFriendliness()
+                getChildFriendliness(),
+                getStartLat(),
+                getStartLon(),
+                getEndLat(),
+                getEndLon()
         );
     }
+
+    public boolean hasCoordinates() {
+        return startLat.get() != 0 && startLon.get() != 0 && endLat.get() != 0 && endLon.get() != 0;
+    }
+
 }

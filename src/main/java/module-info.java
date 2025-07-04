@@ -36,13 +36,13 @@ open module at.technikum.studentmanagementsystem2 {
     requires java.sql;
     requires jakarta.persistence;
 
-    requires javafx.base;
-    requires javafx.controls;
     requires javafx.fxml;
 
     requires spring.core; // Ensure spring-core is explicitly required
-    requires transitive java.desktop; // Fix for JavaFX
+    // Fix for JavaFX
 
     requires org.hibernate.orm.core;
+    requires javafx.web;
+    requires jdk.jsobject;
 
 }

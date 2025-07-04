@@ -35,10 +35,21 @@ public class Tour {
 
 
     //Compuated values
+    @Column(name = "popularity")
     private int popularity;
 
     @Column(name = "child_friendliness")
     private double childFriendliness;
+
+    //Map Values
+    @Column(name = "startLat")
+    private double startLat;
+    @Column(name = "startLon")
+    private double startLon;
+    @Column(name = "endLat")
+    private double endLat;
+    @Column(name = "endLon")
+    private double endLon;
 
 
     // No-arg constructor for JPA
@@ -46,7 +57,22 @@ public class Tour {
 
     // Parameterized constructor
     public Tour(UUID id, String name, String description, String from, String to, String transportType,
-                double distance, double estimatedTime, String imageUrl, Integer popularity, double childFriendliness) {
+                double distance, double estimatedTime, String imageUrl) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.from = from;
+        this.to = to;
+        this.transportType = transportType;
+        this.distance = distance;
+        this.estimatedTime = estimatedTime;
+        this.imageUrl = imageUrl;
+
+    }
+    // aditional paramater  constructor
+    public Tour(UUID id, String name, String description, String from, String to, String transportType,
+                double distance, double estimatedTime, String imageUrl, Integer popularity, double childFriendliness,
+                double startLat, double startLon, double endLat, double endLon) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -58,6 +84,11 @@ public class Tour {
         this.imageUrl = imageUrl;
         this.popularity = popularity;
         this.childFriendliness = childFriendliness;
+        this.startLat = startLat;
+        this.startLon = startLon;
+        this.endLat = endLat;
+        this.endLon = endLon;
+
     }
 
     // Getters and setters for JPA fields
@@ -101,5 +132,37 @@ public class Tour {
 
     public void setPopularity(int popularity) {
         this.popularity = popularity;
+    }
+
+    public double getEndLon() {
+        return endLon;
+    }
+
+    public void setEndLon(double endLon) {
+        this.endLon = endLon;
+    }
+
+    public double getStartLat() {
+        return startLat;
+    }
+
+    public void setStartLat(double startLat) {
+        this.startLat = startLat;
+    }
+
+    public double getStartLon() {
+        return startLon;
+    }
+
+    public void setStartLon(double startLon) {
+        this.startLon = startLon;
+    }
+
+    public double getEndLat() {
+        return endLat;
+    }
+
+    public void setEndLat(double endLat) {
+        this.endLat = endLat;
     }
 }

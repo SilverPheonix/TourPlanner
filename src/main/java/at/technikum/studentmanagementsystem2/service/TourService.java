@@ -1,15 +1,18 @@
 package at.technikum.studentmanagementsystem2.service;
 
+import at.technikum.studentmanagementsystem2.config.Properties_Config;
 import at.technikum.studentmanagementsystem2.models.Tour;
 import at.technikum.studentmanagementsystem2.models.TourLog;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
 import at.technikum.studentmanagementsystem2.repository.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.io.IOException;
+import java.util.*;
 
 @Service
 public class TourService {
@@ -45,6 +48,10 @@ public class TourService {
             tour.setDistance(updatedTour.getDistance());
             tour.setEstimatedTime(updatedTour.getEstimatedTime());
             tour.setImageUrl(updatedTour.getImageUrl());
+            tour.setStartLat(updatedTour.getStartLat());
+            tour.setStartLon(updatedTour.getStartLon());
+            tour.setEndLat(updatedTour.getEndLat());
+            tour.setEndLon(updatedTour.getEndLon());
             return tourRepository.save(tour);
         }).orElseThrow(() -> new RuntimeException("Tour not found with id: " + updatedTour.getId()));
     }
@@ -57,7 +64,9 @@ public class TourService {
     }
 
     public void updateComputedAttributes(TourViewModel tourViewModel) {
-        Tour tour = tourRepository.findById(tourViewModel.toTour().getId()).orElseThrow();
+        Tour tour = tourRepository.findById(UUID.fromString(tourViewModel.getId()))
+                .orElseThrow(() -> new IllegalArgumentException("Tour with ID " + UUID.fromString(tourViewModel.getId()) + " not found"));
+
         List<TourLog> logs = tourLogService.getTourLogsByTourId(tourViewModel.toTour().getId());
 
         // Popularity = Anzahl der Logs
@@ -119,5 +128,44 @@ public class TourService {
 
         tourRepository.save(tour);
     }
+
+    public String getRouteGeoJson(TourViewModel tour) throws IOException {
+        // Koordinaten aus Tour holen
+        double startLat = tour.getStartLat();
+        double startLon = tour.getStartLon();
+        double endLat = tour.getEndLat();
+        double endLon = tour.getEndLon();
+        if (!tour.hasCoordinates()) {
+            startLat = 48.205127181547354;
+            startLon = 16.365594863891605;
+            endLat   = 48.205127181547354;
+            endLon   = 16.36274099349976;
+        }
+
+
+        //get API Key from config
+        Properties props = Properties_Config.loadProperties();
+        String apiKey = props.getProperty("openrouteservices.api.key");
+
+        //Request an OpenRouteService mit den Koordinaten bauen
+        String url = "https://api.openrouteservice.org/v2/directions/driving-car/geojson";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", apiKey);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("coordinates", List.of(
+                List.of(startLon, startLat),
+                List.of(endLon, endLat)
+        ));
+
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+        return response.getBody(); // GeoJSON string
+    }
+
 
 }

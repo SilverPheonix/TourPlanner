@@ -8,17 +8,17 @@ import at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
 import at.technikum.studentmanagementsystem2.service.TourLogService;
 import at.technikum.studentmanagementsystem2.service.TourService;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -45,10 +45,13 @@ public class MainController {
     @FXML private TableColumn<TourLogViewModel, Double> logDistanceColumn;
     @FXML private TableColumn<TourLogViewModel, Double> logTimeColumn;
     @FXML private TableColumn<TourLogViewModel, Integer> logRatingColumn;
-    @FXML private ImageView tourImageView;
+    @FXML
+    private WebView tourMapView;
 
     private TourTableViewModel tourTableViewModel = new TourTableViewModel();
     private TourLogTableViewModel tourLogViewModel = new TourLogTableViewModel();
+
+
 
     public void setViewModels(TourTableViewModel tourTableViewModel, TourLogTableViewModel tourLogTableViewModel) {
         this.tourTableViewModel = tourTableViewModel;
@@ -82,12 +85,6 @@ public class MainController {
         });
     }
 
-    public void setImage(String imageUrl) {
-        if (imageUrl != null && !imageUrl.isEmpty()) {
-            tourImageView.setImage(new Image(imageUrl));
-        }
-    }
-
     private void showTourDetails(TourViewModel tour) {
         // Setze die Felder mit Bindungen für die Zwei-Wege-Datenbindung
         tourNameField.textProperty().bind(tour.nameProperty());
@@ -103,11 +100,30 @@ public class MainController {
         tourChildFriendlinessLabel.textProperty().bind(tour.childFriendlinessProperty().asString());
 
 
-        // Lade Map-Bild
-        URL imageUrl = getClass().getResource("/at/technikum/studentmanagementsystem2/map_placeholder.jpg");
-        if (imageUrl != null) {
-            Image placeholderImage = new Image(imageUrl.toExternalForm());
-            tourImageView.setImage(placeholderImage);
+        // ---- Leaflet Map laden ----
+        WebEngine engine = tourMapView.getEngine();
+        URL mapHtmlUrl = getClass().getResource("/map.html");  // map.html im Ressourcenordner
+        if (mapHtmlUrl != null) {
+            engine.load(mapHtmlUrl.toExternalForm());
+            engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+                if (newState == Worker.State.SUCCEEDED) {
+                    // GeoJSON von Service holen - hier anpassen je nach deiner API
+                    String geoJson = null;
+                    try {
+                        geoJson = tourService.getRouteGeoJson(tour);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    if (geoJson != null) {
+                        // Escape Anführungszeichen fürs JS-Script
+                        String escapedGeoJson = geoJson.replace("\"", "\\\"");
+
+                        // JavaScript-Funktion aus map.html aufrufen und Route übergeben
+                        engine.executeScript("window.loadRoute(\"" + escapedGeoJson + "\");");
+                    }
+                }
+            });
         }
 
         // Lade die Log-Tabelle mit den Logs der ausgewählten Tour
@@ -150,10 +166,11 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourDialog.fxml"));
             Parent root = loader.load();
 
-            Tour newTour = new Tour(UUID.randomUUID(), "", "", "", "", "", 0.0, 0.0, "", 0,0);
+            Tour newTour = new Tour(UUID.randomUUID(), "", "", "", "", "", 0.0, 0.0, "");
             TourViewModel newTourVM = new TourViewModel(newTour);
 
             TourEditDialogController controller = loader.getController();
+            controller.setTourService(tourService);
             controller.init(newTourVM);
             controller.setTitle("Neue Tour erstellen");
 
@@ -167,7 +184,6 @@ public class MainController {
                 Tour savedTour = newTourVM.toTour();
 
                 tourService.createTour(savedTour);
-                tourService.updateComputedAttributes(newTourVM);
                 tourTableViewModel.addTour(new TourViewModel(savedTour));
                 tourListView.refresh();
             }
@@ -194,6 +210,7 @@ public class MainController {
             Parent editDialog = loader.load();
 
             TourEditDialogController controller = loader.getController();
+            controller.setTourService(tourService);
             controller.init(selectedTour);  // Übergibt die ausgewählte Tour
 
             Stage stage = new Stage();

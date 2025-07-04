@@ -4,7 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Computed Values" />
+    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Computed Values">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TourPlanner.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/Properties_Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/helpers/JavaBridge.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/TourDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/TourDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/config/DatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/config/DatabaseConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +46,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -51,28 +85,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StudentManagementApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/patri/Desktop/studentmanagementsystem2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.StudentManagementApplication.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/patri/Desktop/studentmanagementsystem2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner\src\main\resources" />
       <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner123" />
     </key>
   </component>
@@ -154,7 +191,7 @@
       <workItem from="1750776970823" duration="2744000" />
       <workItem from="1751569238378" duration="7672000" />
       <workItem from="1751577067218" duration="41000" />
-      <workItem from="1751614926240" duration="16285000" />
+      <workItem from="1751614926240" duration="32576000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some dependencies, TourViewModel.java still has issues with parameters passing">
       <option name="closed" value="true" />
@@ -204,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751631407308</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Computed Values">
+      <option name="closed" value="true" />
+      <created>1751632988165</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1751632988165</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,5 +274,16 @@
     <MESSAGE value="Tour Services mit dem Controller verbinden" />
     <MESSAGE value="Computed Values" />
     <option name="LAST_COMMIT_MESSAGE" value="Computed Values" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

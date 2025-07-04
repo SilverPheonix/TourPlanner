@@ -1,7 +1,5 @@
 package at.technikum.studentmanagementsystem2.config;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,12 +7,10 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class DatabaseConnection {
-    private static final String PROPERTIES_FILE = "/at/technikum/studentmanagementsystem2/config.properties";
-
     public static void initializeDatabase() {
         try {
             // Load properties
-            Properties props = loadProperties();
+            Properties props = Properties_Config.loadProperties();
             String url = props.getProperty("db.url"); // Database connection URL
             String user = props.getProperty("db.username");
             String password = props.getProperty("db.password");
@@ -33,16 +29,7 @@ public class DatabaseConnection {
         }
     }
 
-    private static Properties loadProperties() throws IOException {
-        Properties props = new Properties();
-        try (InputStream input = DatabaseConnection.class.getResourceAsStream(PROPERTIES_FILE)) {
-            if (input == null) {
-                throw new IOException("Unable to find " + PROPERTIES_FILE);
-            }
-            props.load(input);
-        }
-        return props;
-    }
+
 
     private static void createDatabase(String url, String user, String password) throws SQLException {
         // Modify the connection URL to connect to the "default" database (e.g., postgres)
@@ -76,7 +63,11 @@ public class DatabaseConnection {
                     estimated_time DOUBLE PRECISION,
                     image_url TEXT,
                     popularity INTEGER,
-                    child_friendliness DOUBLE PRECISION
+                    child_friendliness DOUBLE PRECISION,
+                    startLat DOUBLE PRECISION,
+                    startLon DOUBLE PRECISION,
+                    endLat DOUBLE PRECISION,
+                    endLon DOUBLE PRECISION
                 );
             """;
 

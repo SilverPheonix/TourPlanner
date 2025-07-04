@@ -16,7 +16,11 @@ CREATE TABLE IF NOT EXISTS tours (
                                         estimated_time DOUBLE PRECISION,         -- Estimated time in hours
                                         image_url TEXT,                           -- Image URL for the tour (optional)
                                         popularity INTEGER,
-                                        child_friendliness DOUBLE PRECISION
+                                        child_friendliness DOUBLE PRECISION,
+                                        startLat DOUBLE PRECISION,
+                                        startLon DOUBLE PRECISION,
+                                        endLat DOUBLE PRECISION,
+                                        endLon DOUBLE PRECISION
 );
 
 -- STEP 2: Create the 'tour_logs' table

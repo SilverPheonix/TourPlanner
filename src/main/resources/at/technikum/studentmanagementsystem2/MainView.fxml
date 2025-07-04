@@ -4,7 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.web.WebView?>
+
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="at.technikum.studentmanagementsystem2.controller.MainController">
@@ -80,8 +81,8 @@
 
                 </GridPane>
 
-                <!-- ImageView für Tour-Bild -->
-                <ImageView fx:id="tourImageView" GridPane.columnIndex="1" fitWidth="300" fitHeight="200" preserveRatio="true"/>
+                <WebView fx:id="tourMapView" GridPane.columnIndex="1" prefWidth="300" prefHeight="200"/>
+
             </GridPane>
 
             <!-- 🔹 Tabelle mit Tour-Logs -->
