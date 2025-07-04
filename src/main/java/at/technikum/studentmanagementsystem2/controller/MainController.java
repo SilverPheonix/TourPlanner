@@ -35,7 +35,9 @@ public class MainController {
     @Autowired private TourLogService tourLogService;
 
     @FXML private ListView<TourViewModel> tourListView;
-    @FXML private TextField tourNameField, tourDescriptionField, tourFromField, tourToField, tourTransportField, tourDistanceField, tourEstimatedtimeField, tourImageField;
+    @FXML private Label tourNameField, tourDescriptionField, tourFromField, tourToField, tourTransportField,
+            tourDistanceField, tourEstimatedtimeField, tourImageField, tourPopularityLabel, tourChildFriendlinessLabel;
+
     @FXML private TableView<TourLogViewModel> tourLogTable;
     @FXML private TableColumn<TourLogViewModel, LocalDateTime> logDateColumn;
     @FXML private TableColumn<TourLogViewModel, String> logCommentColumn;
@@ -97,15 +99,8 @@ public class MainController {
         tourEstimatedtimeField.textProperty().bind(tour.estimatedTimeProperty().asString());
         tourImageField.textProperty().bind(tour.imageUrlProperty());
 
-        // Deaktiviere die Textfelder für den Lesemodus
-        tourNameField.setEditable(false);
-        tourDescriptionField.setEditable(false);
-        tourFromField.setEditable(false);
-        tourToField.setEditable(false);
-        tourTransportField.setEditable(false);
-        tourDistanceField.setEditable(false);
-        tourEstimatedtimeField.setEditable(false);
-        tourImageField.setEditable(false);
+        tourPopularityLabel.textProperty().bind(tour.popularityProperty().asString());
+        tourChildFriendlinessLabel.textProperty().bind(tour.childFriendlinessProperty().asString());
 
 
         // Lade Map-Bild
@@ -155,7 +150,7 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/at/technikum/studentmanagementsystem2/TourDialog.fxml"));
             Parent root = loader.load();
 
-            Tour newTour = new Tour(UUID.randomUUID(), "", "", "", "", "", 0.0, 0.0, "");
+            Tour newTour = new Tour(UUID.randomUUID(), "", "", "", "", "", 0.0, 0.0, "", 0,0);
             TourViewModel newTourVM = new TourViewModel(newTour);
 
             TourEditDialogController controller = loader.getController();
@@ -170,7 +165,9 @@ public class MainController {
 
             if (controller.isSaved()) {
                 Tour savedTour = newTourVM.toTour();
+
                 tourService.createTour(savedTour);
+                tourService.updateComputedAttributes(newTourVM);
                 tourTableViewModel.addTour(new TourViewModel(savedTour));
                 tourListView.refresh();
             }
@@ -263,6 +260,7 @@ public class MainController {
                     TourLog savedLog = newLogViewModel.toTourLog(selectedTour.toTour());
                     tourLogService.saveTourLog(savedLog);
                     tourLogViewModel.addTourLog(new TourLogViewModel(savedLog));
+                    tourService.updateComputedAttributes(selectedTour);
                     tourLogTable.refresh();
 
                 }
@@ -280,8 +278,7 @@ public class MainController {
     @FXML
     private void onEditLog() {
         TourLogViewModel selectedLog = tourLogTable.getSelectionModel().getSelectedItem();
-        Tour tour = tourService.getTourById(selectedLog.getTourId())
-                .orElseThrow(() -> new RuntimeException("Tour not found"));
+        TourViewModel tour = tourListView.getSelectionModel().getSelectedItem();
 
         if (selectedLog != null ) {
             try {
@@ -307,7 +304,10 @@ public class MainController {
                     selectedLog.setRating(controller.getRating());
 
                     // Persistieren im Service
-                    tourLogService.saveTourLog(selectedLog.toTourLog(tour));
+                    tourLogService.saveTourLog(selectedLog.toTourLog(tour.toTour()));
+
+                    tourService.updateComputedAttributes(tour);
+                    tourListView.refresh();
                     tourLogTable.refresh();
                 }
             } catch (IOException e) {

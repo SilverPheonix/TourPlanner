@@ -2,10 +2,12 @@ package at.technikum.studentmanagementsystem2.mvvm;
 
 import at.technikum.studentmanagementsystem2.models.Tour;
 import at.technikum.studentmanagementsystem2.models.TourLog;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class TourViewModel {
@@ -18,6 +20,9 @@ public class TourViewModel {
     private final DoubleProperty distance;
     private final DoubleProperty estimatedTime;
     private final StringProperty imageUrl;
+    private final IntegerProperty popularity;
+    private final DoubleProperty childFriendliness;
+
     private final ObservableList<TourLog> tourLogs = FXCollections.observableArrayList();
 
     public ObservableList<TourLog> getTourLogs() {
@@ -39,6 +44,8 @@ public class TourViewModel {
         this.distance = new SimpleDoubleProperty(tour.getDistance());
         this.estimatedTime = new SimpleDoubleProperty(tour.getEstimatedTime());
         this.imageUrl = new SimpleStringProperty(tour.getImageUrl());
+        this.popularity = new SimpleIntegerProperty(tour.getPopularity());
+        this.childFriendliness = new SimpleDoubleProperty(tour.getChildFriendliness());
     }
 
     public StringProperty idProperty() { return id; }
@@ -50,6 +57,12 @@ public class TourViewModel {
     public DoubleProperty distanceProperty() { return distance; }
     public DoubleProperty estimatedTimeProperty() { return estimatedTime; }
     public StringProperty imageUrlProperty() { return imageUrl; }
+    public IntegerProperty popularityProperty() {
+        return popularity;
+    }
+    public DoubleProperty childFriendlinessProperty() {
+        return childFriendliness;
+    }
 
     public String getId() { return id.get(); }
     public String getName() { return name.get(); }
@@ -60,6 +73,38 @@ public class TourViewModel {
     public double getDistance() { return distance.get(); }
     public double getEstimatedTime() { return estimatedTime.get(); }
     public String getImageUrl() { return imageUrl.get(); }
+    public int getPopularity() {
+        return popularity.get();
+    }
+    public double getChildFriendliness() {
+        return childFriendliness.get();
+    }
+
+    //Setter
+    public void setName(String name) {
+        this.name.set(name);
+    }
+    public void setDescription(String description) {
+        this.description.set(description);
+    }
+    public void setFrom(String from) {
+        this.from.set(from);
+    }
+    public void setTo(String to) {
+        this.to.set(to);
+    }
+    public void setTransportType(String transportType) {
+        this.transportType.set(transportType);
+    }
+    public void setDistance(double distance) {
+        this.distance.set(distance);
+    }
+    public void setEstimatedTime(double time) {
+        this.estimatedTime.set(time);
+    }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl.set(imageUrl);
+    }
 
     public Tour toTour() {
         return new Tour(
@@ -71,7 +116,9 @@ public class TourViewModel {
                 getTransportType(),
                 getDistance(),
                 getEstimatedTime(),
-                getImageUrl()
+                getImageUrl(),
+                getPopularity(),
+                getChildFriendliness()
         );
     }
 }

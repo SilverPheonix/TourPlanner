@@ -34,12 +34,19 @@ public class Tour {
     private String imageUrl;
 
 
+    //Compuated values
+    private int popularity;
+
+    @Column(name = "child_friendliness")
+    private double childFriendliness;
+
+
     // No-arg constructor for JPA
     public Tour() {}
 
     // Parameterized constructor
     public Tour(UUID id, String name, String description, String from, String to, String transportType,
-                double distance, double estimatedTime, String imageUrl) {
+                double distance, double estimatedTime, String imageUrl, Integer popularity, double childFriendliness) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -49,6 +56,8 @@ public class Tour {
         this.distance = distance;
         this.estimatedTime = estimatedTime;
         this.imageUrl = imageUrl;
+        this.popularity = popularity;
+        this.childFriendliness = childFriendliness;
     }
 
     // Getters and setters for JPA fields
@@ -78,4 +87,19 @@ public class Tour {
 
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public double getChildFriendliness() {
+        return childFriendliness;
+    }
+
+    public void setChildFriendliness(double childFriendliness) {
+        this.childFriendliness = childFriendliness;
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
+    }
 }

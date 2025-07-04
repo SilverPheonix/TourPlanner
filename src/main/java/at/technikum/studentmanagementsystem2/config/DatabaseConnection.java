@@ -74,7 +74,9 @@ public class DatabaseConnection {
                     transport_type VARCHAR(100),
                     distance DOUBLE PRECISION,
                     estimated_time DOUBLE PRECISION,
-                    image_url TEXT
+                    image_url TEXT,
+                    popularity INTEGER,
+                    child_friendliness DOUBLE PRECISION
                 );
             """;
 
@@ -82,9 +84,11 @@ public class DatabaseConnection {
                 CREATE TABLE IF NOT EXISTS tour_logs (
                     id UUID PRIMARY KEY,
                     tour_id UUID NOT NULL,
-                    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    duration DOUBLE PRECISION,
+                    date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    total_distance DOUBLE PRECISION,
+                    total_time DOUBLE PRECISION,
                     comment TEXT,
+                    rating INTEGER NOT NULL,
                     difficulty VARCHAR(255) NOT NULL,
                     FOREIGN KEY (tour_id) REFERENCES tours (id) ON DELETE CASCADE
                 );

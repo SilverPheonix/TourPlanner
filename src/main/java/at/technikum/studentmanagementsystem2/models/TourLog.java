@@ -15,12 +15,18 @@ public class TourLog {
     @JoinColumn(name = "tour_id", nullable = false)
     private Tour tour;
 
-
+    @Column(name = "date_time")
     private LocalDateTime dateTime;
+
     private String comment;
     private String difficulty;
+
+    @Column(name = "total_distance")
     private double totalDistance;
+
+    @Column(name = "total_time")
     private double totalTime;
+
     private int rating;
 
     // No-arg constructor for JPA

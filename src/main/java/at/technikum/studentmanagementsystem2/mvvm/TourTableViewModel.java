@@ -16,7 +16,7 @@ public class TourTableViewModel {
         // Sample-Daten zum Testen
         tours.add(new TourViewModel(new Tour(
                 UUID.randomUUID(), "Test Tour", "Eine schöne Tour",
-                "Wien", "Graz", "Zug", 200.0, 120.0, "image_url"
+                "Wien", "Graz", "Zug", 200.0, 120.0, "image_url", 0, 0
         )));
     }
 
@@ -39,6 +39,8 @@ public class TourTableViewModel {
                 tour.distanceProperty().set(updatedTour.getDistance());
                 tour.estimatedTimeProperty().set(updatedTour.getEstimatedTime());
                 tour.imageUrlProperty().set(updatedTour.getImageUrl());
+                tour.childFriendlinessProperty().set(updatedTour.getChildFriendliness());
+                tour.popularityProperty().set(updatedTour.getPopularity());
             }
         }
     }

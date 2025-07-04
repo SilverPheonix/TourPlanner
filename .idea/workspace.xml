@@ -4,25 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Data Binding Anpassen und neues Dialog Window für Tour">
+    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Tour Services mit dem Controller verbinden">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/config/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourLogViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourLogViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/TourLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/TourLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/repository/TourLogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/repository/TourLogRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/repository/TourRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/repository/TourRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourLogViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourLogViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/repository/TourLogRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/repository/TourLogRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/repository/TourRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/repository/TourRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourLogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourLogService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourLogDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourLogDialog.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +164,9 @@
       <workItem from="1742552757600" duration="298000" />
       <workItem from="1743250988638" duration="2102000" />
       <workItem from="1750776970823" duration="2744000" />
-      <workItem from="1751569238378" duration="7433000" />
+      <workItem from="1751569238378" duration="7672000" />
+      <workItem from="1751577067218" duration="41000" />
+      <workItem from="1751614926240" duration="15283000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some dependencies, TourViewModel.java still has issues with parameters passing">
       <option name="closed" value="true" />
@@ -205,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741804016625</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Tour Services mit dem Controller verbinden">
+      <option name="closed" value="true" />
+      <created>1751577044065</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1751577044065</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +230,7 @@
     <MESSAGE value="It compiles now" />
     <MESSAGE value="TourView.fxml and TourLogView.fxml are correctly linked now and can be edited" />
     <MESSAGE value="Updated README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md" />
+    <MESSAGE value="Tour Services mit dem Controller verbinden" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tour Services mit dem Controller verbinden" />
   </component>
 </project>
