@@ -1,5 +1,6 @@
 package at.technikum.studentmanagementsystem2.controller;
 
+import at.technikum.studentmanagementsystem2.helpers.AlertHelper;
 import at.technikum.studentmanagementsystem2.helpers.JavaBridge;
 import at.technikum.studentmanagementsystem2.models.Tour;
 import at.technikum.studentmanagementsystem2.models.TourLog;
@@ -8,6 +9,7 @@ import at.technikum.studentmanagementsystem2.mvvm.TourTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
 import at.technikum.studentmanagementsystem2.service.TourLogService;
+import at.technikum.studentmanagementsystem2.service.TourReportService;
 import at.technikum.studentmanagementsystem2.service.TourService;
 import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
@@ -136,13 +138,6 @@ public class MainController {
         }
     }
 
-    private void showAlert(String title, String message, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 
     // Aktionen für Touren
     @FXML
@@ -178,15 +173,12 @@ public class MainController {
         }
     }
 
-
     @FXML
     private void onEditTour() {
         TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
 
         if (selectedTour == null) {
-            // Keine Auswahl getroffen, ggf. Warnung anzeigen
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Bitte wählen Sie eine Tour zum Bearbeiten aus.");
-            alert.showAndWait();
+            AlertHelper.showAlert("Fehler", "Bitte wählen Sie eine Tour zum Bearbeiten aus.", Alert.AlertType.WARNING);
             return;
         }
 
@@ -216,8 +208,6 @@ public class MainController {
     }
 
 
-
-
     @FXML
     private void onDeleteTour() {
         TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
@@ -226,7 +216,7 @@ public class MainController {
             tourTableViewModel.deleteTour(selectedTour);
             tourListView.refresh();
         } else {
-            showAlert("Fehler", "Keine Tour ausgewählt!", Alert.AlertType.WARNING);
+            AlertHelper.showAlert("Fehler", "Keine Tour ausgewählt!", Alert.AlertType.WARNING);
         }
     }
 
@@ -270,7 +260,7 @@ public class MainController {
                 e.printStackTrace();
             }
         } else {
-            showAlert("Fehler", "Keine Tour ausgewählt!", Alert.AlertType.WARNING);
+            AlertHelper.showAlert("Fehler", "Keine Tour ausgewählt!", Alert.AlertType.WARNING);
         }
     }
 
@@ -316,7 +306,7 @@ public class MainController {
                 e.printStackTrace();
             }
         } else {
-            showAlert("Fehler", "Kein Tour-Log ausgewählt!", Alert.AlertType.WARNING);
+            AlertHelper.showAlert("Fehler", "Kein Tour-Log ausgewählt!", Alert.AlertType.WARNING);
         }
     }
 
@@ -333,9 +323,36 @@ public class MainController {
 
             tourLogTable.refresh();
         } else {
-            showAlert("Fehler", "Kein Tour-Log ausgewählt!", Alert.AlertType.WARNING);
+            AlertHelper.showAlert("Fehler", "Kein Tour-Log ausgewählt!", Alert.AlertType.WARNING);
         }
     }
 
+    @FXML
+    private void onReport(){
+        TourViewModel selectedTour = tourListView.getSelectionModel().getSelectedItem();
+
+        if (selectedTour == null) {
+            AlertHelper.showAlert("Fehler", "Bitte wählen Sie eine Tour zum Erstellen eines Reports aus.", Alert.AlertType.WARNING);
+            return;
+        }
+        List<TourLog> logs = tourLogService.getTourLogsByTourId(selectedTour.toTour().getId());
+
+        // Erstelle den Report
+        TourReportService.exportTourToPDF(selectedTour.toTour(), logs);
+    }
+
+    @FXML
+    private void onSummaryReport() {
+        List<Tour> allTours = tourService.getAllTours();
+
+        if (allTours.isEmpty()) {
+            AlertHelper.showAlert("Keine Touren", "Es sind keine Touren vorhanden.", Alert.AlertType.INFORMATION);
+            return;
+        }
+
+        TourReportService.exportSummarizeReportToPDF(allTours, tourLogService);
+
+        AlertHelper.showAlert("Erfolg", "Zusammenfassender Report erfolgreich erstellt!", Alert.AlertType.INFORMATION);
+    }
 
 }

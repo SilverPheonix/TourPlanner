@@ -17,6 +17,8 @@
         <ToolBar>
             <Button text="Neue Tour" onAction="#onNewTour"/>
             <Button text="Tour löschen" onAction="#onDeleteTour"/>
+
+            <Button text="Zusammengefassten Tour-Report erstellen" onAction="#onSummaryReport"/>
         </ToolBar>
     </top>
 
@@ -36,6 +38,7 @@
             </padding>
             <ToolBar>
                 <Button text="Tour bearbeiten" onAction="#onEditTour"/>
+                <Button text="Tour Report erstellen" onAction="#onReport"/>
             </ToolBar>
 
             <!-- 🔹 Tour-Details -->

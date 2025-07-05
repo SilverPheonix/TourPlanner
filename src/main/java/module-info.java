@@ -45,5 +45,8 @@ open module at.technikum.studentmanagementsystem2 {
     requires javafx.web;
     requires jdk.jsobject;
     requires javafx.swing;
+    requires io;
+    requires kernel;
+    requires layout;
 
 }
