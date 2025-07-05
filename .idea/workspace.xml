@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Map with Screenshots">
-      <change afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourReportService.java" afterDir="false" />
+    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Added logging to console and log file">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourLogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourLogService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +56,9 @@
         <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -170,7 +175,7 @@
       <workItem from="1751569238378" duration="7672000" />
       <workItem from="1751577067218" duration="41000" />
       <workItem from="1751614926240" duration="34226000" />
-      <workItem from="1751704683535" duration="26698000" />
+      <workItem from="1751704683535" duration="24600000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some dependencies, TourViewModel.java still has issues with parameters passing">
       <option name="closed" value="true" />
@@ -260,15 +265,7 @@
       <option name="project" value="LOCAL" />
       <updated>1751710301225</updated>
     </task>
-    <task id="LOCAL-00012" summary="Map with Screenshots">
-      <option name="closed" value="true" />
-      <created>1751731756443</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1751731756443</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +304,7 @@
     <MESSAGE value="Leaflet first attempt 2" />
     <MESSAGE value="Leaflet edit und view mode, Alert Helper" />
     <MESSAGE value="Leaflet view bearbeietn, Java Bridge eigene Klasse" />
-    <MESSAGE value="Map with Screenshots" />
-    <option name="LAST_COMMIT_MESSAGE" value="Map with Screenshots" />
+    <MESSAGE value="Added logging to console and log file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added logging to console and log file" />
   </component>
 </project>

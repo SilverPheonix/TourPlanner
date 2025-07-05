@@ -40,13 +40,12 @@ open module at.technikum.studentmanagementsystem2 {
 
     requires spring.core; // Ensure spring-core is explicitly required
     // Fix for JavaFX
+    requires org.apache.logging.log4j;
+
 
     requires org.hibernate.orm.core;
     requires javafx.web;
     requires jdk.jsobject;
     requires javafx.swing;
-    requires io;
-    requires kernel;
-    requires layout;
 
 }

@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -20,6 +22,7 @@ import org.springframework.context.annotation.PropertySource;
 public class Main extends Application {
 
     private ConfigurableApplicationContext springContext;
+    private static final Logger logger = LogManager.getLogger(Main.class);
 
     @Override
     public void init() throws Exception {
@@ -56,6 +59,9 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        logger.info("App has started");
+        logger.warn("Log4j2 test warning");
+        logger.error("Log4j2 test error");
         DatabaseConnection.initializeDatabase();
         launch(args); // Entry point of JavaFX application
     }
