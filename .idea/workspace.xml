@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Tour Import fix id issue">
+      <change afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/service/TourJsonServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourLogTableViewModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourLogTableViewModelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourLogViewModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourLogViewModelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModelTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +89,7 @@
       <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner123" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.at.technikum.studentmanagementsystem2 in TourPlanner">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="at.tourplanner.tourplanner.HelloApplication" />
       <module name="TourPlanner" />
@@ -130,8 +129,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="at.technikum.studentmanagementsystem2 in TourPlanner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TourPlanner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="at.technikum.studentmanagementsystem2" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.at.technikum.studentmanagementsystem2 in TourPlanner" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.StudentManagementApplication" />
         <item itemvalue="Application.HelloApplication" />

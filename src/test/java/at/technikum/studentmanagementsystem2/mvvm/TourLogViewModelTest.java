@@ -2,7 +2,6 @@ package at.technikum.studentmanagementsystem2.mvvm;
 
 import at.technikum.studentmanagementsystem2.models.Tour;
 import at.technikum.studentmanagementsystem2.models.TourLog;
-import javafx.beans.property.SimpleObjectProperty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,69 +11,95 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TourLogViewModelTest {
+
     private TourLogViewModel tourLogViewModel;
-    private TourLog tourLog;
+    private TourLog originalTourLog;
+    private Tour tour;
 
     @BeforeEach
     void setUp() {
-        // Create a Tour instance
-        UUID tourId = UUID.randomUUID();
-        Tour tour = new Tour();
-        tour.setId(tourId);
+        // Beispiel-Tour
+        tour = new Tour();
+        tour.setId(UUID.randomUUID());
 
-        // Create a TourLog instance for the tests
-        UUID id = UUID.randomUUID();
-        LocalDateTime dateTime = LocalDateTime.now();
-        tourLog = new TourLog(id, tour, dateTime, "Test Comment", "medium", 100.0, 50.0, 5);
+        // Beispiel-TourLog
+        originalTourLog = new TourLog(
+                UUID.randomUUID(),
+                tour,
+                LocalDateTime.of(2023, 10, 10, 12, 0),
+                "Test Comment",
+                "medium",
+                100.0,
+                50.0,
+                5
+        );
 
-        // Create the TourLogViewModel with the TourLog instance
-        tourLogViewModel = new TourLogViewModel(tourLog);
-    }
-
-
-    @Test
-    void testGetter() {
-        // Überprüfe, ob die Getter die richtigen Werte zurückgeben
-        assertEquals(tourLog.getId(), tourLogViewModel.getId());
-        assertEquals(tourLog.getDateTime(), tourLogViewModel.getDateTime());
-        assertEquals(tourLog.getComment(), tourLogViewModel.getComment());
-        assertEquals(tourLog.getDifficulty(), tourLogViewModel.getDifficulty());
-        assertEquals(tourLog.getTotalDistance(), tourLogViewModel.getTotalDistance());
-        assertEquals(tourLog.getTotalTime(), tourLogViewModel.getTotalTime());
-        assertEquals(tourLog.getRating(), tourLogViewModel.getRating());
+        tourLogViewModel = new TourLogViewModel(originalTourLog);
     }
 
     @Test
-    void testSetter() {
-        // Setze neue Werte und prüfe, ob sie gesetzt wurden
-        LocalDateTime newDateTime = LocalDateTime.now().plusDays(1);
+    void testGetters() {
+        assertEquals(originalTourLog.getId(), tourLogViewModel.getId());
+        assertEquals(originalTourLog.getTour().getId(), tourLogViewModel.getTourId());
+        assertEquals(originalTourLog.getDateTime(), tourLogViewModel.getDateTime());
+        assertEquals(originalTourLog.getComment(), tourLogViewModel.getComment());
+        assertEquals(originalTourLog.getDifficulty(), tourLogViewModel.getDifficulty());
+        assertEquals(originalTourLog.getTotalDistance(), tourLogViewModel.getTotalDistance());
+        assertEquals(originalTourLog.getTotalTime(), tourLogViewModel.getTotalTime());
+        assertEquals(originalTourLog.getRating(), tourLogViewModel.getRating());
+    }
+
+    @Test
+    void testSetters() {
+        LocalDateTime newDateTime = LocalDateTime.of(2024, 1, 1, 10, 0);
         tourLogViewModel.setDateTime(newDateTime);
         assertEquals(newDateTime, tourLogViewModel.getDateTime());
 
-        tourLogViewModel.setComment("Updated Comment");
-        assertEquals("Updated Comment", tourLogViewModel.getComment());
+        tourLogViewModel.setComment("Updated comment");
+        assertEquals("Updated comment", tourLogViewModel.getComment());
 
         tourLogViewModel.setDifficulty("hard");
         assertEquals("hard", tourLogViewModel.getDifficulty());
 
-        tourLogViewModel.setTotalDistance(120.0);
-        assertEquals(120.0, tourLogViewModel.getTotalDistance());
+        tourLogViewModel.setTotalDistance(150.0);
+        assertEquals(150.0, tourLogViewModel.getTotalDistance());
 
-        tourLogViewModel.setTotalTime(60.0);
-        assertEquals(60.0, tourLogViewModel.getTotalTime());
+        tourLogViewModel.setTotalTime(75.0);
+        assertEquals(75.0, tourLogViewModel.getTotalTime());
 
-        tourLogViewModel.setRating(4);
-        assertEquals(4, tourLogViewModel.getRating());
+        tourLogViewModel.setRating(3);
+        assertEquals(3, tourLogViewModel.getRating());
     }
 
     @Test
-    void testProperties() {
-        // Überprüfe, ob die JavaFX-Properties korrekt initialisiert sind
+    void testJavaFxProperties() {
         assertNotNull(tourLogViewModel.dateTimeProperty());
         assertNotNull(tourLogViewModel.commentProperty());
         assertNotNull(tourLogViewModel.difficultyProperty());
         assertNotNull(tourLogViewModel.totalDistanceProperty());
         assertNotNull(tourLogViewModel.totalTimeProperty());
         assertNotNull(tourLogViewModel.ratingProperty());
+    }
+
+    @Test
+    void testToTourLog() {
+        tourLogViewModel.setComment("Log conversion");
+        tourLogViewModel.setDifficulty("easy");
+        tourLogViewModel.setTotalDistance(200.0);
+        tourLogViewModel.setTotalTime(90.0);
+        tourLogViewModel.setRating(4);
+
+        TourLog converted = tourLogViewModel.toTourLog(tour);
+
+        assertEquals(tourLogViewModel.getId(), converted.getId());
+        assertEquals(tour.getId(), converted.getTour().getId());
+        assertEquals("Log conversion", converted.getComment());
+        assertEquals("easy", converted.getDifficulty());
+        assertEquals(200.0, converted.getTotalDistance());
+        assertEquals(90.0, converted.getTotalTime());
+        assertEquals(4, converted.getRating());
+
+        // Das Datum wird zur Laufzeit neu gesetzt
+        assertNotNull(converted.getDateTime());
     }
 }

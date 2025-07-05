@@ -2,7 +2,6 @@ package at.technikum.studentmanagementsystem2.mvvm;
 
 import at.technikum.studentmanagementsystem2.models.Tour;
 import at.technikum.studentmanagementsystem2.models.TourLog;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,12 +12,14 @@ import java.util.UUID;
 class TourViewModelTest {
 
     private TourViewModel tourViewModel;
+    private UUID testTourId;
 
     @BeforeEach
     void setUp() {
-        // Erstellen einer Test-Tour mit einer zufälligen ID
+        testTourId = UUID.randomUUID();
+
         Tour testTour = new Tour(
-                UUID.randomUUID(),
+                testTourId,
                 "Test Tour",
                 "Eine schöne Test-Tour",
                 "Wien",
@@ -26,14 +27,20 @@ class TourViewModelTest {
                 "Zug",
                 200.0,
                 120.0,
-                "test_image_url"
+                "test_image_url",
+                5,           // Popularity
+                3.5,         // ChildFriendliness
+                48.2082,     // StartLat
+                16.3738,     // StartLon
+                47.0707,     // EndLat
+                15.4395      // EndLon
         );
         tourViewModel = new TourViewModel(testTour);
     }
 
     @Test
     void testGetters() {
-        assertNotNull(tourViewModel.getId());
+        assertEquals(testTourId.toString(), tourViewModel.getId());
         assertEquals("Test Tour", tourViewModel.getName());
         assertEquals("Eine schöne Test-Tour", tourViewModel.getDescription());
         assertEquals("Wien", tourViewModel.getFrom());
@@ -42,6 +49,12 @@ class TourViewModelTest {
         assertEquals(200.0, tourViewModel.getDistance());
         assertEquals(120.0, tourViewModel.getEstimatedTime());
         assertEquals("test_image_url", tourViewModel.getImageUrl());
+        assertEquals(5, tourViewModel.getPopularity());
+        assertEquals(3.5, tourViewModel.getChildFriendliness());
+        assertEquals(48.2082, tourViewModel.getStartLat());
+        assertEquals(16.3738, tourViewModel.getStartLon());
+        assertEquals(47.0707, tourViewModel.getEndLat());
+        assertEquals(15.4395, tourViewModel.getEndLon());
     }
 
     @Test
@@ -54,21 +67,42 @@ class TourViewModelTest {
         assertEquals(200.0, tourViewModel.distanceProperty().get());
         assertEquals(120.0, tourViewModel.estimatedTimeProperty().get());
         assertEquals("test_image_url", tourViewModel.imageUrlProperty().get());
+        assertEquals(5, tourViewModel.popularityProperty().get());
+        assertEquals(3.5, tourViewModel.childFriendlinessProperty().get());
+        assertEquals(48.2082, tourViewModel.startLatProperty().get());
+        assertEquals(16.3738, tourViewModel.startLonProperty().get());
+        assertEquals(47.0707, tourViewModel.endLatProperty().get());
+        assertEquals(15.4395, tourViewModel.endLonProperty().get());
+    }
+
+    @Test
+    void testHasCoordinates() {
+        assertTrue(tourViewModel.hasCoordinates());
+
+        tourViewModel.setstartLat(0.0);
+        assertFalse(tourViewModel.hasCoordinates());
+    }
+
+    @Test
+    void testToTour() {
+        Tour convertedTour = tourViewModel.toTour();
+        assertEquals(testTourId, convertedTour.getId());
+        assertEquals("Test Tour", convertedTour.getName());
+        assertEquals(3.5, convertedTour.getChildFriendliness());
+        assertEquals(48.2082, convertedTour.getStartLat());
+        assertEquals(15.4395, convertedTour.getEndLon());
     }
 
     @Test
     void testLoadTourLogs() {
-        // Da loadTourLogs() momentan leer ist, können wir diesen Test nur vorbereiten.
-        // Wenn es implementiert wird, könnten wir hier die Tour Logs laden und überprüfen.
         tourViewModel.loadTourLogs();
-        assertTrue(tourViewModel.getTourLogs().isEmpty()); // Es sollten keine Logs geladen sein.
+        assertTrue(tourViewModel.getTourLogs().isEmpty());
     }
 
     @Test
     void testAddTourLog() {
-        // Ein TourLog kann hinzugefügt werden (Testen der TourLog-Listeneigenschaften)
         UUID tourLogId = UUID.randomUUID();
-        TourLog tourLog = new TourLog(tourLogId, UUID.randomUUID(), null, "Kommentar", "schwierig", 100.0, 10.0, 4);
+        TourLog tourLog = new TourLog(tourLogId, new Tour(), null, "Kommentar", "schwierig", 100.0, 10.0, 4);
         tourViewModel.getTourLogs().add(tourLog);
 
         assertEquals(1, tourViewModel.getTourLogs().size());
@@ -77,7 +111,6 @@ class TourViewModelTest {
 
     @Test
     void testTourLogEmptyList() {
-        // Wenn keine TourLogs hinzugefügt wurden, sollte die Liste leer sein
         assertTrue(tourViewModel.getTourLogs().isEmpty());
     }
 }
