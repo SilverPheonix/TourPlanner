@@ -2,8 +2,6 @@ package at.technikum.studentmanagementsystem2.service;
 
 import at.technikum.studentmanagementsystem2.models.TourLog;
 import at.technikum.studentmanagementsystem2.repository.TourLogRepository;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

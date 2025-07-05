@@ -3,7 +3,6 @@ package at.technikum.studentmanagementsystem2.controller;
 import at.technikum.studentmanagementsystem2.helpers.JavaBridge;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
 import at.technikum.studentmanagementsystem2.service.TourService;
-import javafx.application.Platform;
 import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -28,7 +27,6 @@ public class TourEditDialogController {
     @FXML private TextField tourTransportField;
     @FXML private TextField tourDistanceField;
     @FXML private TextField tourEstimatedtimeField;
-    @FXML private TextField tourImageField;
     @FXML private Button saveButton;
     @FXML private Button cancelButton;
     @FXML private Label titleLabel;
@@ -53,7 +51,6 @@ public class TourEditDialogController {
         tourTransportField.textProperty().bindBidirectional(currentTour.transportTypeProperty());
         tourDistanceField.textProperty().bindBidirectional(currentTour.distanceProperty(), new NumberStringConverter());
         tourEstimatedtimeField.textProperty().bindBidirectional(currentTour.estimatedTimeProperty(), new NumberStringConverter());
-        tourImageField.textProperty().bindBidirectional(currentTour.imageUrlProperty());
 
         //Load Map
         WebEngine engine = tourMapView.getEngine();
@@ -90,6 +87,7 @@ public class TourEditDialogController {
     private void onSave() {
         if (isInputValid()) {
             saved = true;
+            tourMapView.getEngine().executeScript("window.takeMapScreenshot();");
             closeDialog();
         }
     }

@@ -6,7 +6,6 @@ import at.technikum.studentmanagementsystem2.models.TourLog;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
 import at.technikum.studentmanagementsystem2.repository.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

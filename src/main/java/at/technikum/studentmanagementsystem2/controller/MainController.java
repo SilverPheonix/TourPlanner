@@ -15,15 +15,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
 import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -38,7 +40,7 @@ public class MainController {
 
     @FXML private ListView<TourViewModel> tourListView;
     @FXML private Label tourNameField, tourDescriptionField, tourFromField, tourToField, tourTransportField,
-            tourDistanceField, tourEstimatedtimeField, tourImageField, tourPopularityLabel, tourChildFriendlinessLabel;
+            tourDistanceField, tourEstimatedtimeField, tourPopularityLabel, tourChildFriendlinessLabel;
 
     @FXML private TableView<TourLogViewModel> tourLogTable;
     @FXML private TableColumn<TourLogViewModel, LocalDateTime> logDateColumn;
@@ -47,8 +49,7 @@ public class MainController {
     @FXML private TableColumn<TourLogViewModel, Double> logDistanceColumn;
     @FXML private TableColumn<TourLogViewModel, Double> logTimeColumn;
     @FXML private TableColumn<TourLogViewModel, Integer> logRatingColumn;
-    @FXML
-    private WebView tourMapView;
+    @FXML private ImageView tourMapImageView;
 
     private TourTableViewModel tourTableViewModel = new TourTableViewModel();
     private TourLogTableViewModel tourLogViewModel = new TourLogTableViewModel();
@@ -96,39 +97,19 @@ public class MainController {
         tourTransportField.textProperty().bind(tour.transportTypeProperty());
         tourDistanceField.textProperty().bind(tour.distanceProperty().asString());
         tourEstimatedtimeField.textProperty().bind(tour.estimatedTimeProperty().asString());
-        tourImageField.textProperty().bind(tour.imageUrlProperty());
 
         tourPopularityLabel.textProperty().bind(tour.popularityProperty().asString());
         tourChildFriendlinessLabel.textProperty().bind(tour.childFriendlinessProperty().asString());
 
 
         // ---- Leaflet Map laden ----
-        WebEngine engine = tourMapView.getEngine();
-        URL mapHtmlUrl = getClass().getResource("/map.html");  // map.html im Ressourcenordner
-
-        if (mapHtmlUrl != null) {
-            engine.load(mapHtmlUrl.toExternalForm()+ "?mode=view");
-            engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
-                if (newState == Worker.State.SUCCEEDED) {
-
-                    JSObject window = (JSObject) engine.executeScript("window");
-                    JavaBridge bridge = new JavaBridge(tour, tourService, tourMapView);
-                    window.setMember("javaConnector", bridge);
-
-                    if (tour.hasCoordinates()) {
-                        try {
-                            String geoJson = tourService.getRouteGeoJson(tour);
-                            // Escape Anführungszeichen fürs JS-Script
-                            String escapedGeoJson = geoJson.replace("\"", "\\\"");
-                            // JavaScript-Funktion aus map.html aufrufen und Route übergeben
-                            engine.executeScript("window.loadRoute(\"" + escapedGeoJson + "\");");
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-            });
+        String imagePath = tour.getImageUrl();
+        if (imagePath != null && !imagePath.isEmpty()) {
+            Image image = new Image(new File(imagePath).toURI().toString());
+            tourMapImageView.setImage(image);
+            tourMapImageView.setVisible(true);
         }
+
 
         // Lade die Log-Tabelle mit den Logs der ausgewählten Tour
         List<TourLog> logs = tourLogService.getTourLogsByTourId(UUID.fromString(tour.getId()));

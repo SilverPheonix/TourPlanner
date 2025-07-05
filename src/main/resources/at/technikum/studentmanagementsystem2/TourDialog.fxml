@@ -46,12 +46,8 @@
         <Label text="Geschätzte Zeit (Std):" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
         <TextField fx:id="tourEstimatedtimeField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-        <!-- Bild-URL -->
-        <Label text="Bild-URL:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-        <TextField fx:id="tourImageField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
-
-        <Label text="Route auf Karte setzen:" style="-fx-font-weight: bold;" />
-        <WebView fx:id="tourMapView" prefHeight="300" />
+        <Label text="Route auf Karte setzen:" style="-fx-font-weight: bold;" GridPane.rowIndex="7" GridPane.columnIndex="0" />
+        <WebView fx:id="tourMapView" prefHeight="200" prefWidth="300"  GridPane.rowIndex="7" GridPane.columnIndex="1"/>
     </GridPane>
 
     <!-- Buttons -->

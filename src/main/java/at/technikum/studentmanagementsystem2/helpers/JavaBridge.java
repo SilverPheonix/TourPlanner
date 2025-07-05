@@ -3,10 +3,14 @@ package at.technikum.studentmanagementsystem2.helpers;
 import javafx.application.Platform;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
 import at.technikum.studentmanagementsystem2.service.TourService;
-import javafx.application.Platform;
+import javafx.scene.image.WritableImage;
 import javafx.scene.web.WebView;
 
+import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.IOException;
+import javafx.embed.swing.SwingFXUtils;
+
 
 public class JavaBridge {
     private final TourViewModel currentTour;
@@ -25,16 +29,51 @@ public class JavaBridge {
         currentTour.setendLat(endLat);
         currentTour.setendLon(endLon);
 
-        // Optional: Route anzeigen
         Platform.runLater(() -> {
             try {
                 String geoJson = tourService.getRouteGeoJson(currentTour);
                 String escapedGeoJson = geoJson.replace("\"", "\\\"");
                 tourMapView.getEngine().executeScript("window.loadRoute(\"" + escapedGeoJson + "\");");
+
+                // Screenshot-Ordner erstellen, falls nicht vorhanden
+                File dir = new File("screenshots");
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                // Alte Screenshots der aktuellen Tour löschen
+                File[] oldScreenshots = dir.listFiles((d, name) ->
+                        name.startsWith(currentTour.getId() + "_") && name.endsWith(".png"));
+                if (oldScreenshots != null) {
+                    for (File old : oldScreenshots) {
+                        old.delete();
+                    }
+                }
+
+                // Neuen Screenshot speichern
+                String filename = "screenshots/" + currentTour.getId() + "_" + System.currentTimeMillis() + ".png";
+                captureMapScreenshot(filename);
+                currentTour.setImageUrl(filename);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
+
+
+    public void captureMapScreenshot(String fileName) {
+        Platform.runLater(() -> {
+            WritableImage image = tourMapView.snapshot(null, null);
+            File file = new File(fileName);
+            try {
+                ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+                System.out.println("Screenshot gespeichert unter: " + fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
 
 }

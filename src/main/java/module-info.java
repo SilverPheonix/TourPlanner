@@ -44,5 +44,6 @@ open module at.technikum.studentmanagementsystem2 {
     requires org.hibernate.orm.core;
     requires javafx.web;
     requires jdk.jsobject;
+    requires javafx.swing;
 
 }
