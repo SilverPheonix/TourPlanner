@@ -6,6 +6,7 @@ import at.technikum.studentmanagementsystem2.models.Tour;
 import at.technikum.studentmanagementsystem2.models.TourLog;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class TourMapper {
@@ -45,7 +46,7 @@ public class TourMapper {
 
     public static Tour fromDTO(TourExportDTO dto) {
         Tour tour = new Tour();
-        tour.setId(dto.getId());
+        tour.setId(UUID.randomUUID());
         tour.setName(dto.getName());
         tour.setDescription(dto.getDescription());
         tour.setFrom(dto.getFrom());
@@ -65,7 +66,7 @@ public class TourMapper {
 
     public static TourLog fromDTO(TourLogDTO dto, Tour tour) {
         TourLog log = new TourLog();
-        log.setId(dto.getId());
+        log.setId(UUID.randomUUID());
         log.setTour(tour);
         log.setDateTime(dto.getDateTime());
         log.setComment(dto.getComment());
