@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -60,8 +61,7 @@ public class MainController {
 
     private TourTableViewModel tourTableViewModel = new TourTableViewModel();
     private TourLogTableViewModel tourLogViewModel = new TourLogTableViewModel();
-
-
+    private final Random random = new Random();
 
     public void setViewModels(TourTableViewModel tourTableViewModel, TourLogTableViewModel tourLogTableViewModel) {
         this.tourTableViewModel = tourTableViewModel;
@@ -141,6 +141,27 @@ public class MainController {
         if (selectedTour != null) {
             showTourDetails(selectedTour);
         }
+    }
+
+    @FXML
+    private void onSelectRandomTour() {
+        List<TourViewModel> tours = tourTableViewModel.getTours();
+        if (tours.isEmpty()) {
+            AlertHelper.showError("Keine Touren verfügbar, um eine zufällige Auswahl zu treffen.");
+            return;
+        }
+
+        int randomIndex = random.nextInt(tours.size());
+        TourViewModel randomTour = tours.get(randomIndex);
+
+        if (randomTour == null) {
+            AlertHelper.showError("Fehler beim Auswählen einer zufälligen Tour.");
+            return;
+        }
+
+        tourListView.getSelectionModel().select(randomTour);
+        showTourDetails(randomTour);
+        AlertHelper.showInfo("Zufällige Tour ausgewählt: " + randomTour.getName());
     }
 
 

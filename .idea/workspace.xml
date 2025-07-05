@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Added logging to console and log file">
-      <change afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/service/TourLogServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2/service/TourServiceTest.java" afterDir="false" />
+    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Service Unit Tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,8 +66,10 @@
     "Application.Main.executor": "Run",
     "Application.StudentManagementApplication.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.TourLogServiceTest.executor": "Run",
     "JUnit.TourServiceTest.executor": "Run",
     "JUnit.at.technikum.studentmanagementsystem2 in TourPlanner.executor": "Run",
+    "JUnit.studentmanagementsystem2 in TourPlanner.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -98,35 +100,9 @@
       <recent name="at.technikum.studentmanagementsystem2.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TourLogServiceTest">
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="at.tourplanner.tourplanner.HelloApplication" />
-      <module name="TourPlanner" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="at.tourplanner.tourplanner.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.Main" />
-      <module name="TourPlanner" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StudentManagementApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.StudentManagementApplication" />
       <module name="TourPlanner" />
       <extension name="coverage">
         <pattern>
@@ -168,13 +144,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="studentmanagementsystem2 in TourPlanner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TourPlanner" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="TourPlanner" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="at.technikum.studentmanagementsystem2.Main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="at.technikum.studentmanagementsystem2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.Main" />
+        <item itemvalue="JUnit.studentmanagementsystem2 in TourPlanner" />
         <item itemvalue="JUnit.TourLogServiceTest" />
         <item itemvalue="JUnit.TourServiceTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.StudentManagementApplication" />
-        <item itemvalue="Application.HelloApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -299,7 +296,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751710301225</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Service Unit Tests">
+      <option name="closed" value="true" />
+      <created>1751750521459</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1751750521459</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,6 +344,7 @@
     <MESSAGE value="Leaflet edit und view mode, Alert Helper" />
     <MESSAGE value="Leaflet view bearbeietn, Java Bridge eigene Klasse" />
     <MESSAGE value="Added logging to console and log file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logging to console and log file" />
+    <MESSAGE value="Service Unit Tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Service Unit Tests" />
   </component>
 </project>

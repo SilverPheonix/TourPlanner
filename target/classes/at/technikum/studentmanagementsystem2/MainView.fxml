@@ -16,10 +16,9 @@
     <top>
         <ToolBar>
             <Button text="Neue Tour" onAction="#onNewTour"/>
-            <Button text="Tour löschen" onAction="#onDeleteTour"/>
-
             <Button text="Zusammengefassten Tour-Report erstellen" onAction="#onSummaryReport"/>
             <Button text="Tour als JSON importieren" onAction="#onImportTourJson"/>
+            <Button text="Zufällige Tour auswählen" onAction="#onSelectRandomTour" style="-fx-font-weight: bold;"/>
         </ToolBar>
     </top>
 
@@ -39,6 +38,7 @@
             </padding>
             <ToolBar>
                 <Button text="Tour bearbeiten" onAction="#onEditTour"/>
+                <Button text="Tour löschen" onAction="#onDeleteTour"/>
                 <Button text="Tour Report erstellen" onAction="#onReport"/>
                 <Button text="Tour als JSON exportieren" onAction="#onExportTourJson"/>
             </ToolBar>
