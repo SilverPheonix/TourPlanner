@@ -1,7 +1,9 @@
 package at.technikum.studentmanagementsystem2.controller;
 
+import at.technikum.studentmanagementsystem2.dto.TourExportDTO;
 import at.technikum.studentmanagementsystem2.helpers.AlertHelper;
 import at.technikum.studentmanagementsystem2.helpers.JavaBridge;
+import at.technikum.studentmanagementsystem2.helpers.TourMapper;
 import at.technikum.studentmanagementsystem2.models.Tour;
 import at.technikum.studentmanagementsystem2.models.TourLog;
 import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
@@ -22,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import netscape.javascript.JSObject;
@@ -34,6 +37,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class MainController {
@@ -377,6 +381,33 @@ public class MainController {
             AlertHelper.showAlert("Fehler", "Fehler beim Exportieren: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+
+    @FXML
+    private void onImportTourJson() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Tour JSON importieren");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("JSON Dateien", "*.json")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(tourListView.getScene().getWindow());
+        if (selectedFile != null) {
+            try {
+                Tour importedTour = TourJsonService.importAndSaveTour(
+                        selectedFile.getAbsolutePath(), tourService, tourLogService);
+
+                tourTableViewModel.addTour(new TourViewModel(importedTour));
+                tourListView.refresh();
+
+                AlertHelper.showAlert("Erfolg", "Tour erfolgreich importiert!", Alert.AlertType.INFORMATION);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                AlertHelper.showAlert("Fehler", "Import fehlgeschlagen: " + e.getMessage(), Alert.AlertType.ERROR);
+            }
+        }
+    }
+
 
 
 }

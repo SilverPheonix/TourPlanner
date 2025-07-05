@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TourJsonService {
 
@@ -42,5 +43,22 @@ public class TourJsonService {
 
     public static TourExportDTO importTour(String filePath) throws IOException {
         return mapper.readValue(new File(filePath), TourExportDTO.class);
+    }
+
+    public static Tour importAndSaveTour(String filePath, TourService tourService, TourLogService tourLogService) throws IOException {
+        TourExportDTO dto = importTour(filePath);
+        Tour tour = TourMapper.fromDTO(dto);
+        List<TourLog> logs = dto.getTourLogs()
+                .stream()
+                .map(logDTO -> TourMapper.fromDTO(logDTO, tour))
+                .collect(Collectors.toList());
+
+        tourService.createTour(tour);
+
+        for (TourLog log : logs) {
+            tourLogService.saveTourLog(log);
+        }
+
+        return tour;
     }
 }

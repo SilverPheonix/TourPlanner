@@ -43,4 +43,38 @@ public class TourMapper {
         return dto;
     }
 
+    public static Tour fromDTO(TourExportDTO dto) {
+        Tour tour = new Tour();
+        tour.setId(dto.getId());
+        tour.setName(dto.getName());
+        tour.setDescription(dto.getDescription());
+        tour.setFrom(dto.getFrom());
+        tour.setTo(dto.getTo());
+        tour.setTransportType(dto.getTransportType());
+        tour.setDistance(dto.getDistance());
+        tour.setEstimatedTime(dto.getEstimatedTime());
+        tour.setImageUrl(dto.getImageUrl());
+        tour.setPopularity(dto.getPopularity());
+        tour.setChildFriendliness(dto.getChildFriendliness());
+        tour.setStartLat(dto.getStartLat());
+        tour.setStartLon(dto.getStartLon());
+        tour.setEndLat(dto.getEndLat());
+        tour.setEndLon(dto.getEndLon());
+        return tour;
+    }
+
+    public static TourLog fromDTO(TourLogDTO dto, Tour tour) {
+        TourLog log = new TourLog();
+        log.setId(dto.getId());
+        log.setTour(tour);
+        log.setDateTime(dto.getDateTime());
+        log.setComment(dto.getComment());
+        log.setDifficulty(dto.getDifficulty());
+        log.setTotalDistance(dto.getTotalDistance());
+        log.setTotalTime(dto.getTotalTime());
+        log.setRating(dto.getRating());
+        return log;
+    }
+
+
 }

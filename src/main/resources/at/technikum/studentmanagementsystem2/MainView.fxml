@@ -19,6 +19,7 @@
             <Button text="Tour löschen" onAction="#onDeleteTour"/>
 
             <Button text="Zusammengefassten Tour-Report erstellen" onAction="#onSummaryReport"/>
+            <Button text="Tour als JSON importieren" onAction="#onImportTourJson"/>
         </ToolBar>
     </top>
 
