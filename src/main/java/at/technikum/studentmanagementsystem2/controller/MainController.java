@@ -1,5 +1,6 @@
 package at.technikum.studentmanagementsystem2.controller;
 
+import at.technikum.studentmanagementsystem2.helpers.JavaBridge;
 import at.technikum.studentmanagementsystem2.models.Tour;
 import at.technikum.studentmanagementsystem2.models.TourLog;
 import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
@@ -19,6 +20,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
+import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -108,6 +110,10 @@ public class MainController {
             engine.load(mapHtmlUrl.toExternalForm()+ "?mode=view");
             engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
                 if (newState == Worker.State.SUCCEEDED) {
+
+                    JSObject window = (JSObject) engine.executeScript("window");
+                    JavaBridge bridge = new JavaBridge(tour, tourService, tourMapView);
+                    window.setMember("javaConnector", bridge);
 
                     if (tour.hasCoordinates()) {
                         try {

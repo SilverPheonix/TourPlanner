@@ -1,5 +1,6 @@
 package at.technikum.studentmanagementsystem2.controller;
 
+import at.technikum.studentmanagementsystem2.helpers.JavaBridge;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
 import at.technikum.studentmanagementsystem2.service.TourService;
 import javafx.application.Platform;
@@ -62,8 +63,11 @@ public class TourEditDialogController {
             engine.load(mapHtmlUrl.toExternalForm()+ "?mode=edit");
             engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
                 if (newState == Worker.State.SUCCEEDED) {
+
                     JSObject window = (JSObject) engine.executeScript("window");
-                    window.setMember("javaConnector", this);
+                    JavaBridge bridge = new JavaBridge(currentTour, tourService, tourMapView);
+                    window.setMember("javaConnector", bridge);
+
                     if (currentTour.hasCoordinates()) {
                         try {
                             String geoJson = tourService.getRouteGeoJson(currentTour);
@@ -112,23 +116,6 @@ public class TourEditDialogController {
         titleLabel.setText(title);
     }
 
-    public void setCoordinates(double startLat, double startLon, double endLat, double endLon) {
-        currentTour.setstartLat(startLat);
-        currentTour.setstartLon(startLon);
-        currentTour.setendLat(endLat);
-        currentTour.setendLon(endLon);
-
-        // Optional: Route anzeigen
-        Platform.runLater(() -> {
-            try {
-                String geoJson = tourService.getRouteGeoJson(currentTour);
-                String escapedGeoJson = geoJson.replace("\"", "\\\"");
-                tourMapView.getEngine().executeScript("window.loadRoute(\"" + escapedGeoJson + "\");");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-    }
 
     private boolean isInputValid() {
         // Name
