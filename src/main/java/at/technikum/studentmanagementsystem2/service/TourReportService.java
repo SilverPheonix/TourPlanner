@@ -8,6 +8,8 @@ import com.itextpdf.kernel.pdf.*;
 import com.itextpdf.layout.*;
 import com.itextpdf.layout.element.*;
 import javafx.scene.control.Alert;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,18 +20,27 @@ import java.time.LocalDateTime;
 
 public class TourReportService {
 
+    private static final Logger logger = LogManager.getLogger(TourReportService.class);
+
     public static void exportTourToPDF(Tour tour, List<TourLog> logs) {
         try {
             // Erstelle Reports-Ordner falls nicht vorhanden
             File reportsDir = new File("reports");
             if (!reportsDir.exists()) {
-                reportsDir.mkdirs();
+                boolean created = reportsDir.mkdirs();
+                if (created) {
+                    logger.info("Created reports directory at: {}", reportsDir.getAbsolutePath());
+                } else {
+                    logger.warn("Failed to create reports directory.");
+                }
             }
 
             // Dateiname mit Timestamp
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
             String fileName = String.format("tour_%s_%s_report.pdf", tour.getId(), timestamp);
             String outputPath = new File(reportsDir, fileName).getAbsolutePath();
+
+            logger.info("Generating tour report PDF for: {}", tour.getName());
 
             // PDF-Erstellung
             PdfWriter writer = new PdfWriter(new FileOutputStream(outputPath));
@@ -54,7 +65,8 @@ public class TourReportService {
                     map.scaleToFit(400, 300);
                     document.add(map);
                 } catch (Exception e) {
-                    document.add(new Paragraph("⚠️ Failed to load image."));
+                    logger.warn("Failed to load image from URL: {}", tour.getImageUrl(), e);
+                    document.add(new Paragraph("Failed to load image."));
                 }
             }
 
@@ -73,12 +85,11 @@ public class TourReportService {
             }
 
             document.close();
-
-            System.out.println("✅ Report saved to: " + outputPath);
+            logger.info("Tour report saved to: {}", outputPath);
             AlertHelper.showAlert("Erfolg", "Report erfolgreich erstellt!", Alert.AlertType.INFORMATION);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Failed to generate tour report PDF", e);
         }
     }
     public static void exportSummarizeReportToPDF(List<Tour> allTours, TourLogService tourLogService) {
@@ -86,13 +97,20 @@ public class TourReportService {
             // Create reports directory if it doesn't exist
             File reportsDir = new File("reports");
             if (!reportsDir.exists()) {
-                reportsDir.mkdirs();
+                boolean created = reportsDir.mkdirs();
+                if (created) {
+                    logger.info("Created reports directory at: {}", reportsDir.getAbsolutePath());
+                } else {
+                    logger.warn("Failed to create reports directory.");
+                }
             }
 
             // Timestamped file name
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
             String fileName = String.format("summary_report_%s.pdf", timestamp);
             String outputPath = new File(reportsDir, fileName).getAbsolutePath();
+
+            logger.info("Generating summary report for all tours...");
 
             // Setup PDF
             PdfWriter writer = new PdfWriter(new FileOutputStream(outputPath));
@@ -125,10 +143,10 @@ public class TourReportService {
             document.add(table);
             document.close();
 
-            System.out.println("✅ Summary Report saved to: " + outputPath);
+            logger.info("Summary report saved to: {}", outputPath);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Failed to generate summary report", e);
         }
     }
 

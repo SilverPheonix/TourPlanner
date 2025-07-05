@@ -46,10 +46,10 @@ open module at.technikum.studentmanagementsystem2 {
     requires javafx.web;
     requires jdk.jsobject;
     requires javafx.swing;
+    requires kernel;
+    requires layout;
+    requires io;
     requires com.fasterxml.jackson.datatype.jsr310;
     requires com.fasterxml.jackson.databind;
-    requires kernel;
-    requires io;
-    requires layout;
 
 }

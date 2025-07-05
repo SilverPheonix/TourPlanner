@@ -392,21 +392,19 @@ public class MainController {
 
         File selectedFile = fileChooser.showOpenDialog(tourListView.getScene().getWindow());
         if (selectedFile != null) {
-            try {
-                Tour importedTour = TourJsonService.importAndSaveTour(
-                        selectedFile.getAbsolutePath(), tourService, tourLogService);
+            Tour importedTour = TourJsonService.importAndSaveTour(
+                    selectedFile.getAbsolutePath(), tourService, tourLogService);
 
+            if (importedTour != null) {
                 tourTableViewModel.addTour(new TourViewModel(importedTour));
                 tourListView.refresh();
-
                 AlertHelper.showAlert("Erfolg", "Tour erfolgreich importiert!", Alert.AlertType.INFORMATION);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                AlertHelper.showAlert("Fehler", "Import fehlgeschlagen: " + e.getMessage(), Alert.AlertType.ERROR);
+            } else {
+                AlertHelper.showAlert("Fehler", "Import fehlgeschlagen: Ungültige oder fehlerhafte Datei.", Alert.AlertType.ERROR);
             }
         }
     }
+
 
 
 

@@ -48,7 +48,7 @@ public class Main extends Application {
             primaryStage.setTitle("Tour Management System");
             primaryStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.fatal("Failed to load MainView.fxml or initialize the main stage", e);
         }
     }
 
@@ -60,10 +60,10 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         logger.info("App has started");
-        logger.warn("Log4j2 test warning");
-        logger.error("Log4j2 test error");
         DatabaseConnection.initializeDatabase();
         launch(args); // Entry point of JavaFX application
+
+        logger.info("App has stopped");
     }
 }
 
