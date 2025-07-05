@@ -41,14 +41,18 @@ public class Tour {
     private double childFriendliness;
 
     //Map Values
-    @Column(name = "startLat")
+    @Column(name = "start_lat")
     private double startLat;
-    @Column(name = "startLon")
+
+    @Column(name = "start_lon")
     private double startLon;
-    @Column(name = "endLat")
+
+    @Column(name = "end_lat")
     private double endLat;
-    @Column(name = "endLon")
+
+    @Column(name = "end_lon")
     private double endLon;
+
 
 
     // No-arg constructor for JPA

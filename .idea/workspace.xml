@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Tour Import">
+    <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Tour Import fix id issue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/helpers/TourMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/helpers/TourMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,7 +275,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751739545453</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Tour Import fix id issue">
+      <option name="closed" value="true" />
+      <created>1751740757188</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1751740757188</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,6 +325,7 @@
     <MESSAGE value="Added logging to console and log file" />
     <MESSAGE value="Tour Export settings" />
     <MESSAGE value="Tour Import" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tour Import" />
+    <MESSAGE value="Tour Import fix id issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tour Import fix id issue" />
   </component>
 </project>
