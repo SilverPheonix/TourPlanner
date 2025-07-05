@@ -33,21 +33,19 @@ open module at.technikum.studentmanagementsystem2 {
     requires spring.beans;
     requires spring.data.jpa;
     requires spring.web;
+    requires java.sql;
     requires jakarta.persistence;
 
     requires javafx.fxml;
 
     requires spring.core; // Ensure spring-core is explicitly required
     // Fix for JavaFX
+    requires org.apache.logging.log4j;
+
 
     requires org.hibernate.orm.core;
     requires javafx.web;
     requires jdk.jsobject;
     requires javafx.swing;
-    requires io;
-    requires kernel;
-    requires layout;
-    requires com.fasterxml.jackson.datatype.jsr310;
-    requires com.fasterxml.jackson.databind;
 
 }

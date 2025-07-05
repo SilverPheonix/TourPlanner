@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.*;
@@ -19,6 +21,8 @@ public class TourService {
     private final TourRepository tourRepository;
     private final TourLogService tourLogService;
 
+    private static final Logger logger = LogManager.getLogger(TourService.class);
+
     @Autowired
     public TourService(TourRepository tourRepository, TourLogService tourLogService) {
         this.tourRepository = tourRepository;
@@ -26,18 +30,22 @@ public class TourService {
     }
 
     public List<Tour> getAllTours() {
+        logger.info("Fetching all tours");
         return tourRepository.findAll();
     }
 
     public Optional<Tour> getTourById(UUID id) {
+        logger.info("Fetching tour by ID: " + id);
         return tourRepository.findById(id);
     }
 
     public Tour createTour(Tour tour) {
+        logger.info("Creating tour: " + tour.getName());
         return tourRepository.save(tour);
     }
 
     public Tour updateTour(Tour updatedTour) {
+        logger.info("Updating tour with ID: " + updatedTour.getId());
         return tourRepository.findById(updatedTour.getId()).map(tour -> {
             tour.setName(updatedTour.getName());
             tour.setDescription(updatedTour.getDescription());
@@ -52,21 +60,31 @@ public class TourService {
             tour.setEndLat(updatedTour.getEndLat());
             tour.setEndLon(updatedTour.getEndLon());
             return tourRepository.save(tour);
-        }).orElseThrow(() -> new RuntimeException("Tour not found with id: " + updatedTour.getId()));
+        }).orElseThrow(() -> {
+            logger.error("Tour not found for update: " + updatedTour.getId());
+            return new RuntimeException("Tour not found with id: " + updatedTour.getId());
+        });
     }
 
     public void deleteTour(UUID id) {
         if (!tourRepository.existsById(id)) {
+            logger.warn("Attempted to delete non-existent tour: " + id);
             throw new RuntimeException("Tour not found with id: " + id);
         }
         tourRepository.deleteById(id);
+        logger.info("Deleted tour with ID: " + id);
     }
 
     public void updateComputedAttributes(TourViewModel tourViewModel) {
+        logger.info("Updating computed attributes for tour: " + tourViewModel.getName());
         Tour tour = tourRepository.findById(UUID.fromString(tourViewModel.getId()))
-                .orElseThrow(() -> new IllegalArgumentException("Tour with ID " + UUID.fromString(tourViewModel.getId()) + " not found"));
+                .orElseThrow(() -> {
+                    logger.error("Tour not found for computing attributes: " + tourViewModel.getId());
+                    return new IllegalArgumentException("Tour with ID " + UUID.fromString(tourViewModel.getId()) + " not found");
+                });
 
         List<TourLog> logs = tourLogService.getTourLogsByTourId(tourViewModel.toTour().getId());
+        logger.debug("Found " + logs.size() + " logs for tour: " + tour.getName());
 
         // Popularity = Anzahl der Logs
         int popularity = logs.size();
