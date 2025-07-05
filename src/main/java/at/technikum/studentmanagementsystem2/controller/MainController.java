@@ -103,24 +103,22 @@ public class MainController {
         // ---- Leaflet Map laden ----
         WebEngine engine = tourMapView.getEngine();
         URL mapHtmlUrl = getClass().getResource("/map.html");  // map.html im Ressourcenordner
+
         if (mapHtmlUrl != null) {
-            engine.load(mapHtmlUrl.toExternalForm());
+            engine.load(mapHtmlUrl.toExternalForm()+ "?mode=view");
             engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
                 if (newState == Worker.State.SUCCEEDED) {
-                    // GeoJSON von Service holen - hier anpassen je nach deiner API
-                    String geoJson = null;
-                    try {
-                        geoJson = tourService.getRouteGeoJson(tour);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
 
-                    if (geoJson != null) {
-                        // Escape Anführungszeichen fürs JS-Script
-                        String escapedGeoJson = geoJson.replace("\"", "\\\"");
-
-                        // JavaScript-Funktion aus map.html aufrufen und Route übergeben
-                        engine.executeScript("window.loadRoute(\"" + escapedGeoJson + "\");");
+                    if (tour.hasCoordinates()) {
+                        try {
+                            String geoJson = tourService.getRouteGeoJson(tour);
+                            // Escape Anführungszeichen fürs JS-Script
+                            String escapedGeoJson = geoJson.replace("\"", "\\\"");
+                            // JavaScript-Funktion aus map.html aufrufen und Route übergeben
+                            engine.executeScript("window.loadRoute(\"" + escapedGeoJson + "\");");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             });

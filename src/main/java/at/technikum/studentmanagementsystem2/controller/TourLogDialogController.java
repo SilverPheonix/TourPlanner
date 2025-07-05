@@ -1,6 +1,7 @@
 package at.technikum.studentmanagementsystem2.controller;
 
 import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
+import at.technikum.studentmanagementsystem2.helpers.AlertHelper;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -83,7 +84,7 @@ public class TourLogDialogController {
             commentField.getScene().getWindow().hide();
         } else {
             // Show error message if validation fails
-            showAlert("Fehler", "Bitte stellen Sie sicher, dass alle Felder korrekt ausgefüllt sind.", Alert.AlertType.ERROR);
+            AlertHelper.showAlert("Fehler", "Bitte stellen Sie sicher, dass alle Felder korrekt ausgefüllt sind.", Alert.AlertType.ERROR);
         }
     }
 
@@ -91,13 +92,13 @@ public class TourLogDialogController {
     private boolean isInputValid() {
         // Check if comment is empty
         if (getComment().isEmpty()) {
-            showAlert("Fehler", "Kommentar darf nicht leer sein!", Alert.AlertType.ERROR);
+            AlertHelper.showAlert("Fehler", "Kommentar darf nicht leer sein!", Alert.AlertType.ERROR);
             return false;
         }
 
         // Check if difficulty is selected
         if (getDifficulty() == null) {
-            showAlert("Fehler", "Bitte wählen Sie eine Schwierigkeit aus.", Alert.AlertType.ERROR);
+            AlertHelper.showAlert("Fehler", "Bitte wählen Sie eine Schwierigkeit aus.", Alert.AlertType.ERROR);
             return false;
         }
 
@@ -105,11 +106,11 @@ public class TourLogDialogController {
         try {
             double distance = getDistance();
             if (distance <= 0) {
-                showAlert("Fehler", "Distanz muss eine positive Zahl sein!", Alert.AlertType.ERROR);
+                AlertHelper.showAlert("Fehler", "Distanz muss eine positive Zahl sein!", Alert.AlertType.ERROR);
                 return false;
             }
         } catch (NumberFormatException e) {
-            showAlert("Fehler", "Distanz muss eine gültige Zahl sein!", Alert.AlertType.ERROR);
+            AlertHelper.showAlert("Fehler", "Distanz muss eine gültige Zahl sein!", Alert.AlertType.ERROR);
             return false;
         }
 
@@ -117,11 +118,11 @@ public class TourLogDialogController {
         try {
             double time = getTime();
             if (time <= 0) {
-                showAlert("Fehler", "Zeit muss eine positive Zahl sein!", Alert.AlertType.ERROR);
+                AlertHelper.showAlert("Fehler", "Zeit muss eine positive Zahl sein!", Alert.AlertType.ERROR);
                 return false;
             }
         } catch (NumberFormatException e) {
-            showAlert("Fehler", "Zeit muss eine gültige Zahl sein!", Alert.AlertType.ERROR);
+            AlertHelper.showAlert("Fehler", "Zeit muss eine gültige Zahl sein!", Alert.AlertType.ERROR);
             return false;
         }
 
@@ -130,14 +131,6 @@ public class TourLogDialogController {
         return true; // All validations passed
     }
 
-    // Helper method to show an alert
-    private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
     // Method to handle the cancel action
     @FXML
     private void handleCancel(ActionEvent event) {
