@@ -33,7 +33,6 @@ open module at.technikum.studentmanagementsystem2 {
     requires spring.beans;
     requires spring.data.jpa;
     requires spring.web;
-    requires java.sql;
     requires jakarta.persistence;
 
     requires javafx.fxml;
@@ -48,5 +47,7 @@ open module at.technikum.studentmanagementsystem2 {
     requires io;
     requires kernel;
     requires layout;
+    requires com.fasterxml.jackson.datatype.jsr310;
+    requires com.fasterxml.jackson.databind;
 
 }

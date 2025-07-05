@@ -39,6 +39,7 @@
             <ToolBar>
                 <Button text="Tour bearbeiten" onAction="#onEditTour"/>
                 <Button text="Tour Report erstellen" onAction="#onReport"/>
+                <Button text="Tour als JSON exportieren" onAction="#onExportTourJson"/>
             </ToolBar>
 
             <!-- 🔹 Tour-Details -->

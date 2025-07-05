@@ -8,6 +8,7 @@ import at.technikum.studentmanagementsystem2.mvvm.TourLogViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModel;
 import at.technikum.studentmanagementsystem2.mvvm.TourViewModel;
+import at.technikum.studentmanagementsystem2.service.TourJsonService;
 import at.technikum.studentmanagementsystem2.service.TourLogService;
 import at.technikum.studentmanagementsystem2.service.TourReportService;
 import at.technikum.studentmanagementsystem2.service.TourService;
@@ -354,5 +355,28 @@ public class MainController {
 
         AlertHelper.showAlert("Erfolg", "Zusammenfassender Report erfolgreich erstellt!", Alert.AlertType.INFORMATION);
     }
+
+    @FXML
+    private void onExportTourJson() {
+        TourViewModel selectedTourVM = tourListView.getSelectionModel().getSelectedItem();
+
+        if (selectedTourVM == null) {
+            AlertHelper.showAlert("Fehler", "Bitte wählen Sie eine Tour zum Exportieren aus.", Alert.AlertType.WARNING);
+            return;
+        }
+        try {
+            List<TourLog> logs = tourLogService.getTourLogsByTourId(selectedTourVM.toTour().getId());
+
+            // JSON-Export ohne Pfadübergabe
+            TourJsonService.exportTour(selectedTourVM.toTour(), logs);
+
+            AlertHelper.showAlert("Erfolg", "Tour wurde erfolgreich exportiert.", Alert.AlertType.INFORMATION);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertHelper.showAlert("Fehler", "Fehler beim Exportieren: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
 
 }

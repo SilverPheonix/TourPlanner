@@ -101,6 +101,17 @@
             <version>7.2.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.18.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.18.2</version> <!-- gleiche Version wie jackson-databind -->
+        </dependency>
+
 
         <!-- Mockito -->
         <dependency>
