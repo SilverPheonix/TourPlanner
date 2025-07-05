@@ -1,0 +1,369 @@
+Index: src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package at.technikum.studentmanagementsystem2.service;\r\n\r\nimport at.technikum.studentmanagementsystem2.models.TourLog;\r\nimport at.technikum.studentmanagementsystem2.repository.TourLogRepository;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.List;\r\nimport java.util.UUID;\r\n\r\n@Service\r\npublic class TourLogService {\r\n\r\n    private final TourLogRepository tourLogRepository;\r\n\r\n    public TourLogService(TourLogRepository repo) {\r\n        this.tourLogRepository = repo;\r\n    }\r\n\r\n    public List<TourLog> getTourLogsByTourId(UUID tourId) {\r\n        return tourLogRepository.findAll().stream()\r\n                .filter(log -> log.getTour() != null && log.getTour().getId().equals(tourId))\r\n                .toList();\r\n    }\r\n\r\n    public void saveTourLog(TourLog tourLog) {\r\n        tourLogRepository.save(tourLog);\r\n    }\r\n\r\n    public void deleteTourLog(UUID logId) {\r\n        tourLogRepository.deleteById(logId);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java b/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java
+--- a/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java	(revision c21c872bf98bdc84590adb6aee71f5d3d05cbdf8)
++++ b/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java	(date 1751733886679)
+@@ -3,6 +3,8 @@
+ import at.technikum.studentmanagementsystem2.models.TourLog;
+ import at.technikum.studentmanagementsystem2.repository.TourLogRepository;
+ import org.springframework.stereotype.Service;
++import org.apache.logging.log4j.LogManager;
++import org.apache.logging.log4j.Logger;
+ 
+ import java.util.List;
+ import java.util.UUID;
+@@ -11,22 +13,26 @@
+ public class TourLogService {
+ 
+     private final TourLogRepository tourLogRepository;
++    private static final Logger logger = LogManager.getLogger(TourLogService.class);
+ 
+     public TourLogService(TourLogRepository repo) {
+         this.tourLogRepository = repo;
+     }
+ 
+     public List<TourLog> getTourLogsByTourId(UUID tourId) {
++        logger.info("Fetching logs for tour ID: {}", tourId);
+         return tourLogRepository.findAll().stream()
+                 .filter(log -> log.getTour() != null && log.getTour().getId().equals(tourId))
+                 .toList();
+     }
+ 
+     public void saveTourLog(TourLog tourLog) {
++        logger.info("Saving tour log for tour ID: {}", tourLog.getTour() != null ? tourLog.getTour().getId() : "null");
+         tourLogRepository.save(tourLog);
+     }
+ 
+     public void deleteTourLog(UUID logId) {
++        logger.info("Deleting tour log with ID: {}", logId);
+         tourLogRepository.deleteById(logId);
+     }
+ }
+Index: src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package at.technikum.studentmanagementsystem2.service;\r\n\r\nimport at.technikum.studentmanagementsystem2.config.Properties_Config;\r\nimport at.technikum.studentmanagementsystem2.models.Tour;\r\nimport at.technikum.studentmanagementsystem2.models.TourLog;\r\nimport at.technikum.studentmanagementsystem2.mvvm.TourViewModel;\r\nimport at.technikum.studentmanagementsystem2.repository.TourRepository;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.http.*;\r\nimport org.springframework.stereotype.Service;\r\nimport org.springframework.web.client.RestTemplate;\r\n\r\nimport java.io.IOException;\r\nimport java.util.*;\r\n\r\n@Service\r\npublic class TourService {\r\n\r\n    private final TourRepository tourRepository;\r\n    private final TourLogService tourLogService;\r\n\r\n    @Autowired\r\n    public TourService(TourRepository tourRepository, TourLogService tourLogService) {\r\n        this.tourRepository = tourRepository;\r\n        this.tourLogService = tourLogService;\r\n    }\r\n\r\n    public List<Tour> getAllTours() {\r\n        return tourRepository.findAll();\r\n    }\r\n\r\n    public Optional<Tour> getTourById(UUID id) {\r\n        return tourRepository.findById(id);\r\n    }\r\n\r\n    public Tour createTour(Tour tour) {\r\n        return tourRepository.save(tour);\r\n    }\r\n\r\n    public Tour updateTour(Tour updatedTour) {\r\n        return tourRepository.findById(updatedTour.getId()).map(tour -> {\r\n            tour.setName(updatedTour.getName());\r\n            tour.setDescription(updatedTour.getDescription());\r\n            tour.setFrom(updatedTour.getFrom());\r\n            tour.setTo(updatedTour.getTo());\r\n            tour.setTransportType(updatedTour.getTransportType());\r\n            tour.setDistance(updatedTour.getDistance());\r\n            tour.setEstimatedTime(updatedTour.getEstimatedTime());\r\n            tour.setImageUrl(updatedTour.getImageUrl());\r\n            tour.setStartLat(updatedTour.getStartLat());\r\n            tour.setStartLon(updatedTour.getStartLon());\r\n            tour.setEndLat(updatedTour.getEndLat());\r\n            tour.setEndLon(updatedTour.getEndLon());\r\n            return tourRepository.save(tour);\r\n        }).orElseThrow(() -> new RuntimeException(\"Tour not found with id: \" + updatedTour.getId()));\r\n    }\r\n\r\n    public void deleteTour(UUID id) {\r\n        if (!tourRepository.existsById(id)) {\r\n            throw new RuntimeException(\"Tour not found with id: \" + id);\r\n        }\r\n        tourRepository.deleteById(id);\r\n    }\r\n\r\n    public void updateComputedAttributes(TourViewModel tourViewModel) {\r\n        Tour tour = tourRepository.findById(UUID.fromString(tourViewModel.getId()))\r\n                .orElseThrow(() -> new IllegalArgumentException(\"Tour with ID \" + UUID.fromString(tourViewModel.getId()) + \" not found\"));\r\n\r\n        List<TourLog> logs = tourLogService.getTourLogsByTourId(tourViewModel.toTour().getId());\r\n\r\n        // Popularity = Anzahl der Logs\r\n        int popularity = logs.size();\r\n\r\n        double totalScore = 0;\r\n\r\n        for (TourLog log : logs) {\r\n            double difficultyScore = switch (log.getDifficulty().toLowerCase()) {\r\n                case \"leicht\" -> 10;\r\n                case \"mittel\" -> 5;\r\n                case \"schwer\" -> 0;\r\n                default -> 5;\r\n            };\r\n\r\n            double timeScore;\r\n            double totalTime = log.getTotalTime();\r\n            if (totalTime <= 1) {\r\n                timeScore = 10;\r\n            } else if (totalTime <= 3) {\r\n                timeScore = 8;\r\n            } else if (totalTime <= 5) {\r\n                timeScore = 6;\r\n            } else if (totalTime <= 7) {\r\n                timeScore = 4;\r\n            } else if (totalTime <= 9) {\r\n                timeScore = 2;\r\n            } else {\r\n                timeScore = 0;\r\n            }\r\n\r\n            double distanceScore;\r\n            double totalDistance = log.getTotalDistance();\r\n            if (totalDistance <= 2) {\r\n                distanceScore = 10;\r\n            } else if (totalDistance <= 5) {\r\n                distanceScore = 8;\r\n            } else if (totalDistance <= 8) {\r\n                distanceScore = 6;\r\n            } else if (totalDistance <= 11) {\r\n                distanceScore = 4;\r\n            } else if (totalDistance <= 14) {\r\n                distanceScore = 2;\r\n            } else {\r\n                distanceScore = 0;\r\n            }\r\n\r\n            double logScore = (difficultyScore + timeScore + distanceScore) / 3.0;\r\n            totalScore += logScore;\r\n        }\r\n\r\n        // Durchschnitts-Score als Kinderfreundlichkeitswert\r\n        double childFriendliness = logs.isEmpty() ? 0 : totalScore / logs.size();\r\n\r\n        tour.setPopularity(popularity);\r\n        tour.setChildFriendliness(childFriendliness);\r\n        tourViewModel.childFriendlinessProperty().set(childFriendliness);\r\n        tourViewModel.popularityProperty().set(popularity);\r\n\r\n        tourRepository.save(tour);\r\n    }\r\n\r\n    public String getRouteGeoJson(TourViewModel tour) throws IOException {\r\n        // Koordinaten aus Tour holen\r\n        double startLat = tour.getStartLat();\r\n        double startLon = tour.getStartLon();\r\n        double endLat = tour.getEndLat();\r\n        double endLon = tour.getEndLon();\r\n        if (!tour.hasCoordinates()) {\r\n            startLat = 48.205127181547354;\r\n            startLon = 16.365594863891605;\r\n            endLat   = 48.205127181547354;\r\n            endLon   = 16.36274099349976;\r\n        }\r\n\r\n\r\n        //get API Key from config\r\n        Properties props = Properties_Config.loadProperties();\r\n        String apiKey = props.getProperty(\"openrouteservices.api.key\");\r\n\r\n        //Request an OpenRouteService mit den Koordinaten bauen\r\n        String url = \"https://api.openrouteservice.org/v2/directions/driving-car/geojson\";\r\n\r\n        HttpHeaders headers = new HttpHeaders();\r\n        headers.set(\"Authorization\", apiKey);\r\n        headers.setContentType(MediaType.APPLICATION_JSON);\r\n\r\n        Map<String, Object> body = new HashMap<>();\r\n        body.put(\"coordinates\", List.of(\r\n                List.of(startLon, startLat),\r\n                List.of(endLon, endLat)\r\n        ));\r\n\r\n        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);\r\n        RestTemplate restTemplate = new RestTemplate();\r\n        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);\r\n\r\n        return response.getBody(); // GeoJSON string\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java b/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java
+--- a/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java	(revision c21c872bf98bdc84590adb6aee71f5d3d05cbdf8)
++++ b/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java	(date 1751733602259)
+@@ -9,6 +9,8 @@
+ import org.springframework.http.*;
+ import org.springframework.stereotype.Service;
+ import org.springframework.web.client.RestTemplate;
++import org.apache.logging.log4j.LogManager;
++import org.apache.logging.log4j.Logger;
+ 
+ import java.io.IOException;
+ import java.util.*;
+@@ -19,6 +21,8 @@
+     private final TourRepository tourRepository;
+     private final TourLogService tourLogService;
+ 
++    private static final Logger logger = LogManager.getLogger(TourService.class);
++
+     @Autowired
+     public TourService(TourRepository tourRepository, TourLogService tourLogService) {
+         this.tourRepository = tourRepository;
+@@ -26,18 +30,22 @@
+     }
+ 
+     public List<Tour> getAllTours() {
++        logger.info("Fetching all tours");
+         return tourRepository.findAll();
+     }
+ 
+     public Optional<Tour> getTourById(UUID id) {
++        logger.info("Fetching tour by ID: " + id);
+         return tourRepository.findById(id);
+     }
+ 
+     public Tour createTour(Tour tour) {
++        logger.info("Creating tour: " + tour.getName());
+         return tourRepository.save(tour);
+     }
+ 
+     public Tour updateTour(Tour updatedTour) {
++        logger.info("Updating tour with ID: " + updatedTour.getId());
+         return tourRepository.findById(updatedTour.getId()).map(tour -> {
+             tour.setName(updatedTour.getName());
+             tour.setDescription(updatedTour.getDescription());
+@@ -52,21 +60,31 @@
+             tour.setEndLat(updatedTour.getEndLat());
+             tour.setEndLon(updatedTour.getEndLon());
+             return tourRepository.save(tour);
+-        }).orElseThrow(() -> new RuntimeException("Tour not found with id: " + updatedTour.getId()));
++        }).orElseThrow(() -> {
++            logger.error("Tour not found for update: " + updatedTour.getId());
++            return new RuntimeException("Tour not found with id: " + updatedTour.getId());
++        });
+     }
+ 
+     public void deleteTour(UUID id) {
+         if (!tourRepository.existsById(id)) {
++            logger.warn("Attempted to delete non-existent tour: " + id);
+             throw new RuntimeException("Tour not found with id: " + id);
+         }
+         tourRepository.deleteById(id);
++        logger.info("Deleted tour with ID: " + id);
+     }
+ 
+     public void updateComputedAttributes(TourViewModel tourViewModel) {
++        logger.info("Updating computed attributes for tour: " + tourViewModel.getName());
+         Tour tour = tourRepository.findById(UUID.fromString(tourViewModel.getId()))
+-                .orElseThrow(() -> new IllegalArgumentException("Tour with ID " + UUID.fromString(tourViewModel.getId()) + " not found"));
++                .orElseThrow(() -> {
++                    logger.error("Tour not found for computing attributes: " + tourViewModel.getId());
++                    return new IllegalArgumentException("Tour with ID " + UUID.fromString(tourViewModel.getId()) + " not found");
++                });
+ 
+         List<TourLog> logs = tourLogService.getTourLogsByTourId(tourViewModel.toTour().getId());
++        logger.debug("Found " + logs.size() + " logs for tour: " + tour.getName());
+ 
+         // Popularity = Anzahl der Logs
+         int popularity = logs.size();
+Index: src/main/java/at/technikum/studentmanagementsystem2/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package at.technikum.studentmanagementsystem2;\r\n\r\nimport at.technikum.studentmanagementsystem2.config.DatabaseConnection;\r\nimport at.technikum.studentmanagementsystem2.controller.MainController;\r\nimport at.technikum.studentmanagementsystem2.mvvm.TourTableViewModel;\r\nimport at.technikum.studentmanagementsystem2.mvvm.TourLogTableViewModel;\r\nimport javafx.application.Application;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Parent;\r\nimport javafx.scene.Scene;\r\nimport javafx.stage.Stage;\r\nimport org.springframework.boot.SpringApplication;\r\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\r\nimport org.springframework.boot.builder.SpringApplicationBuilder;\r\nimport org.springframework.context.ConfigurableApplicationContext;\r\nimport org.springframework.context.annotation.PropertySource;\r\n\r\n@SpringBootApplication\r\n@PropertySource(\"classpath:/at/technikum/studentmanagementsystem2/config.properties\")\r\npublic class Main extends Application {\r\n\r\n    private ConfigurableApplicationContext springContext;\r\n\r\n    @Override\r\n    public void init() throws Exception {\r\n        // Start Spring Boot\r\n        springContext = new SpringApplicationBuilder(Main.class)\r\n                .run(getParameters().getRaw().toArray(new String[0]));\r\n    }\r\n\r\n    @Override\r\n    public void start(Stage primaryStage) {\r\n        try {\r\n            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(\r\n                    \"/at/technikum/studentmanagementsystem2/MainView.fxml\"\r\n            ));\r\n            // Use Spring's Bean Factory to resolve controllers and manage dependencies\r\n            fxmlLoader.setControllerFactory(springContext::getBean);\r\n\r\n            Parent root = fxmlLoader.load();\r\n            Scene scene = new Scene(root, 1000, 600);\r\n\r\n            // Set the stage\r\n            primaryStage.setScene(scene);\r\n            primaryStage.setTitle(\"Tour Management System\");\r\n            primaryStage.show();\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void stop() throws Exception {\r\n        // Shut down Spring when JavaFX application closes\r\n        springContext.close();\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        DatabaseConnection.initializeDatabase();\r\n        launch(args); // Entry point of JavaFX application\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/at/technikum/studentmanagementsystem2/Main.java b/src/main/java/at/technikum/studentmanagementsystem2/Main.java
+--- a/src/main/java/at/technikum/studentmanagementsystem2/Main.java	(revision c21c872bf98bdc84590adb6aee71f5d3d05cbdf8)
++++ b/src/main/java/at/technikum/studentmanagementsystem2/Main.java	(date 1751735559114)
+@@ -10,6 +10,8 @@
+ import javafx.scene.Scene;
+ import javafx.stage.Stage;
+ import org.springframework.boot.SpringApplication;
++import org.apache.logging.log4j.LogManager;
++import org.apache.logging.log4j.Logger;
+ import org.springframework.boot.autoconfigure.SpringBootApplication;
+ import org.springframework.boot.builder.SpringApplicationBuilder;
+ import org.springframework.context.ConfigurableApplicationContext;
+@@ -20,6 +22,7 @@
+ public class Main extends Application {
+ 
+     private ConfigurableApplicationContext springContext;
++    private static final Logger logger = LogManager.getLogger(Main.class);
+ 
+     @Override
+     public void init() throws Exception {
+@@ -56,6 +59,9 @@
+     }
+ 
+     public static void main(String[] args) {
++        logger.info("App has started");
++        logger.warn("Log4j2 test warning");
++        logger.error("Log4j2 test error");
+         DatabaseConnection.initializeDatabase();
+         launch(args); // Entry point of JavaFX application
+     }
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <groupId>at.tourplanner</groupId>\r\n    <artifactId>TourPlanner</artifactId>\r\n    <version>1.0-SNAPSHOT</version>\r\n    <name>TourPlanner</name>\r\n\r\n    <properties>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n        <junit.version>5.10.2</junit.version>\r\n    </properties>\r\n\r\n    <parent>\r\n        <groupId>org.springframework.boot</groupId>\r\n        <artifactId>spring-boot-starter-parent</artifactId>\r\n        <version>3.2.2</version>  <!-- Adjust if needed -->\r\n        <relativePath/> <!-- Helps Maven locate the parent -->\r\n    </parent>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-controls</artifactId>\r\n            <version>21</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-fxml</artifactId>\r\n            <version>21</version>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-api</artifactId>\r\n            <version>${junit.version}</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-engine</artifactId>\r\n            <version>${junit.version}</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter</artifactId>\r\n            <version>3.2.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-webflux</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-data-jpa</artifactId>\r\n        </dependency>\r\n        <!-- JUnit 5 -->\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-api</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-engine</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n\r\n        <!-- JavaFX Test -->\r\n        <dependency>\r\n            <groupId>org.testfx</groupId>\r\n            <artifactId>testfx-core</artifactId>\r\n            <version>4.0.16-alpha</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-web</artifactId>\r\n            <version>21</version> <!-- oder die Version, die du verwendest -->\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>com.itextpdf</groupId>\r\n            <artifactId>kernel</artifactId>\r\n            <version>7.2.6</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.itextpdf</groupId>\r\n            <artifactId>io</artifactId>\r\n            <version>7.2.6</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.itextpdf</groupId>\r\n            <artifactId>layout</artifactId>\r\n            <version>7.2.6</version>\r\n        </dependency>\r\n\r\n\r\n        <!-- Mockito -->\r\n        <dependency>\r\n            <groupId>org.mockito</groupId>\r\n            <artifactId>mockito-core</artifactId>\r\n            <version>3.11.2</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>org.postgresql</groupId>\r\n            <artifactId>postgresql</artifactId>\r\n            <version>42.6.0</version>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>jakarta.annotation</groupId>\r\n            <artifactId>jakarta.annotation-api</artifactId>\r\n            <version>2.1.1</version>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>jakarta.persistence</groupId>\r\n            <artifactId>jakarta.persistence-api</artifactId>\r\n            <version>3.1.0</version>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>org.hibernate.orm</groupId>\r\n            <artifactId>hibernate-core</artifactId>\r\n            <version>6.3.1.Final</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-actuator</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-swing</artifactId>\r\n            <version>24-ea+5</version>\r\n        </dependency>\r\n\r\n\r\n    </dependencies>\r\n\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.apache.maven.plugins</groupId>\r\n                <artifactId>maven-compiler-plugin</artifactId>\r\n                <version>3.13.0</version>\r\n                <configuration>\r\n                    <source>21</source>\r\n                    <target>21</target>\r\n                </configuration>\r\n            </plugin>\r\n            <plugin>\r\n                <groupId>org.openjfx</groupId>\r\n                <artifactId>javafx-maven-plugin</artifactId>\r\n                <version>0.0.8</version>\r\n                <executions>\r\n                    <execution>\r\n                        <!-- Default configuration for running with: mvn clean javafx:run -->\r\n                        <id>default-cli</id>\r\n                        <configuration>\r\n                            <mainClass>at.tourplanner.tourplanner/at.tourplanner.tourplanner.HelloApplication\r\n                            </mainClass>\r\n                            <launcher>app</launcher>\r\n                            <jlinkZipName>app</jlinkZipName>\r\n                            <jlinkImageName>app</jlinkImageName>\r\n                            <noManPages>true</noManPages>\r\n                            <stripDebug>true</stripDebug>\r\n                            <noHeaderFiles>true</noHeaderFiles>\r\n                        </configuration>\r\n                    </execution>\r\n                </executions>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision c21c872bf98bdc84590adb6aee71f5d3d05cbdf8)
++++ b/pom.xml	(date 1751736254833)
+@@ -139,11 +139,30 @@
+             <artifactId>spring-boot-starter-actuator</artifactId>
+         </dependency>
+         <dependency>
++            <groupId>org.springframework.boot</groupId>
++            <artifactId>spring-boot-starter</artifactId>
++            <exclusions>
++                <exclusion>
++                    <groupId>org.springframework.boot</groupId>
++                    <artifactId>spring-boot-starter-logging</artifactId>
++                </exclusion>
++            </exclusions>
++        </dependency>
++        <dependency>
+             <groupId>org.openjfx</groupId>
+             <artifactId>javafx-swing</artifactId>
+             <version>24-ea+5</version>
+         </dependency>
+-
++        <dependency>
++            <groupId>org.apache.logging.log4j</groupId>
++            <artifactId>log4j-core</artifactId>
++            <version>2.20.0</version>
++        </dependency>
++        <dependency>
++            <groupId>org.apache.logging.log4j</groupId>
++            <artifactId>log4j-api</artifactId>
++            <version>2.20.0</version>
++        </dependency>
+ 
+     </dependencies>
+ 
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	(revision c21c872bf98bdc84590adb6aee71f5d3d05cbdf8)
++++ /dev/null	(revision c21c872bf98bdc84590adb6aee71f5d3d05cbdf8)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/TourPlanner.iml" filepath="$PROJECT_DIR$/TourPlanner.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: src/main/java/module-info.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//module at.technikum.studentmanagementsystem2 {\r\n//    // Requires for Spring Boot and Spring Data JPA\r\n//    requires spring.boot;\r\n//    requires spring.boot.autoconfigure;\r\n//    requires spring.context;\r\n//    requires spring.beans;\r\n//    requires spring.data.jpa;\r\n//    requires spring.web;\r\n//    requires java.sql;\r\n//    requires jakarta.persistence;\r\n//    requires javafx.base;\r\n//    requires javafx.controls;\r\n//    requires javafx.fxml;\r\n//\r\n//    // Open packages for Spring reflection\r\n//    opens at.technikum.studentmanagementsystem2 to spring.core, spring.beans, spring.context;\r\n//    opens at.technikum.studentmanagementsystem2.controller to spring.core, spring.beans, spring.context;\r\n//    opens at.technikum.studentmanagementsystem2.service to spring.core, spring.beans, spring.context;\r\n//    opens at.technikum.studentmanagementsystem2.models to spring.core, spring.beans, org.hibernate.orm.core;\r\n//\r\n//    // Exported packages (optional, controls public API that other modules can use)\r\n//    exports at.technikum.studentmanagementsystem2;\r\n//    exports at.technikum.studentmanagementsystem2.controller;\r\n//    exports at.technikum.studentmanagementsystem2.service;\r\n//\r\n//\r\n//}\r\n\r\nopen module at.technikum.studentmanagementsystem2 {\r\n    requires spring.boot;\r\n    requires spring.boot.autoconfigure;\r\n    requires spring.context;\r\n    requires spring.beans;\r\n    requires spring.data.jpa;\r\n    requires spring.web;\r\n    requires java.sql;\r\n    requires jakarta.persistence;\r\n\r\n    requires javafx.fxml;\r\n\r\n    requires spring.core; // Ensure spring-core is explicitly required\r\n    // Fix for JavaFX\r\n\r\n    requires org.hibernate.orm.core;\r\n    requires javafx.web;\r\n    requires jdk.jsobject;\r\n    requires javafx.swing;\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/module-info.java b/src/main/java/module-info.java
+--- a/src/main/java/module-info.java	(revision c21c872bf98bdc84590adb6aee71f5d3d05cbdf8)
++++ b/src/main/java/module-info.java	(date 1751733428335)
+@@ -33,7 +33,6 @@
+     requires spring.beans;
+     requires spring.data.jpa;
+     requires spring.web;
+-    requires java.sql;
+     requires jakarta.persistence;
+ 
+     requires javafx.fxml;
+@@ -45,5 +44,6 @@
+     requires javafx.web;
+     requires jdk.jsobject;
+     requires javafx.swing;
++    requires org.apache.logging.log4j;
+ 
+ }
+Index: src/main/resources/log4j2.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/log4j2.xml b/src/main/resources/log4j2.xml
+new file mode 100644
+--- /dev/null	(date 1751734533695)
++++ b/src/main/resources/log4j2.xml	(date 1751734533695)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<Configuration status="WARN">
++    <Appenders>
++        <Console name="Console" target="SYSTEM_OUT">
++            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
++        </Console>
++        <File name="LogFile" fileName="logs/tourplanner.log" append="true">
++            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
++        </File>
++    </Appenders>
++    <Loggers>
++        <Root level="info">
++            <AppenderRef ref="Console"/>
++            <AppenderRef ref="LogFile"/>
++        </Root>
++    </Loggers>
++</Configuration>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"81365fe8-300d-4aee-9db6-6879254836a4\" name=\"Changes\" comment=\"Leaflet view bearbeietn, Java Bridge eigene Klasse\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/helpers/JavaBridge.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/helpers/JavaBridge.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/module-info.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/module-info.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourDialog.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourDialog.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/map.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/map.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/MainView.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/MainView.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/TourDialog.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/TourDialog.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/helpers/JavaBridge.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/helpers/JavaBridge.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourService.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourService.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/map.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/map.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/module-info.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/module-info.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"HTML File\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;SilverPheonix&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/SilverPheonix/TourPlanner.git&quot;,\r\n    &quot;accountId&quot;: &quot;fc0c70e6-c30b-499b-b99f-e7d6bb4a829a&quot;\r\n  }\r\n}</component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2tIV7efVxvLGCT7hi4TCvGPc5To\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.Main.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.StudentManagementApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/patri/Desktop/studentmanagementsystem2&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\User\\Documents\\FH Technikum\\TourPlanner\\src\\main\\resources\" />\r\n      <recent name=\"C:\\Users\\User\\Documents\\FH Technikum\\TourPlanner123\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.Main\">\r\n    <configuration name=\"HelloApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.tourplanner.tourplanner.HelloApplication\" />\r\n      <module name=\"TourPlanner\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.tourplanner.tourplanner.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.technikum.studentmanagementsystem2.Main\" />\r\n      <module name=\"TourPlanner\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.technikum.studentmanagementsystem2.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StudentManagementApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.technikum.studentmanagementsystem2.StudentManagementApplication\" />\r\n      <module name=\"TourPlanner\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.technikum.studentmanagementsystem2.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Main\" />\r\n        <item itemvalue=\"Application.StudentManagementApplication\" />\r\n        <item itemvalue=\"Application.HelloApplication\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"81365fe8-300d-4aee-9db6-6879254836a4\" name=\"Changes\" comment=\"\" />\r\n      <created>1740039412182</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1740039412182</updated>\r\n      <workItem from=\"1740039413153\" duration=\"1063000\" />\r\n      <workItem from=\"1740064435860\" duration=\"1918000\" />\r\n      <workItem from=\"1741710322886\" duration=\"2079000\" />\r\n      <workItem from=\"1741765964154\" duration=\"209000\" />\r\n      <workItem from=\"1741766325395\" duration=\"968000\" />\r\n      <workItem from=\"1741767606914\" duration=\"1881000\" />\r\n      <workItem from=\"1741785983965\" duration=\"7272000\" />\r\n      <workItem from=\"1741802674215\" duration=\"706000\" />\r\n      <workItem from=\"1741803528160\" duration=\"4321000\" />\r\n      <workItem from=\"1742552757600\" duration=\"298000\" />\r\n      <workItem from=\"1743250988638\" duration=\"2102000\" />\r\n      <workItem from=\"1750776970823\" duration=\"2744000\" />\r\n      <workItem from=\"1751569238378\" duration=\"7672000\" />\r\n      <workItem from=\"1751577067218\" duration=\"41000\" />\r\n      <workItem from=\"1751614926240\" duration=\"34226000\" />\r\n      <workItem from=\"1751704683535\" duration=\"24600000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Fixed some dependencies, TourViewModel.java still has issues with parameters passing\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1741791152356</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1741791152356</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"It compiles now\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1741802313831</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1741802313831</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"TourView.fxml and TourLogView.fxml are correctly linked now and can be edited\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1741803801378</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1741803801378</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Updated README.md\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1741804016625</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1741804016625</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Tour Services mit dem Controller verbinden\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751577044065</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751577044065</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Computed Values\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751631407308</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751631407308</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Computed Values\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751632988165</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751632988165</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Leaflet first attempt\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751651124681</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751651124681</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Leaflet first attempt 2\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751651947529</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751651947529</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Leaflet edit und view mode, Alert Helper\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751706812862</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751706812862</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Leaflet view bearbeietn, Java Bridge eigene Klasse\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751710301225</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751710301225</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"12\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"GitHub.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Fixed some dependencies, TourViewModel.java still has issues with parameters passing\" />\r\n    <MESSAGE value=\"It compiles now\" />\r\n    <MESSAGE value=\"TourView.fxml and TourLogView.fxml are correctly linked now and can be edited\" />\r\n    <MESSAGE value=\"Updated README.md\" />\r\n    <MESSAGE value=\"Tour Services mit dem Controller verbinden\" />\r\n    <MESSAGE value=\"Computed Values\" />\r\n    <MESSAGE value=\"Leaflet first attempt\" />\r\n    <MESSAGE value=\"Leaflet first attempt 2\" />\r\n    <MESSAGE value=\"Leaflet edit und view mode, Alert Helper\" />\r\n    <MESSAGE value=\"Leaflet view bearbeietn, Java Bridge eigene Klasse\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Leaflet view bearbeietn, Java Bridge eigene Klasse\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision c21c872bf98bdc84590adb6aee71f5d3d05cbdf8)
++++ b/.idea/workspace.xml	(date 1751736242431)
+@@ -5,29 +5,18 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Leaflet view bearbeietn, Java Bridge eigene Klasse">
++      <change afterPath="$PROJECT_DIR$/logs/tourplanner.log" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/MainController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/helpers/JavaBridge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/helpers/JavaBridge.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/models/Tour.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/Main.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourLogService.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/technikum/studentmanagementsystem2/service/TourService.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/technikum/studentmanagementsystem2/TourDialog.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/map.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/MainView.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/TourDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/TourDialog.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController$1.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/MainController.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/controller/TourEditDialogController.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/helpers/JavaBridge.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/helpers/JavaBridge.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/models/Tour.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/mvvm/TourTableViewModel.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/Main.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourLogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourLogService.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/at/technikum/studentmanagementsystem2/service/TourService.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/map.html" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -52,12 +41,12 @@
+     &quot;assignee&quot;: &quot;SilverPheonix&quot;
+   }
+ }</component>
+-  <component name="GithubPullRequestsUISettings">{
+-  &quot;selectedUrlAndAccountId&quot;: {
+-    &quot;url&quot;: &quot;https://github.com/SilverPheonix/TourPlanner.git&quot;,
+-    &quot;accountId&quot;: &quot;fc0c70e6-c30b-499b-b99f-e7d6bb4a829a&quot;
++  <component name="GithubPullRequestsUISettings"><![CDATA[{
++  "selectedUrlAndAccountId": {
++    "url": "https://github.com/SilverPheonix/TourPlanner.git",
++    "accountId": "60dfdecc-6870-4562-97bf-2b936171dbb0"
+   }
+-}</component>
++}]]></component>
+   <component name="KubernetesApiPersistence">{}</component>
+   <component name="KubernetesApiProvider">{
+   &quot;isMigrated&quot;: true
+@@ -101,6 +90,7 @@
+ }</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\patri\Desktop\TourPlanner\src\main\resources" />
+       <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner\src\main\resources" />
+       <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner123" />
+     </key>
+@@ -156,8 +146,8 @@
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
++        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26574.91" />
++        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26574.91" />
+       </set>
+     </attachedChunks>
+   </component>
+@@ -185,6 +175,7 @@
+       <workItem from="1751577067218" duration="41000" />
+       <workItem from="1751614926240" duration="34226000" />
+       <workItem from="1751704683535" duration="24600000" />
++      <workItem from="1751733182870" duration="3058000" />
+     </task>
+     <task id="LOCAL-00001" summary="Fixed some dependencies, TourViewModel.java still has issues with parameters passing">
+       <option name="closed" value="true" />
