@@ -1,0 +1,43 @@
+@startuml app_ui_config
+skinparam classAttributeIconSize 0
+left to right direction
+
+' ======= MAIN =======
+package at.technikum.studentmanagementsystem2 {
+    class Main {
+        - springContext : ConfigurableApplicationContext
+        + init(): void
+        + start(primaryStage: Stage): void
+        + stop(): void
+        + main(args: String[]): void
+    }
+
+    Main --> DatabaseConnection : initializes
+}
+
+' ======= CONFIG =======
+package at.technikum.studentmanagementsystem2.config {
+    class DatabaseConnection
+    class Properties_Config
+
+    DatabaseConnection --> Properties_Config
+}
+
+' ======= CONTROLLERS =======
+package at.technikum.studentmanagementsystem2.controller {
+    class MainController
+    class TourEditDialogController
+    class TourLogDialogController
+
+    MainController --> TourService
+    MainController --> TourLogService
+    MainController --> TourViewModel
+    MainController --> TourLogViewModel
+    MainController --> AlertHelper
+    TourEditDialogController --> TourViewModel
+    TourEditDialogController --> TourService
+    TourEditDialogController --> JavaBridge
+    TourLogDialogController --> TourLogViewModel
+}
+
+@enduml

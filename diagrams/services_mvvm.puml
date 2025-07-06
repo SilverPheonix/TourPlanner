@@ -1,0 +1,59 @@
+@startuml services_mvvm
+skinparam classAttributeIconSize 0
+left to right direction
+
+' ======= SERVICES =======
+package at.technikum.studentmanagementsystem2.service {
+    class TourService {
+        - tourRepository : TourRepository
+        - tourLogService : TourLogService
+    }
+
+    class TourReportService
+    class TourLogService
+    class TourJsonService
+
+    TourService --> TourRepository
+    TourService --> TourLogService
+    TourService --> Tour
+    TourLogService --> TourLogRepository
+    TourJsonService --> TourMapper
+}
+
+' ======= MVVM =======
+package at.technikum.studentmanagementsystem2.mvvm {
+    class TourViewModel
+    class TourTableViewModel
+    class TourLogViewModel
+    class TourLogTableViewModel
+
+    TourTableViewModel --> TourViewModel
+    TourLogTableViewModel --> TourLogViewModel
+    TourViewModel --> Tour
+    TourLogViewModel --> TourLog
+}
+
+' ======= DTOs =======
+package at.technikum.studentmanagementsystem2.dto {
+    class TourExportDTO
+    class TourLogDTO
+
+    TourExportDTO --> TourLogDTO : contains
+}
+
+' ======= HELPERS =======
+package at.technikum.studentmanagementsystem2.helpers {
+    class TourMapper
+    class UUIDv7Generator
+    class AlertHelper
+    class JavaBridge
+
+    JavaBridge --> TourViewModel
+    JavaBridge --> TourService
+}
+
+TourJsonService --> TourExportDTO
+TourJsonService --> TourLog
+TourJsonService --> TourService
+TourJsonService --> TourLogService
+@enduml

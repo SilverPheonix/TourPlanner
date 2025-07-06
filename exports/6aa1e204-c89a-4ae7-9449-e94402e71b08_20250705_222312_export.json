@@ -1,0 +1,34 @@
+{
+  "id" : "6aa1e204-c89a-4ae7-9449-e94402e71b08",
+  "name" : "a",
+  "description" : "asd",
+  "from" : "a",
+  "to" : "b",
+  "transportType" : "aq",
+  "distance" : 2.0,
+  "estimatedTime" : 3.0,
+  "imageUrl" : "screenshots/feb15061-4eb4-411d-9f69-86f2f6996fcc_1751733976045.png",
+  "popularity" : 2,
+  "childFriendliness" : 5.166666666666667,
+  "startLat" : 48.21117606429588,
+  "startLon" : 16.363620758056644,
+  "endLat" : 48.20843056067187,
+  "endLon" : 16.37924194335938,
+  "tourLogs" : [ {
+    "id" : "31592e5e-442b-4931-a877-70fcb4fa1558",
+    "dateTime" : "2025-07-05T18:56:38.542949",
+    "comment" : "ASD",
+    "difficulty" : "Schwer",
+    "totalDistance" : 123.0,
+    "totalTime" : 2.0,
+    "rating" : 5
+  }, {
+    "id" : "e0eebff1-1084-4a63-8344-1f2fa132038a",
+    "dateTime" : "2025-07-05T22:21:37.153308",
+    "comment" : "asd",
+    "difficulty" : "Mittel",
+    "totalDistance" : 1.0,
+    "totalTime" : 2.0,
+    "rating" : 4
+  } ]
+}

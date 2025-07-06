@@ -1,0 +1,268 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+
+package at.technikum.studentmanagementsystem2 {
+
+    class Main {
+        - ConfigurableApplicationContext springContext
+        + init(): void
+        + start(primaryStage: Stage): void
+        + stop(): void
+        + main(args: String[]): void
+    }
+
+    Main ..> ConfigurableApplicationContext : uses
+    Main ..> SpringApplicationBuilder : creates
+    Main ..> FXMLLoader : uses
+    Main ..> Scene : creates
+    Main ..> Stage : manipulates
+    Main ..> Parent : loads
+    Main ..> DatabaseConnection : static call
+    Main ..> Logger : logs
+}
+
+package at.technikum.studentmanagementsystem2.service {
+
+    class TourService {
+        - tourRepository : TourRepository
+        - tourLogService : TourLogService
+        + getAllTours() : List<Tour>
+        + getTourById(id: UUID) : Optional<Tour>
+        + createTour(tour: Tour) : Tour
+        + updateTour(updatedTour: Tour) : Tour
+        + deleteTour(id: UUID) : void
+        + updateComputedAttributes(tourVM: TourViewModel) : void
+        + getRouteGeoJson(tourVM: TourViewModel) : String
+    }
+
+    class TourReportService {
+        + exportTourToPDF(tour: Tour, logs: List<TourLog>) : void
+        + exportSummarizeReportToPDF(allTours: List<Tour>, tourLogService: TourLogService) : void
+    }
+
+    class TourLogService {
+        - tourLogRepository : TourLogRepository
+        + getTourLogsByTourId(tourId: UUID) : List<TourLog>
+        + saveTourLog(tourLog: TourLog) : void
+        + deleteTourLog(logId: UUID) : void
+    }
+
+    class TourJsonService {
+        + exportTour(tour: Tour, logs: List<TourLog>) : void
+        + importTour(filePath: String) : TourExportDTO
+        + importAndSaveTour(filePath: String, tourService: TourService, tourLogService: TourLogService) : Tour
+    }
+
+    TourService --> TourRepository
+    TourService --> TourLogService
+    TourService --> TourViewModel
+    TourService --> Tour
+    TourService --> TourLog
+    TourService ..> Properties_Config
+    TourService ..> RestTemplate
+
+    TourReportService --> Tour
+    TourReportService --> TourLog
+    TourReportService --> TourLogService
+    TourReportService ..> AlertHelper
+    TourReportService ..> Logger
+
+    TourLogService --> TourLogRepository
+    TourLogService --> TourLog
+    TourLogService ..> Logger
+
+    TourJsonService --> Tour
+    TourJsonService --> TourLog
+    TourJsonService --> TourExportDTO
+    TourJsonService --> TourMapper
+    TourJsonService --> TourService
+    TourJsonService --> TourLogService
+    TourJsonService ..> Logger
+    TourJsonService ..> ObjectMapper
+}
+
+package at.technikum.studentmanagementsystem2.repository {
+    interface TourRepository
+    interface TourLogRepository
+    interface JpaRepository
+
+    TourRepository --|> JpaRepository
+    TourRepository --> Tour
+
+    TourLogRepository --|> JpaRepository
+    TourLogRepository --> TourLog
+}
+
+package at.technikum.studentmanagementsystem2.mvvm {
+
+    class TourViewModel {
+        - id : StringProperty
+        - name : StringProperty
+        - description : StringProperty
+        - from : StringProperty
+        - to : StringProperty
+        - transportType : StringProperty
+        - distance : DoubleProperty
+        - estimatedTime : DoubleProperty
+        - imageUrl : StringProperty
+        - popularity : IntegerProperty
+        - childFriendliness : DoubleProperty
+        - startLat : DoubleProperty
+        - startLon : DoubleProperty
+        - endLat : DoubleProperty
+        - endLon : DoubleProperty
+        + getTourLogs() : ObservableList<TourLog>
+        + toTour() : Tour
+        + hasCoordinates() : boolean
+    }
+
+    class TourTableViewModel {
+        - tours : ObservableList<TourViewModel>
+        + addTour(tour: TourViewModel) : void
+        + updateTour(updatedTour: TourViewModel) : void
+        + deleteTour(tour: TourViewModel) : void
+    }
+
+    class TourLogViewModel {
+        - id : ObjectProperty<UUID>
+        - tourId : ObjectProperty<UUID>
+        - dateTime : ObjectProperty<LocalDateTime>
+        - comment : StringProperty
+        - difficulty : StringProperty
+        - totalDistance : DoubleProperty
+        - totalTime : DoubleProperty
+        - rating : IntegerProperty
+        + toTourLog(selectedTour: Tour) : TourLog
+    }
+
+    class TourLogTableViewModel {
+        - tourLogs : ObservableList<TourLogViewModel>
+        + addTourLog(tourLog: TourLogViewModel) : void
+        + updateTourLog(updatedTourLog: TourLogViewModel) : void
+        + deleteTourLog(tourLog: TourLogViewModel) : void
+    }
+
+    TourViewModel --> Tour
+    TourViewModel --> TourLog
+    TourTableViewModel --> TourViewModel
+    TourLogViewModel --> TourLog
+    TourLogViewModel --> Tour
+    TourLogTableViewModel --> TourLogViewModel
+}
+
+package at.technikum.studentmanagementsystem2.models {
+
+    class Tour {
+        - id : UUID
+        - name : String
+        - description : String
+        - from : String
+        - to : String
+        - transportType : String
+        - distance : double
+        - estimatedTime : double
+        - imageUrl : String
+        - popularity : int
+        - childFriendliness : double
+        - startLat : double
+        - startLon : double
+        - endLat : double
+        - endLon : double
+    }
+
+    class TourLog {
+        - id : UUID
+        - tour : Tour
+        - dateTime : LocalDateTime
+        - comment : String
+        - difficulty : String
+        - totalDistance : double
+        - totalTime : double
+        - rating : int
+    }
+
+    Tour "1" <-- "many" TourLog : logs
+}
+
+package at.technikum.studentmanagementsystem2.helpers {
+
+    class UUIDv7Generator {
+        - lastTimestamp : AtomicLong
+        - sequence : AtomicLong
+        + generateUUIDv7() : UUID
+        + extractUUIDv7Timestamp(uuid: UUID) : long
+    }
+
+    class TourMapper {
+        + toDTO(tour: Tour, logs: List<TourLog>) : TourExportDTO
+        + fromDTO(dto: TourExportDTO) : Tour
+        + fromDTO(dto: TourLogDTO, tour: Tour) : TourLog
+    }
+
+    class JavaBridge {
+        - currentTour : TourViewModel
+        - tourService : TourService
+        - tourMapView : WebView
+    }
+
+    class AlertHelper {
+        + showAlert(title: String, message: String, alertType: AlertType) : void
+        + showError(message: String) : void
+        + showInfo(message: String) : void
+    }
+
+    UUIDv7Generator ..> UUID
+    JavaBridge --> TourViewModel
+    JavaBridge --> TourService
+    JavaBridge --> WebView
+}
+
+package at.technikum.studentmanagementsystem2.dto {
+
+    class TourExportDTO {
+        - id : UUID
+        - name : String
+        - description : String
+        - from : String
+        - to : String
+        - transportType : String
+        - distance : double
+        - estimatedTime : double
+        - imageUrl : String
+        - popularity : int
+        - childFriendliness : double
+        - startLat : double
+        - startLon : double
+        - endLat : double
+        - endLon : double
+        - tourLogs : List<TourLogDTO>
+    }
+
+    class TourLogDTO {
+        - id : UUID
+        - dateTime : LocalDateTime
+        - comment : String
+        - difficulty : String
+        - totalDistance : double
+        - totalTime : double
+        - rating : int
+    }
+
+    TourExportDTO --> TourLogDTO : contains
+}
+
+package at.technikum.studentmanagementsystem2.config {
+
+    class Properties_Config {
+        + loadProperties(): Properties
+    }
+
+    class DatabaseConnection {
+        + initializeDatabase(): void
+    }
+
+    DatabaseConnection ..> Properties_Config : loads
+}
+
+@enduml

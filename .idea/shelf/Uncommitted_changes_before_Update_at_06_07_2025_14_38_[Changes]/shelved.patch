@@ -1,0 +1,496 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"81365fe8-300d-4aee-9db6-6879254836a4\" name=\"Changes\" comment=\"Duplicat test entfernen\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"HTML File\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"JUnit5 Test Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;SilverPheonix&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/SilverPheonix/TourPlanner.git&quot;,\r\n    &quot;accountId&quot;: &quot;fc0c70e6-c30b-499b-b99f-e7d6bb4a829a&quot;\r\n  }\r\n}</component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"ProjectErrors\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2tIV7efVxvLGCT7hi4TCvGPc5To\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.Main.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.StudentManagementApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\r\n    &quot;JUnit.TourLogServiceTest.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TourServiceTest.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.at.technikum.studentmanagementsystem2 in TourPlanner.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.studentmanagementsystem2 in TourPlanner.executor&quot;: &quot;Run&quot;,\r\n    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,\r\n    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,\r\n    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,\r\n    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;Spring Boot.Main.executor&quot;: &quot;Run&quot;,\r\n    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,\r\n    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/patri/Desktop/studentmanagementsystem2&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\User\\Documents\\FH Technikum\\TourPlanner\\src\\main\\resources\" />\r\n      <recent name=\"C:\\Users\\User\\Documents\\FH Technikum\\TourPlanner123\" />\r\n    </key>\r\n    <key name=\"CreateTestDialog.Recents.Supers\">\r\n      <recent name=\"\" />\r\n    </key>\r\n    <key name=\"CreateTestDialog.RecentsKey\">\r\n      <recent name=\"at.technikum.studentmanagementsystem2.service\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"JUnit.studentmanagementsystem2 in TourPlanner\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.technikum.studentmanagementsystem2.Main\" />\r\n      <module name=\"TourPlanner\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.technikum.studentmanagementsystem2.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TourLogServiceTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TourPlanner\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.technikum.studentmanagementsystem2.service.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"at.technikum.studentmanagementsystem2.service\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.technikum.studentmanagementsystem2.service.TourLogServiceTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TourServiceTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TourPlanner\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.technikum.studentmanagementsystem2.service.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"at.technikum.studentmanagementsystem2.service\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"at.technikum.studentmanagementsystem2.service.TourServiceTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"studentmanagementsystem2 in TourPlanner\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TourPlanner\" />\r\n      <option name=\"TEST_OBJECT\" value=\"directory\" />\r\n      <dir value=\"$PROJECT_DIR$/src/test/java/at/technikum/studentmanagementsystem2\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Main\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TourPlanner\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"at.technikum.studentmanagementsystem2.Main\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"at.technikum.studentmanagementsystem2.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JUnit.studentmanagementsystem2 in TourPlanner\" />\r\n        <item itemvalue=\"Spring Boot.Main\" />\r\n        <item itemvalue=\"JUnit.TourLogServiceTest\" />\r\n        <item itemvalue=\"JUnit.TourServiceTest\" />\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"81365fe8-300d-4aee-9db6-6879254836a4\" name=\"Changes\" comment=\"\" />\r\n      <created>1740039412182</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1740039412182</updated>\r\n      <workItem from=\"1740039413153\" duration=\"1063000\" />\r\n      <workItem from=\"1740064435860\" duration=\"1918000\" />\r\n      <workItem from=\"1741710322886\" duration=\"2079000\" />\r\n      <workItem from=\"1741765964154\" duration=\"209000\" />\r\n      <workItem from=\"1741766325395\" duration=\"968000\" />\r\n      <workItem from=\"1741767606914\" duration=\"1881000\" />\r\n      <workItem from=\"1741785983965\" duration=\"7272000\" />\r\n      <workItem from=\"1741802674215\" duration=\"706000\" />\r\n      <workItem from=\"1741803528160\" duration=\"4321000\" />\r\n      <workItem from=\"1742552757600\" duration=\"298000\" />\r\n      <workItem from=\"1743250988638\" duration=\"2102000\" />\r\n      <workItem from=\"1750776970823\" duration=\"2744000\" />\r\n      <workItem from=\"1751569238378\" duration=\"7672000\" />\r\n      <workItem from=\"1751577067218\" duration=\"41000\" />\r\n      <workItem from=\"1751614926240\" duration=\"34226000\" />\r\n      <workItem from=\"1751704683535\" duration=\"24600000\" />\r\n      <workItem from=\"1751788667583\" duration=\"2518000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Fixed some dependencies, TourViewModel.java still has issues with parameters passing\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1741791152356</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1741791152356</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"It compiles now\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1741802313831</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1741802313831</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"TourView.fxml and TourLogView.fxml are correctly linked now and can be edited\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1741803801378</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1741803801378</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Updated README.md\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1741804016625</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1741804016625</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Tour Services mit dem Controller verbinden\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751577044065</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751577044065</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Computed Values\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751631407308</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751631407308</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Computed Values\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751632988165</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751632988165</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Leaflet first attempt\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751651124681</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751651124681</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Leaflet first attempt 2\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751651947529</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751651947529</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Leaflet edit und view mode, Alert Helper\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751706812862</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751706812862</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Leaflet view bearbeietn, Java Bridge eigene Klasse\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751710301225</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751710301225</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Service Unit Tests\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751750521459</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751750521459</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Unique Feature: select random tour\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751751408503</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751751408503</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"Duplicat test entfernen\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1751751610611</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1751751610611</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"15\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"GitHub.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Fixed some dependencies, TourViewModel.java still has issues with parameters passing\" />\r\n    <MESSAGE value=\"It compiles now\" />\r\n    <MESSAGE value=\"TourView.fxml and TourLogView.fxml are correctly linked now and can be edited\" />\r\n    <MESSAGE value=\"Updated README.md\" />\r\n    <MESSAGE value=\"Tour Services mit dem Controller verbinden\" />\r\n    <MESSAGE value=\"Computed Values\" />\r\n    <MESSAGE value=\"Leaflet first attempt\" />\r\n    <MESSAGE value=\"Leaflet first attempt 2\" />\r\n    <MESSAGE value=\"Leaflet edit und view mode, Alert Helper\" />\r\n    <MESSAGE value=\"Leaflet view bearbeietn, Java Bridge eigene Klasse\" />\r\n    <MESSAGE value=\"Added logging to console and log file\" />\r\n    <MESSAGE value=\"Service Unit Tests\" />\r\n    <MESSAGE value=\"Unique Feature: select random tour\" />\r\n    <MESSAGE value=\"Duplicat test entfernen\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Duplicat test entfernen\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 3e776cda7af8fff79e187ba8bec2a754d0f2dbf7)
++++ b/.idea/workspace.xml	(date 1751805511020)
+@@ -5,6 +5,10 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Duplicat test entfernen">
++      <change afterPath="$PROJECT_DIR$/diagrams/app_ui_config.puml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/diagrams/class_diagram_complete.puml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/diagrams/domain_model.puml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/diagrams/services_mvvm.puml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -93,6 +97,7 @@
+ }</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\patri\Desktop\TourPlanner\diagrams" />
+       <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner\src\main\resources" />
+       <recent name="C:\Users\User\Documents\FH Technikum\TourPlanner123" />
+     </key>
+@@ -103,7 +108,7 @@
+       <recent name="at.technikum.studentmanagementsystem2.service" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="JUnit.studentmanagementsystem2 in TourPlanner">
++  <component name="RunManager" selected="Spring Boot.Main">
+     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="at.technikum.studentmanagementsystem2.Main" />
+       <module name="TourPlanner" />
+@@ -170,8 +175,8 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="JUnit.studentmanagementsystem2 in TourPlanner" />
+         <item itemvalue="Spring Boot.Main" />
++        <item itemvalue="JUnit.studentmanagementsystem2 in TourPlanner" />
+         <item itemvalue="JUnit.TourLogServiceTest" />
+         <item itemvalue="JUnit.TourServiceTest" />
+         <item itemvalue="Application.Main" />
+Index: diagrams/class_diagram_complete.puml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/diagrams/class_diagram_complete.puml b/diagrams/class_diagram_complete.puml
+new file mode 100644
+--- /dev/null	(date 1751801912015)
++++ b/diagrams/class_diagram_complete.puml	(date 1751801912015)
+@@ -0,0 +1,268 @@
++@startuml
++skinparam classAttributeIconSize 0
++left to right direction
++
++package at.technikum.studentmanagementsystem2 {
++
++    class Main {
++        - ConfigurableApplicationContext springContext
++        + init(): void
++        + start(primaryStage: Stage): void
++        + stop(): void
++        + main(args: String[]): void
++    }
++
++    Main ..> ConfigurableApplicationContext : uses
++    Main ..> SpringApplicationBuilder : creates
++    Main ..> FXMLLoader : uses
++    Main ..> Scene : creates
++    Main ..> Stage : manipulates
++    Main ..> Parent : loads
++    Main ..> DatabaseConnection : static call
++    Main ..> Logger : logs
++}
++
++package at.technikum.studentmanagementsystem2.service {
++
++    class TourService {
++        - tourRepository : TourRepository
++        - tourLogService : TourLogService
++        + getAllTours() : List<Tour>
++        + getTourById(id: UUID) : Optional<Tour>
++        + createTour(tour: Tour) : Tour
++        + updateTour(updatedTour: Tour) : Tour
++        + deleteTour(id: UUID) : void
++        + updateComputedAttributes(tourVM: TourViewModel) : void
++        + getRouteGeoJson(tourVM: TourViewModel) : String
++    }
++
++    class TourReportService {
++        + exportTourToPDF(tour: Tour, logs: List<TourLog>) : void
++        + exportSummarizeReportToPDF(allTours: List<Tour>, tourLogService: TourLogService) : void
++    }
++
++    class TourLogService {
++        - tourLogRepository : TourLogRepository
++        + getTourLogsByTourId(tourId: UUID) : List<TourLog>
++        + saveTourLog(tourLog: TourLog) : void
++        + deleteTourLog(logId: UUID) : void
++    }
++
++    class TourJsonService {
++        + exportTour(tour: Tour, logs: List<TourLog>) : void
++        + importTour(filePath: String) : TourExportDTO
++        + importAndSaveTour(filePath: String, tourService: TourService, tourLogService: TourLogService) : Tour
++    }
++
++    TourService --> TourRepository
++    TourService --> TourLogService
++    TourService --> TourViewModel
++    TourService --> Tour
++    TourService --> TourLog
++    TourService ..> Properties_Config
++    TourService ..> RestTemplate
++
++    TourReportService --> Tour
++    TourReportService --> TourLog
++    TourReportService --> TourLogService
++    TourReportService ..> AlertHelper
++    TourReportService ..> Logger
++
++    TourLogService --> TourLogRepository
++    TourLogService --> TourLog
++    TourLogService ..> Logger
++
++    TourJsonService --> Tour
++    TourJsonService --> TourLog
++    TourJsonService --> TourExportDTO
++    TourJsonService --> TourMapper
++    TourJsonService --> TourService
++    TourJsonService --> TourLogService
++    TourJsonService ..> Logger
++    TourJsonService ..> ObjectMapper
++}
++
++package at.technikum.studentmanagementsystem2.repository {
++    interface TourRepository
++    interface TourLogRepository
++    interface JpaRepository
++
++    TourRepository --|> JpaRepository
++    TourRepository --> Tour
++
++    TourLogRepository --|> JpaRepository
++    TourLogRepository --> TourLog
++}
++
++package at.technikum.studentmanagementsystem2.mvvm {
++
++    class TourViewModel {
++        - id : StringProperty
++        - name : StringProperty
++        - description : StringProperty
++        - from : StringProperty
++        - to : StringProperty
++        - transportType : StringProperty
++        - distance : DoubleProperty
++        - estimatedTime : DoubleProperty
++        - imageUrl : StringProperty
++        - popularity : IntegerProperty
++        - childFriendliness : DoubleProperty
++        - startLat : DoubleProperty
++        - startLon : DoubleProperty
++        - endLat : DoubleProperty
++        - endLon : DoubleProperty
++        + getTourLogs() : ObservableList<TourLog>
++        + toTour() : Tour
++        + hasCoordinates() : boolean
++    }
++
++    class TourTableViewModel {
++        - tours : ObservableList<TourViewModel>
++        + addTour(tour: TourViewModel) : void
++        + updateTour(updatedTour: TourViewModel) : void
++        + deleteTour(tour: TourViewModel) : void
++    }
++
++    class TourLogViewModel {
++        - id : ObjectProperty<UUID>
++        - tourId : ObjectProperty<UUID>
++        - dateTime : ObjectProperty<LocalDateTime>
++        - comment : StringProperty
++        - difficulty : StringProperty
++        - totalDistance : DoubleProperty
++        - totalTime : DoubleProperty
++        - rating : IntegerProperty
++        + toTourLog(selectedTour: Tour) : TourLog
++    }
++
++    class TourLogTableViewModel {
++        - tourLogs : ObservableList<TourLogViewModel>
++        + addTourLog(tourLog: TourLogViewModel) : void
++        + updateTourLog(updatedTourLog: TourLogViewModel) : void
++        + deleteTourLog(tourLog: TourLogViewModel) : void
++    }
++
++    TourViewModel --> Tour
++    TourViewModel --> TourLog
++    TourTableViewModel --> TourViewModel
++    TourLogViewModel --> TourLog
++    TourLogViewModel --> Tour
++    TourLogTableViewModel --> TourLogViewModel
++}
++
++package at.technikum.studentmanagementsystem2.models {
++
++    class Tour {
++        - id : UUID
++        - name : String
++        - description : String
++        - from : String
++        - to : String
++        - transportType : String
++        - distance : double
++        - estimatedTime : double
++        - imageUrl : String
++        - popularity : int
++        - childFriendliness : double
++        - startLat : double
++        - startLon : double
++        - endLat : double
++        - endLon : double
++    }
++
++    class TourLog {
++        - id : UUID
++        - tour : Tour
++        - dateTime : LocalDateTime
++        - comment : String
++        - difficulty : String
++        - totalDistance : double
++        - totalTime : double
++        - rating : int
++    }
++
++    Tour "1" <-- "many" TourLog : logs
++}
++
++package at.technikum.studentmanagementsystem2.helpers {
++
++    class UUIDv7Generator {
++        - lastTimestamp : AtomicLong
++        - sequence : AtomicLong
++        + generateUUIDv7() : UUID
++        + extractUUIDv7Timestamp(uuid: UUID) : long
++    }
++
++    class TourMapper {
++        + toDTO(tour: Tour, logs: List<TourLog>) : TourExportDTO
++        + fromDTO(dto: TourExportDTO) : Tour
++        + fromDTO(dto: TourLogDTO, tour: Tour) : TourLog
++    }
++
++    class JavaBridge {
++        - currentTour : TourViewModel
++        - tourService : TourService
++        - tourMapView : WebView
++    }
++
++    class AlertHelper {
++        + showAlert(title: String, message: String, alertType: AlertType) : void
++        + showError(message: String) : void
++        + showInfo(message: String) : void
++    }
++
++    UUIDv7Generator ..> UUID
++    JavaBridge --> TourViewModel
++    JavaBridge --> TourService
++    JavaBridge --> WebView
++}
++
++package at.technikum.studentmanagementsystem2.dto {
++
++    class TourExportDTO {
++        - id : UUID
++        - name : String
++        - description : String
++        - from : String
++        - to : String
++        - transportType : String
++        - distance : double
++        - estimatedTime : double
++        - imageUrl : String
++        - popularity : int
++        - childFriendliness : double
++        - startLat : double
++        - startLon : double
++        - endLat : double
++        - endLon : double
++        - tourLogs : List<TourLogDTO>
++    }
++
++    class TourLogDTO {
++        - id : UUID
++        - dateTime : LocalDateTime
++        - comment : String
++        - difficulty : String
++        - totalDistance : double
++        - totalTime : double
++        - rating : int
++    }
++
++    TourExportDTO --> TourLogDTO : contains
++}
++
++package at.technikum.studentmanagementsystem2.config {
++
++    class Properties_Config {
++        + loadProperties(): Properties
++    }
++
++    class DatabaseConnection {
++        + initializeDatabase(): void
++    }
++
++    DatabaseConnection ..> Properties_Config : loads
++}
++
++@enduml
+Index: diagrams/app_ui_config.puml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/diagrams/app_ui_config.puml b/diagrams/app_ui_config.puml
+new file mode 100644
+--- /dev/null	(date 1751801974617)
++++ b/diagrams/app_ui_config.puml	(date 1751801974617)
+@@ -0,0 +1,43 @@
++@startuml app_ui_config
++skinparam classAttributeIconSize 0
++left to right direction
++
++' ======= MAIN =======
++package at.technikum.studentmanagementsystem2 {
++    class Main {
++        - springContext : ConfigurableApplicationContext
++        + init(): void
++        + start(primaryStage: Stage): void
++        + stop(): void
++        + main(args: String[]): void
++    }
++
++    Main --> DatabaseConnection : initializes
++}
++
++' ======= CONFIG =======
++package at.technikum.studentmanagementsystem2.config {
++    class DatabaseConnection
++    class Properties_Config
++
++    DatabaseConnection --> Properties_Config
++}
++
++' ======= CONTROLLERS =======
++package at.technikum.studentmanagementsystem2.controller {
++    class MainController
++    class TourEditDialogController
++    class TourLogDialogController
++
++    MainController --> TourService
++    MainController --> TourLogService
++    MainController --> TourViewModel
++    MainController --> TourLogViewModel
++    MainController --> AlertHelper
++    TourEditDialogController --> TourViewModel
++    TourEditDialogController --> TourService
++    TourEditDialogController --> JavaBridge
++    TourLogDialogController --> TourLogViewModel
++}
++
++@enduml
+Index: diagrams/domain_model.puml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/diagrams/domain_model.puml b/diagrams/domain_model.puml
+new file mode 100644
+--- /dev/null	(date 1751801928606)
++++ b/diagrams/domain_model.puml	(date 1751801928606)
+@@ -0,0 +1,38 @@
++@startuml domain_model
++skinparam classAttributeIconSize 0
++left to right direction
++
++package at.technikum.studentmanagementsystem2.models {
++
++    class Tour {
++        - id : UUID
++        - name : String
++        - description : String
++        - from : String
++        - to : String
++        - transportType : String
++        - distance : double
++        - estimatedTime : double
++        - imageUrl : String
++        - popularity : int
++        - childFriendliness : double
++        - startLat : double
++        - startLon : double
++        - endLat : double
++        - endLon : double
++    }
++
++    class TourLog {
++        - id : UUID
++        - tour : Tour
++        - dateTime : LocalDateTime
++        - comment : String
++        - difficulty : String
++        - totalDistance : double
++        - totalTime : double
++        - rating : int
++    }
++
++    Tour "1" <-- "many" TourLog : logs
++}
++@enduml
+Index: diagrams/services_mvvm.puml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/diagrams/services_mvvm.puml b/diagrams/services_mvvm.puml
+new file mode 100644
+--- /dev/null	(date 1751801949576)
++++ b/diagrams/services_mvvm.puml	(date 1751801949576)
+@@ -0,0 +1,59 @@
++@startuml services_mvvm
++skinparam classAttributeIconSize 0
++left to right direction
++
++' ======= SERVICES =======
++package at.technikum.studentmanagementsystem2.service {
++    class TourService {
++        - tourRepository : TourRepository
++        - tourLogService : TourLogService
++    }
++
++    class TourReportService
++    class TourLogService
++    class TourJsonService
++
++    TourService --> TourRepository
++    TourService --> TourLogService
++    TourService --> Tour
++    TourLogService --> TourLogRepository
++    TourJsonService --> TourMapper
++}
++
++' ======= MVVM =======
++package at.technikum.studentmanagementsystem2.mvvm {
++    class TourViewModel
++    class TourTableViewModel
++    class TourLogViewModel
++    class TourLogTableViewModel
++
++    TourTableViewModel --> TourViewModel
++    TourLogTableViewModel --> TourLogViewModel
++    TourViewModel --> Tour
++    TourLogViewModel --> TourLog
++}
++
++' ======= DTOs =======
++package at.technikum.studentmanagementsystem2.dto {
++    class TourExportDTO
++    class TourLogDTO
++
++    TourExportDTO --> TourLogDTO : contains
++}
++
++' ======= HELPERS =======
++package at.technikum.studentmanagementsystem2.helpers {
++    class TourMapper
++    class UUIDv7Generator
++    class AlertHelper
++    class JavaBridge
++
++    JavaBridge --> TourViewModel
++    JavaBridge --> TourService
++}
++
++TourJsonService --> TourExportDTO
++TourJsonService --> TourLog
++TourJsonService --> TourService
++TourJsonService --> TourLogService
++@enduml

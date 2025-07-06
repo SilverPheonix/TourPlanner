@@ -1,0 +1,38 @@
+@startuml domain_model
+skinparam classAttributeIconSize 0
+left to right direction
+
+package at.technikum.studentmanagementsystem2.models {
+
+    class Tour {
+        - id : UUID
+        - name : String
+        - description : String
+        - from : String
+        - to : String
+        - transportType : String
+        - distance : double
+        - estimatedTime : double
+        - imageUrl : String
+        - popularity : int
+        - childFriendliness : double
+        - startLat : double
+        - startLon : double
+        - endLat : double
+        - endLon : double
+    }
+
+    class TourLog {
+        - id : UUID
+        - tour : Tour
+        - dateTime : LocalDateTime
+        - comment : String
+        - difficulty : String
+        - totalDistance : double
+        - totalTime : double
+        - rating : int
+    }
+
+    Tour "1" <-- "many" TourLog : logs
+}
+@enduml
