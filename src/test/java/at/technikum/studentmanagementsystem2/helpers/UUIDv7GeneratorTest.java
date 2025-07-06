@@ -76,7 +76,7 @@ class UUIDv7GeneratorTest {
             long timestamp1 = UUIDv7Generator.extractUUIDv7Timestamp(uuids[i]);
             long timestamp2 = UUIDv7Generator.extractUUIDv7Timestamp(uuids[i + 1]);
 
-            // ✅ Strictly increasing check
+
             assertTrue(timestamp1 < timestamp2,
                     "Timestamps are not in strictly increasing order");
         }
