@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81365fe8-300d-4aee-9db6-6879254836a4" name="Changes" comment="Duplicat test entfernen">
-      <change afterPath="$PROJECT_DIR$/diagrams/app_ui_config.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagrams/class_diagram_complete.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagrams/domain_model.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagrams/services_mvvm.puml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SWEN2_Protokol_final.docx" beforeDir="false" afterPath="$PROJECT_DIR$/SWEN2_Protokol_final.docx" afterDir="false" />
     </list>
